@@ -1,0 +1,38 @@
+{
+ "doc_id": "A017",
+ "carrier_id": "C7",
+ "layout": "dec_page",
+ "scanned": true,
+ "fields": {
+  "coverage_a_dwelling": null,
+  "coverage_b_other_structures": null,
+  "coverage_c_personal_property": 273400.0,
+  "coverage_d_loss_of_use": 72900.0,
+  "coverage_e_liability": 300000,
+  "coverage_f_medical": 5000,
+  "premium_annual_total": 2170.6,
+  "deductible_all_peril": 1000,
+  "deductible_wind_hail_pct": 2,
+  "year_built": null,
+  "square_feet": null
+ },
+ "labels_used": {
+  "coverage_c_personal_property": "Contents",
+  "coverage_d_loss_of_use": "Additional Living Expenses",
+  "coverage_e_liability": "Family Liability",
+  "coverage_f_medical": "Guest Medical",
+  "premium_annual_total": "Estimated Yearly Premium",
+  "deductible_all_peril": "All Peril Deductible",
+  "deductible_wind_hail_pct": "Wind And Hail"
+ },
+ "augment": {
+  "omitted": [
+   "coverage_a_dwelling",
+   "coverage_b_other_structures",
+   "square_feet",
+   "year_built"
+  ],
+  "distractor": true,
+  "scan_mode": "harsh"
+ }
+}

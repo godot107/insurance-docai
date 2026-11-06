@@ -1,0 +1,38 @@
+{
+ "doc_id": "A129",
+ "carrier_id": "C7",
+ "layout": "dec_page",
+ "scanned": true,
+ "fields": {
+  "coverage_a_dwelling": 485500.0,
+  "coverage_b_other_structures": 24300.0,
+  "coverage_c_personal_property": 339800.0,
+  "coverage_d_loss_of_use": null,
+  "coverage_e_liability": null,
+  "coverage_f_medical": null,
+  "premium_annual_total": 3880.79,
+  "deductible_all_peril": 1000,
+  "deductible_wind_hail_pct": null,
+  "year_built": 1980,
+  "square_feet": 2795
+ },
+ "labels_used": {
+  "coverage_a_dwelling": "Dwelling Protection",
+  "coverage_b_other_structures": "Separate Structure Coverage",
+  "coverage_c_personal_property": "Contents",
+  "premium_annual_total": "Estimated Yearly Premium",
+  "deductible_all_peril": "All Peril Deductible",
+  "year_built": "Year Home Built",
+  "square_feet": "Sq Ft"
+ },
+ "augment": {
+  "omitted": [
+   "coverage_d_loss_of_use",
+   "coverage_e_liability",
+   "coverage_f_medical",
+   "deductible_wind_hail_pct"
+  ],
+  "distractor": true,
+  "scan_mode": "scan"
+ }
+}

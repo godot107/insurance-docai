@@ -1,0 +1,36 @@
+{
+ "doc_id": "A043",
+ "carrier_id": "C4",
+ "layout": "mailer_table",
+ "scanned": false,
+ "fields": {
+  "coverage_a_dwelling": 692500.0,
+  "coverage_b_other_structures": 69200.0,
+  "coverage_c_personal_property": 173100.0,
+  "coverage_d_loss_of_use": null,
+  "coverage_e_liability": null,
+  "coverage_f_medical": 5000,
+  "premium_annual_total": 6390.13,
+  "deductible_all_peril": null,
+  "deductible_wind_hail_pct": null,
+  "year_built": null,
+  "square_feet": null
+ },
+ "labels_used": {
+  "coverage_a_dwelling": "Dwelling Protection",
+  "coverage_b_other_structures": "Separate Structure Coverage",
+  "coverage_c_personal_property": "Contents",
+  "coverage_f_medical": "Guest Medical Protection",
+  "premium_annual_total": "Estimated Yearly Premium"
+ },
+ "augment": {
+  "omitted": [
+   "coverage_d_loss_of_use",
+   "coverage_e_liability",
+   "square_feet",
+   "year_built"
+  ],
+  "distractor": false,
+  "scan_mode": "clean"
+ }
+}

@@ -1,0 +1,151 @@
+doc_id,carrier_id,carrier_name,layout,scanned,split,scan_mode,omitted,distractor
+A001,C3,Quarrypoint Insurance,quote_proposal,False,train,clean,1,True
+A002,C4,Tidewell Prairie Mutual,mailer_prose,False,train,clean,0,True
+A003,C7,Pennvera Assurance,mailer_table,True,train,harsh,3,True
+A004,C1,Kestrelite Mutual Insurance,mailer_table,False,train,clean,4,True
+A005,C4,Tidewell Prairie Mutual,dec_page,True,train,harsh,1,True
+A006,C2,Marlowcrest Insurance Group,mailer_prose,True,train,harsh,0,True
+A007,C1,Kestrelite Mutual Insurance,mailer_prose,False,train,clean,0,True
+A008,C4,Tidewell Prairie Mutual,quote_proposal,True,train,harsh,3,False
+A009,C7,Pennvera Assurance,dec_page,True,train,scan,0,False
+A010,C7,Pennvera Assurance,quote_proposal,True,train,harsh,0,False
+A011,C3,Quarrypoint Insurance,mailer_table,True,train,harsh,1,False
+A012,C7,Pennvera Assurance,dec_page,True,train,scan,0,False
+A013,C4,Tidewell Prairie Mutual,dec_page,False,train,clean,1,True
+A014,C1,Kestrelite Mutual Insurance,mailer_table,True,train,harsh,0,True
+A015,C2,Marlowcrest Insurance Group,dec_page,True,train,scan,0,False
+A016,C2,Marlowcrest Insurance Group,mailer_prose,True,train,scan,0,False
+A017,C7,Pennvera Assurance,dec_page,True,train,harsh,4,True
+A018,C3,Quarrypoint Insurance,mailer_table,True,train,harsh,0,True
+A019,C1,Kestrelite Mutual Insurance,mailer_table,True,train,harsh,4,True
+A020,C1,Kestrelite Mutual Insurance,mailer_table,True,train,scan,0,False
+A021,C2,Marlowcrest Insurance Group,dec_page,False,train,clean,4,True
+A022,C8,Wrenfield Haven Insurance,dec_page,False,train,clean,4,True
+A023,C7,Pennvera Assurance,mailer_table,True,train,scan,0,False
+A024,C4,Tidewell Prairie Mutual,quote_proposal,False,train,clean,0,True
+A025,C8,Wrenfield Haven Insurance,mailer_prose,True,train,harsh,0,False
+A026,C8,Wrenfield Haven Insurance,mailer_table,True,train,scan,3,True
+A027,C1,Kestrelite Mutual Insurance,dec_page,True,train,scan,2,True
+A028,C1,Kestrelite Mutual Insurance,quote_proposal,True,train,harsh,0,True
+A029,C4,Tidewell Prairie Mutual,quote_proposal,True,train,scan,0,True
+A030,C1,Kestrelite Mutual Insurance,mailer_prose,True,train,scan,0,True
+A031,C4,Tidewell Prairie Mutual,mailer_table,True,train,harsh,4,False
+A032,C4,Tidewell Prairie Mutual,mailer_table,True,train,harsh,4,True
+A033,C8,Wrenfield Haven Insurance,quote_proposal,True,train,scan,0,False
+A034,C4,Tidewell Prairie Mutual,dec_page,True,train,harsh,0,True
+A035,C2,Marlowcrest Insurance Group,quote_proposal,True,train,harsh,4,False
+A036,C4,Tidewell Prairie Mutual,mailer_table,True,train,harsh,0,True
+A037,C1,Kestrelite Mutual Insurance,mailer_prose,True,train,harsh,0,True
+A038,C7,Pennvera Assurance,mailer_prose,True,train,harsh,0,True
+A039,C2,Marlowcrest Insurance Group,dec_page,True,train,harsh,2,False
+A040,C8,Wrenfield Haven Insurance,mailer_table,True,train,scan,0,True
+A041,C8,Wrenfield Haven Insurance,mailer_prose,True,train,harsh,0,True
+A042,C7,Pennvera Assurance,mailer_table,True,train,harsh,3,False
+A043,C4,Tidewell Prairie Mutual,mailer_table,False,train,clean,4,False
+A044,C7,Pennvera Assurance,quote_proposal,True,train,scan,0,True
+A045,C1,Kestrelite Mutual Insurance,mailer_table,True,train,scan,0,False
+A046,C3,Quarrypoint Insurance,mailer_table,True,train,harsh,0,True
+A047,C4,Tidewell Prairie Mutual,dec_page,True,train,scan,4,True
+A048,C4,Tidewell Prairie Mutual,mailer_prose,False,train,clean,0,False
+A049,C8,Wrenfield Haven Insurance,mailer_table,True,train,scan,1,True
+A050,C2,Marlowcrest Insurance Group,mailer_table,True,train,harsh,0,False
+A051,C2,Marlowcrest Insurance Group,dec_page,False,train,clean,0,True
+A052,C7,Pennvera Assurance,dec_page,False,train,clean,0,False
+A053,C2,Marlowcrest Insurance Group,quote_proposal,True,train,scan,0,True
+A054,C2,Marlowcrest Insurance Group,mailer_table,False,train,clean,3,False
+A055,C8,Wrenfield Haven Insurance,mailer_table,True,train,harsh,0,False
+A056,C8,Wrenfield Haven Insurance,quote_proposal,True,train,harsh,0,True
+A057,C4,Tidewell Prairie Mutual,dec_page,True,train,harsh,0,True
+A058,C3,Quarrypoint Insurance,quote_proposal,True,train,harsh,4,True
+A059,C8,Wrenfield Haven Insurance,quote_proposal,True,train,harsh,0,False
+A060,C1,Kestrelite Mutual Insurance,mailer_prose,False,train,clean,0,False
+A061,C4,Tidewell Prairie Mutual,dec_page,True,train,harsh,2,True
+A062,C7,Pennvera Assurance,dec_page,False,train,clean,1,False
+A063,C1,Kestrelite Mutual Insurance,mailer_prose,True,train,scan,0,True
+A064,C8,Wrenfield Haven Insurance,mailer_table,True,train,scan,1,True
+A065,C7,Pennvera Assurance,mailer_table,True,train,harsh,3,False
+A066,C4,Tidewell Prairie Mutual,mailer_prose,False,train,clean,0,True
+A067,C8,Wrenfield Haven Insurance,quote_proposal,True,train,harsh,0,True
+A068,C1,Kestrelite Mutual Insurance,quote_proposal,True,train,scan,1,True
+A069,C7,Pennvera Assurance,mailer_table,True,train,harsh,4,True
+A070,C3,Quarrypoint Insurance,dec_page,True,train,harsh,2,True
+A071,C4,Tidewell Prairie Mutual,quote_proposal,True,train,harsh,3,False
+A072,C8,Wrenfield Haven Insurance,mailer_table,False,train,clean,3,True
+A073,C1,Kestrelite Mutual Insurance,mailer_prose,True,train,harsh,0,True
+A074,C3,Quarrypoint Insurance,mailer_prose,True,train,harsh,0,True
+A075,C8,Wrenfield Haven Insurance,mailer_prose,True,train,harsh,0,False
+A076,C7,Pennvera Assurance,dec_page,True,train,harsh,3,False
+A077,C8,Wrenfield Haven Insurance,mailer_prose,True,train,harsh,0,False
+A078,C3,Quarrypoint Insurance,mailer_prose,True,train,harsh,0,True
+A079,C2,Marlowcrest Insurance Group,quote_proposal,True,train,scan,2,False
+A080,C1,Kestrelite Mutual Insurance,mailer_table,True,train,scan,0,False
+A081,C7,Pennvera Assurance,dec_page,True,train,harsh,1,True
+A082,C1,Kestrelite Mutual Insurance,dec_page,False,train,clean,1,False
+A083,C8,Wrenfield Haven Insurance,dec_page,False,train,clean,2,True
+A084,C8,Wrenfield Haven Insurance,dec_page,True,train,scan,2,False
+A085,C2,Marlowcrest Insurance Group,mailer_prose,True,train,harsh,0,False
+A086,C4,Tidewell Prairie Mutual,dec_page,True,train,scan,0,True
+A087,C7,Pennvera Assurance,mailer_table,True,train,harsh,3,False
+A088,C2,Marlowcrest Insurance Group,mailer_table,True,train,scan,0,False
+A089,C7,Pennvera Assurance,dec_page,True,train,harsh,3,True
+A090,C2,Marlowcrest Insurance Group,mailer_table,True,train,harsh,1,True
+A091,C7,Pennvera Assurance,mailer_table,True,train,harsh,1,False
+A092,C1,Kestrelite Mutual Insurance,dec_page,True,train,harsh,0,True
+A093,C4,Tidewell Prairie Mutual,quote_proposal,True,train,scan,2,True
+A094,C2,Marlowcrest Insurance Group,mailer_prose,False,train,clean,0,True
+A095,C1,Kestrelite Mutual Insurance,mailer_table,True,train,harsh,0,True
+A096,C7,Pennvera Assurance,mailer_prose,True,train,harsh,0,True
+A097,C8,Wrenfield Haven Insurance,dec_page,False,train,clean,0,False
+A098,C1,Kestrelite Mutual Insurance,mailer_table,False,train,clean,3,True
+A099,C3,Quarrypoint Insurance,mailer_table,True,train,scan,4,False
+A100,C3,Quarrypoint Insurance,mailer_prose,False,train,clean,0,False
+A101,C1,Kestrelite Mutual Insurance,mailer_table,False,train,clean,2,False
+A102,C4,Tidewell Prairie Mutual,mailer_prose,True,train,harsh,0,True
+A103,C7,Pennvera Assurance,quote_proposal,False,train,clean,4,True
+A104,C3,Quarrypoint Insurance,quote_proposal,True,train,harsh,3,True
+A105,C2,Marlowcrest Insurance Group,mailer_table,True,train,scan,2,False
+A106,C7,Pennvera Assurance,quote_proposal,True,train,scan,1,True
+A107,C3,Quarrypoint Insurance,dec_page,False,train,clean,0,False
+A108,C3,Quarrypoint Insurance,dec_page,True,train,harsh,2,False
+A109,C4,Tidewell Prairie Mutual,dec_page,True,train,harsh,0,True
+A110,C3,Quarrypoint Insurance,dec_page,False,train,clean,0,True
+A111,C7,Pennvera Assurance,quote_proposal,True,train,scan,0,False
+A112,C7,Pennvera Assurance,mailer_table,True,train,harsh,0,True
+A113,C2,Marlowcrest Insurance Group,quote_proposal,True,train,harsh,3,True
+A114,C2,Marlowcrest Insurance Group,mailer_table,True,train,harsh,4,True
+A115,C8,Wrenfield Haven Insurance,mailer_prose,True,train,harsh,0,False
+A116,C1,Kestrelite Mutual Insurance,quote_proposal,True,train,harsh,3,True
+A117,C1,Kestrelite Mutual Insurance,mailer_prose,True,train,scan,0,True
+A118,C4,Tidewell Prairie Mutual,dec_page,True,train,harsh,4,False
+A119,C7,Pennvera Assurance,mailer_table,True,train,harsh,3,True
+A120,C2,Marlowcrest Insurance Group,mailer_table,True,train,scan,4,True
+A121,C1,Kestrelite Mutual Insurance,quote_proposal,True,train,harsh,2,True
+A122,C2,Marlowcrest Insurance Group,quote_proposal,True,train,harsh,4,True
+A123,C2,Marlowcrest Insurance Group,quote_proposal,True,train,harsh,1,False
+A124,C4,Tidewell Prairie Mutual,mailer_table,False,train,clean,0,True
+A125,C2,Marlowcrest Insurance Group,mailer_table,False,train,clean,4,False
+A126,C4,Tidewell Prairie Mutual,quote_proposal,True,train,harsh,0,True
+A127,C1,Kestrelite Mutual Insurance,mailer_table,False,train,clean,0,False
+A128,C8,Wrenfield Haven Insurance,mailer_table,True,train,harsh,2,False
+A129,C7,Pennvera Assurance,dec_page,True,train,scan,4,True
+A130,C7,Pennvera Assurance,dec_page,True,train,scan,2,False
+A131,C2,Marlowcrest Insurance Group,quote_proposal,False,train,clean,4,False
+A132,C7,Pennvera Assurance,mailer_prose,True,train,harsh,0,False
+A133,C8,Wrenfield Haven Insurance,quote_proposal,True,train,harsh,3,False
+A134,C1,Kestrelite Mutual Insurance,mailer_prose,True,train,scan,0,False
+A135,C4,Tidewell Prairie Mutual,dec_page,False,train,clean,0,True
+A136,C4,Tidewell Prairie Mutual,mailer_table,True,train,scan,0,False
+A137,C1,Kestrelite Mutual Insurance,mailer_table,True,train,harsh,0,True
+A138,C4,Tidewell Prairie Mutual,quote_proposal,False,train,clean,0,True
+A139,C3,Quarrypoint Insurance,mailer_prose,True,train,harsh,0,True
+A140,C8,Wrenfield Haven Insurance,dec_page,True,train,harsh,0,False
+A141,C3,Quarrypoint Insurance,quote_proposal,True,train,harsh,1,True
+A142,C1,Kestrelite Mutual Insurance,mailer_prose,True,train,scan,0,True
+A143,C7,Pennvera Assurance,mailer_table,True,train,harsh,1,False
+A144,C4,Tidewell Prairie Mutual,dec_page,True,train,harsh,0,True
+A145,C2,Marlowcrest Insurance Group,mailer_table,True,train,scan,0,True
+A146,C8,Wrenfield Haven Insurance,mailer_table,True,train,scan,0,False
+A147,C7,Pennvera Assurance,mailer_table,True,train,harsh,1,True
+A148,C1,Kestrelite Mutual Insurance,dec_page,True,train,harsh,3,True
+A149,C4,Tidewell Prairie Mutual,mailer_prose,True,train,scan,0,True
+A150,C4,Tidewell Prairie Mutual,quote_proposal,True,train,harsh,0,True

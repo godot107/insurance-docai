@@ -1,0 +1,204 @@
+{
+ "max_silent": 0.02,
+ "rules": {
+  "n_values": 120,
+  "errors": 27,
+  "reliability": [
+   {
+    "bin": "(0.9, 0.95]",
+    "n": 1,
+    "share_correct": 1.0
+   },
+   {
+    "bin": "(0.95, 0.99]",
+    "n": 14,
+    "share_correct": 0.857
+   },
+   {
+    "bin": "(0.99, 1.0]",
+    "n": 105,
+    "share_correct": 0.762
+   }
+  ],
+  "chosen": {
+   "method": "rules",
+   "threshold": 1.0,
+   "rules": true,
+   "review_rate": 1.0,
+   "silent_error_rate": 0.0,
+   "errors_caught": 1.0,
+   "correct_sent_to_review": 93
+  },
+  "cross_fit": {
+   "folds": [
+    {
+     "chosen_on": "C5",
+     "scored_on": "C6",
+     "threshold": 0.0,
+     "n_values": 72,
+     "review_rate": 0.1111111111111111,
+     "silent_errors": 8,
+     "silent_error_rate": 0.1111111111111111
+    },
+    {
+     "chosen_on": "C6",
+     "scored_on": "C5",
+     "threshold": 1.0,
+     "n_values": 48,
+     "review_rate": 1.0,
+     "silent_errors": 0,
+     "silent_error_rate": 0.0
+    }
+   ],
+   "pooled": {
+    "review_rate": 0.4666666666666667,
+    "silent_errors": 8,
+    "silent_error_rate": 0.06666666666666667
+   }
+  }
+ },
+ "ins-neural-v1": {
+  "n_values": 148,
+  "errors": 36,
+  "reliability": [
+   {
+    "bin": "(-0.001, 0.5]",
+    "n": 12,
+    "share_correct": 0.083
+   },
+   {
+    "bin": "(0.5, 0.7]",
+    "n": 18,
+    "share_correct": 0.278
+   },
+   {
+    "bin": "(0.7, 0.8]",
+    "n": 12,
+    "share_correct": 0.333
+   },
+   {
+    "bin": "(0.8, 0.9]",
+    "n": 23,
+    "share_correct": 0.913
+   },
+   {
+    "bin": "(0.9, 0.95]",
+    "n": 18,
+    "share_correct": 0.889
+   },
+   {
+    "bin": "(0.95, 0.99]",
+    "n": 65,
+    "share_correct": 1.0
+   }
+  ],
+  "chosen": {
+   "method": "ins-neural-v1",
+   "threshold": 0.78,
+   "rules": true,
+   "review_rate": 0.2972972972972973,
+   "silent_error_rate": 0.013513513513513514,
+   "errors_caught": 0.9444444444444444,
+   "correct_sent_to_review": 10
+  },
+  "cross_fit": {
+   "folds": [
+    {
+     "chosen_on": "C5",
+     "scored_on": "C6",
+     "threshold": 0.7,
+     "n_values": 83,
+     "review_rate": 0.18072289156626506,
+     "silent_errors": 5,
+     "silent_error_rate": 0.060240963855421686
+    },
+    {
+     "chosen_on": "C6",
+     "scored_on": "C5",
+     "threshold": 0.94,
+     "n_values": 65,
+     "review_rate": 0.4461538461538462,
+     "silent_errors": 0,
+     "silent_error_rate": 0.0
+    }
+   ],
+   "pooled": {
+    "review_rate": 0.2972972972972973,
+    "silent_errors": 5,
+    "silent_error_rate": 0.033783783783783786
+   }
+  }
+ },
+ "ins-neural-v2": {
+  "n_values": 124,
+  "errors": 10,
+  "reliability": [
+   {
+    "bin": "(-0.001, 0.5]",
+    "n": 7,
+    "share_correct": 0.143
+   },
+   {
+    "bin": "(0.5, 0.7]",
+    "n": 3,
+    "share_correct": 0.667
+   },
+   {
+    "bin": "(0.7, 0.8]",
+    "n": 5,
+    "share_correct": 1.0
+   },
+   {
+    "bin": "(0.8, 0.9]",
+    "n": 21,
+    "share_correct": 0.952
+   },
+   {
+    "bin": "(0.9, 0.95]",
+    "n": 24,
+    "share_correct": 0.917
+   },
+   {
+    "bin": "(0.95, 0.99]",
+    "n": 64,
+    "share_correct": 1.0
+   }
+  ],
+  "chosen": {
+   "method": "ins-neural-v2",
+   "threshold": 0.44,
+   "rules": true,
+   "review_rate": 0.06451612903225806,
+   "silent_error_rate": 0.016129032258064516,
+   "errors_caught": 0.8,
+   "correct_sent_to_review": 0
+  },
+  "cross_fit": {
+   "folds": [
+    {
+     "chosen_on": "C5",
+     "scored_on": "C6",
+     "threshold": 0.0,
+     "n_values": 76,
+     "review_rate": 0.02631578947368421,
+     "silent_errors": 7,
+     "silent_error_rate": 0.09210526315789473
+    },
+    {
+     "chosen_on": "C6",
+     "scored_on": "C5",
+     "threshold": 0.5,
+     "n_values": 48,
+     "review_rate": 0.041666666666666664,
+     "silent_errors": 0,
+     "silent_error_rate": 0.0
+    }
+   ],
+   "pooled": {
+    "review_rate": 0.03225806451612903,
+    "silent_errors": 7,
+    "silent_error_rate": 0.056451612903225805
+   }
+  }
+ }
+}

@@ -1,0 +1,45 @@
+{
+ "doc_id": "S007",
+ "carrier_id": "C1",
+ "layout": "dec_page",
+ "scanned": true,
+ "fields": {
+  "coverage_a_dwelling": 356100.0,
+  "coverage_b_other_structures": 35600.0,
+  "coverage_c_personal_property": 178000.0,
+  "coverage_d_loss_of_use": 71200.0,
+  "coverage_e_liability": 300000,
+  "coverage_f_medical": 2500,
+  "premium_annual_total": 2872.67,
+  "deductible_all_peril": 3561,
+  "deductible_wind_hail_pct": 2,
+  "year_built": 1983,
+  "square_feet": 1769
+ },
+ "labels_used": {
+  "coverage_a_dwelling": "Dwelling Coverage",
+  "coverage_b_other_structures": "Separate Structure Coverage",
+  "coverage_c_personal_property": "Contents",
+  "coverage_d_loss_of_use": "Living Expenses",
+  "coverage_e_liability": "Family Liability",
+  "coverage_f_medical": "Guest Medical Coverage",
+  "premium_annual_total": "Total Estimated Annual Premium",
+  "deductible_all_peril": "AOP Deductible",
+  "deductible_wind_hail_pct": "Wind And Hail",
+  "year_built": "Year Home Built",
+  "square_feet": "Home Size (Sq Ft)"
+ },
+ "hidden_truth": {
+  "base_premium": 3152.13,
+  "discounts": [
+   {
+    "name": "New Home Discount",
+    "amount": 304.46
+   }
+  ],
+  "policy_fee": 25,
+  "carrier_rate": 7.25,
+  "construction": "Frame",
+  "prior_premium": 2844.3
+ }
+}

@@ -1,0 +1,47 @@
+{
+ "doc_id": "S020",
+ "carrier_id": "C2",
+ "layout": "mailer_table",
+ "scanned": false,
+ "fields": {
+  "coverage_a_dwelling": 456900.0,
+  "coverage_b_other_structures": 45700.0,
+  "coverage_c_personal_property": 319800.0,
+  "coverage_d_loss_of_use": 91400.0,
+  "coverage_e_liability": 100000,
+  "coverage_f_medical": 5000,
+  "premium_annual_total": 2604.73,
+  "deductible_all_peril": null,
+  "deductible_wind_hail_pct": null,
+  "year_built": 1987,
+  "square_feet": 2500
+ },
+ "labels_used": {
+  "coverage_a_dwelling": "Dwelling Coverage",
+  "coverage_b_other_structures": "Separate Structures",
+  "coverage_c_personal_property": "Contents",
+  "coverage_d_loss_of_use": "Additional Living Expenses",
+  "coverage_e_liability": "Family Liability",
+  "coverage_f_medical": "Guest Medical Protection",
+  "premium_annual_total": "Estimated Yearly Premium",
+  "year_built": "Year Home Built",
+  "square_feet": "Square Footage"
+ },
+ "hidden_truth": {
+  "base_premium": 3127.39,
+  "discounts": [
+   {
+    "name": "Paperless Discount",
+    "amount": 288.65
+   },
+   {
+    "name": "Claim Free Discount",
+    "amount": 284.01
+   }
+  ],
+  "policy_fee": 50,
+  "carrier_rate": 5.78,
+  "construction": "Frame",
+  "prior_premium": 2240.32
+ }
+}

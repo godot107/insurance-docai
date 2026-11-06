@@ -1,0 +1,46 @@
+{
+ "doc_id": "S056",
+ "carrier_id": "C5",
+ "layout": "postcard",
+ "scanned": true,
+ "fields": {
+  "coverage_a_dwelling": 495200.0,
+  "coverage_b_other_structures": null,
+  "coverage_c_personal_property": 247600.0,
+  "coverage_d_loss_of_use": null,
+  "coverage_e_liability": 100000,
+  "coverage_f_medical": null,
+  "premium_annual_total": 4022.65,
+  "deductible_all_peril": null,
+  "deductible_wind_hail_pct": null,
+  "year_built": null,
+  "square_feet": null
+ },
+ "labels_used": {
+  "coverage_a_dwelling": "Dwelling Coverage",
+  "coverage_c_personal_property": "Contents",
+  "coverage_e_liability": "Family Liability",
+  "premium_annual_total": "Estimated Annual Premium"
+ },
+ "hidden_truth": {
+  "base_premium": 5072.41,
+  "discounts": [
+   {
+    "name": "Multi-Policy Discount",
+    "amount": 398.48
+   },
+   {
+    "name": "New Home Discount",
+    "amount": 546.09
+   },
+   {
+    "name": "Paperless Discount",
+    "amount": 155.19
+   }
+  ],
+  "policy_fee": 50,
+  "carrier_rate": 9.05,
+  "construction": "Frame",
+  "prior_premium": 3689.19
+ }
+}

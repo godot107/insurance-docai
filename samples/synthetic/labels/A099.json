@@ -1,0 +1,36 @@
+{
+ "doc_id": "A099",
+ "carrier_id": "C3",
+ "layout": "mailer_table",
+ "scanned": true,
+ "fields": {
+  "coverage_a_dwelling": 636600.0,
+  "coverage_b_other_structures": 31800.0,
+  "coverage_c_personal_property": null,
+  "coverage_d_loss_of_use": null,
+  "coverage_e_liability": 500000,
+  "coverage_f_medical": null,
+  "premium_annual_total": 6795.31,
+  "deductible_all_peril": null,
+  "deductible_wind_hail_pct": null,
+  "year_built": 1987,
+  "square_feet": null
+ },
+ "labels_used": {
+  "coverage_a_dwelling": "Dwelling Protection",
+  "coverage_b_other_structures": "Separate Structure Coverage",
+  "coverage_e_liability": "Family Liability",
+  "premium_annual_total": "Estimated Yearly Premium",
+  "year_built": "Year Home Built"
+ },
+ "augment": {
+  "omitted": [
+   "coverage_c_personal_property",
+   "coverage_d_loss_of_use",
+   "coverage_f_medical",
+   "square_feet"
+  ],
+  "distractor": false,
+  "scan_mode": "scan"
+ }
+}

@@ -1,0 +1,48 @@
+{
+ "doc_id": "S063",
+ "carrier_id": "C6",
+ "layout": "renewal_notice",
+ "scanned": true,
+ "fields": {
+  "coverage_a_dwelling": 353000.0,
+  "coverage_b_other_structures": null,
+  "coverage_c_personal_property": 247100.0,
+  "coverage_d_loss_of_use": null,
+  "coverage_e_liability": 300000,
+  "coverage_f_medical": null,
+  "premium_annual_total": 2326.07,
+  "deductible_all_peril": 2500,
+  "deductible_wind_hail_pct": 1,
+  "year_built": null,
+  "square_feet": null
+ },
+ "labels_used": {
+  "coverage_a_dwelling": "Dwelling Protection",
+  "coverage_c_personal_property": "Contents",
+  "coverage_e_liability": "Family Liability",
+  "deductible_all_peril": "All Peril Deductible",
+  "deductible_wind_hail_pct": "Windstorm And Hail",
+  "premium_annual_total": "Estimated Yearly Premium"
+ },
+ "hidden_truth": {
+  "base_premium": 2734.9,
+  "discounts": [
+   {
+    "name": "New Home Discount",
+    "amount": 158.22
+   },
+   {
+    "name": "Multi-Policy Discount",
+    "amount": 96.22
+   },
+   {
+    "name": "Protective Device Discount",
+    "amount": 179.39
+   }
+  ],
+  "policy_fee": 25,
+  "carrier_rate": 7.61,
+  "construction": "Brick Veneer",
+  "prior_premium": 1894.5
+ }
+}

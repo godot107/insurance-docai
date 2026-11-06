@@ -1,0 +1,38 @@
+{
+ "doc_id": "A005",
+ "carrier_id": "C4",
+ "layout": "dec_page",
+ "scanned": true,
+ "fields": {
+  "coverage_a_dwelling": 460500.0,
+  "coverage_b_other_structures": 23000.0,
+  "coverage_c_personal_property": 322400.0,
+  "coverage_d_loss_of_use": null,
+  "coverage_e_liability": 500000,
+  "coverage_f_medical": 5000,
+  "premium_annual_total": 6788.59,
+  "deductible_all_peril": 1000,
+  "deductible_wind_hail_pct": 1,
+  "year_built": 2000,
+  "square_feet": 2609
+ },
+ "labels_used": {
+  "coverage_a_dwelling": "Dwelling Protection",
+  "coverage_b_other_structures": "Separate Structure Coverage",
+  "coverage_c_personal_property": "Contents",
+  "coverage_e_liability": "Family Liability",
+  "coverage_f_medical": "Guest Medical Protection",
+  "premium_annual_total": "Estimated Yearly Premium",
+  "deductible_all_peril": "AOP Deductible",
+  "deductible_wind_hail_pct": "Wind Hail Deductible",
+  "year_built": "Year Home Built",
+  "square_feet": "Sq Ft"
+ },
+ "augment": {
+  "omitted": [
+   "coverage_d_loss_of_use"
+  ],
+  "distractor": true,
+  "scan_mode": "harsh"
+ }
+}

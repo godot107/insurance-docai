@@ -1,0 +1,242 @@
+[
+ {
+  "carrier_name": "Kestrelite Mutual Insurance",
+  "agency_name": "Kestrelite Insurance Agency",
+  "tagline": "Precision Protection, Tailored for Your Texas Home",
+  "brand_color": "#2D3E50",
+  "headline": "Secure Your Home with Kestrelite Coverage",
+  "paragraphs": [
+   "Kestrelite Mutual Insurance delivers reliable homeowners protection designed specifically for Texas residences. Our coverage options safeguard your dwelling and personal assets against a broad range of risks.",
+   "Experience dedicated service and comprehensive policies crafted to fit your unique property needs, ensuring peace of mind throughout the year.",
+   "Trust Kestrelite to provide prompt claims handling and expert guidance whenever you need it most, helping you recover swiftly from unforeseen events."
+  ],
+  "cta": "Request your personalized insurance quote today.",
+  "disclaimer": "Policy coverages are subject to terms, conditions, and exclusions. Coverage availability varies by location and underwriting guidelines.",
+  "labels": {
+   "coverage_a_dwelling": "dwelling coverage",
+   "coverage_b_other_structures": "separate structure coverage",
+   "coverage_c_personal_property": "contents",
+   "coverage_d_loss_of_use": "living expenses",
+   "coverage_e_liability": "family liability",
+   "coverage_f_medical": "guest medical coverage",
+   "premium_annual_total": "total estimated annual premium",
+   "deductible_all_peril": "aop deductible",
+   "deductible_wind_hail_pct": "wind and hail",
+   "year_built": "year home built",
+   "square_feet": "home size (sq ft)"
+  },
+  "carrier_id": "C1",
+  "layout": "dec_page",
+  "tone": "formal insurer"
+ },
+ {
+  "carrier_name": "Marlowcrest Insurance Group",
+  "agency_name": "Marlowcrest HomeProtect Agency",
+  "tagline": "Coverage that stands firm, when it matters most.",
+  "brand_color": "#003f5c",
+  "headline": "Lock In Strong Protection for Your Texas Home Today!",
+  "paragraphs": [
+   "At Marlowcrest Insurance Group, we deliver tailored coverage built for Texans who demand reliability and value.",
+   "Don\u2019t wait for the unexpected \u2014 secure your home with comprehensive protection crafted specifically for your needs.",
+   "Our dedicated agents work tirelessly to make claims simple and fast, so you get the support you deserve when disaster strikes."
+  ],
+  "cta": "Get your personalized quote and protect your home now.",
+  "disclaimer": "Coverage terms, conditions, and availability vary by location and underwriting guidelines. Please review your policy for full details.",
+  "labels": {
+   "coverage_a_dwelling": "dwelling coverage",
+   "coverage_b_other_structures": "separate structures",
+   "coverage_c_personal_property": "contents",
+   "coverage_d_loss_of_use": "additional living expenses",
+   "coverage_e_liability": "family liability",
+   "coverage_f_medical": "guest medical protection",
+   "premium_annual_total": "estimated yearly premium",
+   "deductible_all_peril": "aop deductible",
+   "deductible_wind_hail_pct": "wind and hail",
+   "year_built": "year home built",
+   "square_feet": "square footage"
+  },
+  "carrier_id": "C2",
+  "layout": "mailer_table",
+  "tone": "pushy direct-mail agent"
+ },
+ {
+  "carrier_name": "Quarrypoint Insurance",
+  "agency_name": "Quarrypoint Homeguard Agency",
+  "tagline": "Stone-Solid Protection with a Personal Touch",
+  "brand_color": "#3B4A57",
+  "headline": "Safeguard Your Texas Home with Confidence",
+  "paragraphs": [
+   "At Quarrypoint Insurance, we understand the value of your home and the peace of mind that comes with strong coverage. Our local agents are dedicated to protecting what matters most to you.",
+   "With customizable policies designed to fit every home\u2019s unique needs, Quarrypoint Homeguard provides comprehensive coverage including dwelling, personal belongings, and liability safeguards.",
+   "Join your neighbors who trust the strength and reliability of Quarrypoint Insurance \u2014 where your protection is as solid as stone."
+  ],
+  "cta": "Contact your local Quarrypoint Homeguard agent today to get started.",
+  "disclaimer": "Coverage options, limits, and discounts vary by location and eligibility. Policy terms, conditions, and exclusions apply.",
+  "labels": {
+   "coverage_a_dwelling": "dwelling protection",
+   "coverage_b_other_structures": "separate structure coverage",
+   "coverage_c_personal_property": "contents",
+   "coverage_d_loss_of_use": "additional living expense",
+   "coverage_e_liability": "family liability",
+   "coverage_f_medical": "guest medical protection",
+   "premium_annual_total": "estimated yearly premium",
+   "deductible_all_peril": "all peril deductible",
+   "deductible_wind_hail_pct": "windstorm and hail",
+   "year_built": "year home built",
+   "square_feet": "square footage"
+  },
+  "carrier_id": "C3",
+  "layout": "mailer_prose",
+  "tone": "friendly local agency"
+ },
+ {
+  "carrier_name": "Tidewell Prairie Mutual",
+  "agency_name": "Tidewell Prairie Mutual Insurance Agency",
+  "tagline": "Rooted in Community, Reliable at Heart",
+  "brand_color": "#2C3E50",
+  "headline": "Protecting Your Home With Genuine Care",
+  "paragraphs": [
+   "At Tidewell Prairie Mutual, we understand Texas homes are more than just buildings\u2014they're where your life happens. We tailor coverage to give you peace of mind.",
+   "Our focus is clear and simple: fair pricing, straightforward policies, and local service you can count on when it matters most.",
+   "Join a mutual company that puts neighbors first, sharing in the responsibility to protect the things you value the most."
+  ],
+  "cta": "Get your personalized home insurance quote today",
+  "disclaimer": "Coverage terms and availability may vary by location. Policy details and conditions apply.",
+  "labels": {
+   "coverage_a_dwelling": "dwelling protection",
+   "coverage_b_other_structures": "separate structure coverage",
+   "coverage_c_personal_property": "contents",
+   "coverage_d_loss_of_use": "additional living expense",
+   "coverage_e_liability": "family liability",
+   "coverage_f_medical": "guest medical protection",
+   "premium_annual_total": "estimated yearly premium",
+   "deductible_all_peril": "aop deductible",
+   "deductible_wind_hail_pct": "wind hail deductible",
+   "year_built": "year home built",
+   "square_feet": "sq ft"
+  },
+  "carrier_id": "C4",
+  "layout": "quote_proposal",
+  "tone": "plain-spoken regional mutual"
+ },
+ {
+  "carrier_name": "Corbelleon Insurance",
+  "agency_name": "Corbelleon Insurance Agency",
+  "tagline": "Strength in Every Structure",
+  "brand_color": "#2C3E50",
+  "headline": "Protect What Matters Most With Corbelleon",
+  "paragraphs": [
+   "At Corbelleon Insurance, we build your home's protection on a solid foundation of trust and innovation.",
+   "Our tailored policies ensure your dwelling, personal belongings, and liability coverage keep you secure, no matter the Texas weather.",
+   "Experience a sleek, straightforward approach to home insurance \u2014 backed by expert support and swift claims processing."
+  ],
+  "cta": "Discover your custom coverage plan today with Corbelleon.",
+  "disclaimer": "Coverage availability and limits vary by state and property. Terms, conditions, and exclusions apply; not all coverages are available in all areas.",
+  "labels": {
+   "coverage_a_dwelling": "dwelling coverage",
+   "coverage_b_other_structures": "separate structure coverage",
+   "coverage_c_personal_property": "contents",
+   "coverage_d_loss_of_use": "additional living expense",
+   "coverage_e_liability": "family liability",
+   "coverage_f_medical": "guest medical coverage",
+   "premium_annual_total": "estimated annual premium",
+   "deductible_all_peril": "all peril deductible",
+   "deductible_wind_hail_pct": "windstorm and hail",
+   "year_built": "year home built",
+   "square_feet": "sq ft"
+  },
+  "carrier_id": "C5",
+  "layout": "postcard",
+  "tone": "slick national-brand style"
+ },
+ {
+  "carrier_name": "Ashgrove Sentinel Insurance",
+  "agency_name": "Ashgrove Sentinel Insurance Agency",
+  "tagline": "Protecting Your Home with Care and Commitment",
+  "brand_color": "#234E52",
+  "headline": "Your Ashgrove Sentinel Renewal Notice",
+  "paragraphs": [
+   "Thank you for choosing Ashgrove Sentinel Insurance for your homeowners coverage. We\u2019re committed to providing dependable protection tailored to your needs.",
+   "Your renewal package includes options to adjust coverage levels and deductibles to better suit your property and lifestyle changes.",
+   "Review your policy carefully to ensure all details are current, and reach out if you want personalized assistance or updates to your coverage."
+  ],
+  "cta": "Review your renewal and update your coverage preferences today.",
+  "disclaimer": "This notice is for informational purposes only and does not modify or guarantee coverage. Actual terms and conditions are governed by your policy documents.",
+  "labels": {
+   "coverage_a_dwelling": "dwelling protection",
+   "coverage_b_other_structures": "separate structure coverage",
+   "coverage_c_personal_property": "contents",
+   "coverage_d_loss_of_use": "additional living expenses",
+   "coverage_e_liability": "family liability",
+   "coverage_f_medical": "guest medical coverage",
+   "premium_annual_total": "estimated yearly premium",
+   "deductible_all_peril": "all peril deductible",
+   "deductible_wind_hail_pct": "windstorm and hail",
+   "year_built": "year home built",
+   "square_feet": "square footage"
+  },
+  "carrier_id": "C6",
+  "layout": "renewal_notice",
+  "tone": "neutral renewal notice"
+ },
+ {
+  "carrier_name": "Pennvera Assurance",
+  "agency_name": "Pennvera Assurance Agency",
+  "tagline": "Secure Foundations with Precision Coverage",
+  "brand_color": "#2C3E50",
+  "headline": "Protect Your Texas Home with Confidence",
+  "paragraphs": [
+   "Pennvera Assurance combines expert underwriting with tailored coverage options to give you peace of mind.",
+   "Our comprehensive policies are designed to protect every aspect of your property against unforeseen events.",
+   "Experience dedicated support and reliable claims service when you partner with Pennvera Assurance."
+  ],
+  "cta": "Request your personalized homeowners insurance quote today",
+  "disclaimer": "Coverage terms, conditions, and exclusions apply. Actual coverage and premiums may vary by location and underwriting criteria.",
+  "labels": {
+   "coverage_a_dwelling": "dwelling protection",
+   "coverage_b_other_structures": "separate structure coverage",
+   "coverage_c_personal_property": "contents",
+   "coverage_d_loss_of_use": "additional living expenses",
+   "coverage_e_liability": "family liability",
+   "coverage_f_medical": "guest medical",
+   "premium_annual_total": "estimated yearly premium",
+   "deductible_all_peril": "all peril deductible",
+   "deductible_wind_hail_pct": "wind and hail",
+   "year_built": "year home built",
+   "square_feet": "sq ft"
+  },
+  "carrier_id": "C7",
+  "layout": "dec_page",
+  "tone": "bureaucratic"
+ },
+ {
+  "carrier_name": "Wrenfield Haven Insurance",
+  "agency_name": "Wrenfield Haven Agency",
+  "tagline": "Smart Protection, Bright Savings",
+  "brand_color": "#2C3E50",
+  "headline": "Compare and Save on Your Texas Home Insurance!",
+  "paragraphs": [
+   "Wrenfield Haven Insurance offers tailored coverage designed specifically for Texans who want reliable protection without the hassle.",
+   "Enjoy comprehensive plans that cover your home and belongings with flexible options to fit your lifestyle and budget.",
+   "Switching is simple\u2014get peace of mind knowing you\u2019re backed by a trusted agency focused on fast claims and customer care."
+  ],
+  "cta": "Get your free quote today and see how much you could save!",
+  "disclaimer": "Coverage options, limits, and premiums vary by location and individual circumstances. Actual coverage may differ from example policy descriptions.",
+  "labels": {
+   "coverage_a_dwelling": "dwelling protection",
+   "coverage_b_other_structures": "separate structure coverage",
+   "coverage_c_personal_property": "contents",
+   "coverage_d_loss_of_use": "living expenses",
+   "coverage_e_liability": "family liability",
+   "coverage_f_medical": "guest medical coverage",
+   "premium_annual_total": "estimated annual premium",
+   "deductible_all_peril": "aop deductible",
+   "deductible_wind_hail_pct": "wind hail deductible",
+   "year_built": "year home built",
+   "square_feet": "sq ft"
+  },
+  "carrier_id": "C8",
+  "layout": "mailer_table",
+  "tone": "upbeat comparison-shopping"
+ }
+]

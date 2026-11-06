@@ -1,0 +1,37 @@
+# Real letters and anything derived from them never leave the machine
+private/*
+!private/README.md
+data/raw/
+data/private/
+
+# Secrets
+.env
+*.env
+local.settings.json
+
+# Documents: only synthetic samples are tracked
+*.pdf
+*.png
+*.jpg
+*.jpeg
+*.tif
+*.tiff
+!samples/synthetic/**
+# Screenshots of synthetic/demo data only (Power BI demo household, watermarked synthetic letters).
+# Never put anything derived from real letters here; see docs/PRIVACY.md.
+!docs/img/
+!docs/img/**
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+mlruns/
+# samples/synthetic/di/ is tracked: Document Intelligence output for synthetic letters (lets others rebuild analytics without re-running extraction)
+data/
+databricks/.venv/
+databricks/dist/
+databricks/build/
+databricks/.databricks/
+*.egg-info/

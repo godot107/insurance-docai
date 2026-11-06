@@ -1,0 +1,53 @@
+{
+ "doc_id": "S083",
+ "carrier_id": "C7",
+ "layout": "dec_page",
+ "scanned": true,
+ "fields": {
+  "coverage_a_dwelling": 1083700.0,
+  "coverage_b_other_structures": 108400.0,
+  "coverage_c_personal_property": 433500.0,
+  "coverage_d_loss_of_use": 108400.0,
+  "coverage_e_liability": 300000,
+  "coverage_f_medical": 2500,
+  "premium_annual_total": 4183.39,
+  "deductible_all_peril": 2500,
+  "deductible_wind_hail_pct": 1,
+  "year_built": 2006,
+  "square_feet": 5200
+ },
+ "labels_used": {
+  "coverage_a_dwelling": "Dwelling Protection",
+  "coverage_b_other_structures": "Separate Structure Coverage",
+  "coverage_c_personal_property": "Contents",
+  "coverage_d_loss_of_use": "Additional Living Expenses",
+  "coverage_e_liability": "Family Liability",
+  "coverage_f_medical": "Guest Medical",
+  "premium_annual_total": "Estimated Yearly Premium",
+  "deductible_all_peril": "All Peril Deductible",
+  "deductible_wind_hail_pct": "Wind And Hail",
+  "year_built": "Year Home Built",
+  "square_feet": "Sq Ft"
+ },
+ "hidden_truth": {
+  "base_premium": 5996.02,
+  "discounts": [
+   {
+    "name": "Paid in Full Discount",
+    "amount": 697.95
+   },
+   {
+    "name": "New Home Discount",
+    "amount": 447.3
+   },
+   {
+    "name": "Paperless Discount",
+    "amount": 692.38
+   }
+  ],
+  "policy_fee": 25,
+  "carrier_rate": 4.99,
+  "construction": "Brick Veneer",
+  "prior_premium": 3627.68
+ }
+}

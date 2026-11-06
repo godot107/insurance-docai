@@ -1,0 +1,51 @@
+{
+ "doc_id": "S090",
+ "carrier_id": "C8",
+ "layout": "mailer_table",
+ "scanned": false,
+ "fields": {
+  "coverage_a_dwelling": 474300.0,
+  "coverage_b_other_structures": 47400.0,
+  "coverage_c_personal_property": 237200.0,
+  "coverage_d_loss_of_use": 47400.0,
+  "coverage_e_liability": 300000,
+  "coverage_f_medical": 5000,
+  "premium_annual_total": 4053.09,
+  "deductible_all_peril": null,
+  "deductible_wind_hail_pct": null,
+  "year_built": 1993,
+  "square_feet": 2683
+ },
+ "labels_used": {
+  "coverage_a_dwelling": "Dwelling Protection",
+  "coverage_b_other_structures": "Separate Structure Coverage",
+  "coverage_c_personal_property": "Contents",
+  "coverage_d_loss_of_use": "Living Expenses",
+  "coverage_e_liability": "Family Liability",
+  "coverage_f_medical": "Guest Medical Coverage",
+  "premium_annual_total": "Estimated Annual Premium",
+  "year_built": "Year Home Built",
+  "square_feet": "Sq Ft"
+ },
+ "hidden_truth": {
+  "base_premium": 5139.66,
+  "discounts": [
+   {
+    "name": "Paperless Discount",
+    "amount": 480.59
+   },
+   {
+    "name": "New Home Discount",
+    "amount": 156.91
+   },
+   {
+    "name": "Multi-Policy Discount",
+    "amount": 474.07
+   }
+  ],
+  "policy_fee": 25,
+  "carrier_rate": 8.81,
+  "construction": "Brick Veneer",
+  "prior_premium": 3293.18
+ }
+}

@@ -1,0 +1,34 @@
+{
+ "doc_id": "S029",
+ "carrier_id": "C3",
+ "layout": "mailer_prose",
+ "scanned": true,
+ "fields": {
+  "coverage_a_dwelling": 381100.0,
+  "coverage_b_other_structures": null,
+  "coverage_c_personal_property": 152400.0,
+  "coverage_d_loss_of_use": null,
+  "coverage_e_liability": 300000,
+  "coverage_f_medical": null,
+  "premium_annual_total": 3032.64,
+  "deductible_all_peril": null,
+  "deductible_wind_hail_pct": null,
+  "year_built": 2023,
+  "square_feet": null
+ },
+ "labels_used": {
+  "coverage_a_dwelling": "Dwelling Protection",
+  "coverage_c_personal_property": "Contents",
+  "coverage_e_liability": "Family Liability",
+  "premium_annual_total": "Estimated Yearly Premium",
+  "year_built": "Year Home Built"
+ },
+ "hidden_truth": {
+  "base_premium": 2982.64,
+  "discounts": [],
+  "policy_fee": 50,
+  "carrier_rate": 10.03,
+  "construction": "Frame",
+  "prior_premium": 2638.62
+ }
+}

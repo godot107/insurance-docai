@@ -1,0 +1,43 @@
+{
+ "doc_id": "S017",
+ "carrier_id": "C2",
+ "layout": "mailer_table",
+ "scanned": true,
+ "fields": {
+  "coverage_a_dwelling": 403900.0,
+  "coverage_b_other_structures": 20200.0,
+  "coverage_c_personal_property": 202000.0,
+  "coverage_d_loss_of_use": 121200.0,
+  "coverage_e_liability": 100000,
+  "coverage_f_medical": 5000,
+  "premium_annual_total": 2250.61,
+  "deductible_all_peril": null,
+  "deductible_wind_hail_pct": null,
+  "year_built": 1997,
+  "square_feet": 2126
+ },
+ "labels_used": {
+  "coverage_a_dwelling": "Dwelling Coverage",
+  "coverage_b_other_structures": "Separate Structures",
+  "coverage_c_personal_property": "Contents",
+  "coverage_d_loss_of_use": "Additional Living Expenses",
+  "coverage_e_liability": "Family Liability",
+  "coverage_f_medical": "Guest Medical Protection",
+  "premium_annual_total": "Estimated Yearly Premium",
+  "year_built": "Year Home Built",
+  "square_feet": "Square Footage"
+ },
+ "hidden_truth": {
+  "base_premium": 2500.29,
+  "discounts": [
+   {
+    "name": "Protective Device Discount",
+    "amount": 249.68
+   }
+  ],
+  "policy_fee": 0,
+  "carrier_rate": 5.78,
+  "construction": "Brick Veneer",
+  "prior_premium": 2186.65
+ }
+}

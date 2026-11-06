@@ -1,0 +1,47 @@
+{
+ "doc_id": "S030",
+ "carrier_id": "C3",
+ "layout": "mailer_prose",
+ "scanned": true,
+ "fields": {
+  "coverage_a_dwelling": 265800.0,
+  "coverage_b_other_structures": null,
+  "coverage_c_personal_property": 106300.0,
+  "coverage_d_loss_of_use": null,
+  "coverage_e_liability": 500000,
+  "coverage_f_medical": null,
+  "premium_annual_total": 2035.51,
+  "deductible_all_peril": null,
+  "deductible_wind_hail_pct": null,
+  "year_built": 2005,
+  "square_feet": null
+ },
+ "labels_used": {
+  "coverage_a_dwelling": "Dwelling Protection",
+  "coverage_c_personal_property": "Contents",
+  "coverage_e_liability": "Family Liability",
+  "premium_annual_total": "Estimated Yearly Premium",
+  "year_built": "Year Home Built"
+ },
+ "hidden_truth": {
+  "base_premium": 2663.31,
+  "discounts": [
+   {
+    "name": "Claim Free Discount",
+    "amount": 274.49
+   },
+   {
+    "name": "New Home Discount",
+    "amount": 263.67
+   },
+   {
+    "name": "Multi-Policy Discount",
+    "amount": 89.64
+   }
+  ],
+  "policy_fee": 0,
+  "carrier_rate": 10.03,
+  "construction": "Brick Veneer",
+  "prior_premium": 1868.79
+ }
+}

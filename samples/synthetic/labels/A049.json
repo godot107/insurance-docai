@@ -1,0 +1,36 @@
+{
+ "doc_id": "A049",
+ "carrier_id": "C8",
+ "layout": "mailer_table",
+ "scanned": true,
+ "fields": {
+  "coverage_a_dwelling": 605400.0,
+  "coverage_b_other_structures": null,
+  "coverage_c_personal_property": 151400.0,
+  "coverage_d_loss_of_use": 60500.0,
+  "coverage_e_liability": 500000,
+  "coverage_f_medical": 5000,
+  "premium_annual_total": 3973.75,
+  "deductible_all_peril": null,
+  "deductible_wind_hail_pct": null,
+  "year_built": 2025,
+  "square_feet": 2722
+ },
+ "labels_used": {
+  "coverage_a_dwelling": "Dwelling Protection",
+  "coverage_c_personal_property": "Contents",
+  "coverage_d_loss_of_use": "Living Expenses",
+  "coverage_e_liability": "Family Liability",
+  "coverage_f_medical": "Guest Medical Coverage",
+  "premium_annual_total": "Estimated Annual Premium",
+  "year_built": "Year Home Built",
+  "square_feet": "Sq Ft"
+ },
+ "augment": {
+  "omitted": [
+   "coverage_b_other_structures"
+  ],
+  "distractor": true,
+  "scan_mode": "scan"
+ }
+}

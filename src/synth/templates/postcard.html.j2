@@ -1,0 +1,7 @@
+{% extends "base.html.j2" %}{% block body %}
+<div class="cols"><div><h2>{{ k.headline }}</h2><p>{{ k.paragraphs[0] }}</p><p><b>{{ k.cta }}</b></p></div>
+<div class="box"><p>{{ p.first }}, your home could be covered for</p><div class="big">{{ s.premium_annual_total }}</div>
+<p class="small">{{ L.premium_annual_total }}</p>
+<p>{{ L.coverage_a_dwelling }} {{ s.coverage_a_dwelling }}<br>{{ L.coverage_c_personal_property }} {{ s.coverage_c_personal_property }}<br>{{ L.coverage_e_liability }} {{ s.coverage_e_liability }}</p></div></div>
+<p>{{ p.street }} · {{ p.city }}, TX {{ p.zip }}</p>
+{% endblock %}

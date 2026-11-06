@@ -1,0 +1,49 @@
+{
+ "doc_id": "S011",
+ "carrier_id": "C1",
+ "layout": "dec_page",
+ "scanned": false,
+ "fields": {
+  "coverage_a_dwelling": 425700.0,
+  "coverage_b_other_structures": 42600.0,
+  "coverage_c_personal_property": 319300.0,
+  "coverage_d_loss_of_use": 85100.0,
+  "coverage_e_liability": 500000,
+  "coverage_f_medical": 5000,
+  "premium_annual_total": 2995.25,
+  "deductible_all_peril": 4257,
+  "deductible_wind_hail_pct": 2,
+  "year_built": 1982,
+  "square_feet": 2267
+ },
+ "labels_used": {
+  "coverage_a_dwelling": "Dwelling Coverage",
+  "coverage_b_other_structures": "Separate Structure Coverage",
+  "coverage_c_personal_property": "Contents",
+  "coverage_d_loss_of_use": "Living Expenses",
+  "coverage_e_liability": "Family Liability",
+  "coverage_f_medical": "Guest Medical Coverage",
+  "premium_annual_total": "Total Estimated Annual Premium",
+  "deductible_all_peril": "AOP Deductible",
+  "deductible_wind_hail_pct": "Wind And Hail",
+  "year_built": "Year Home Built",
+  "square_feet": "Home Size (Sq Ft)"
+ },
+ "hidden_truth": {
+  "base_premium": 3515.32,
+  "discounts": [
+   {
+    "name": "Protective Device Discount",
+    "amount": 371.22
+   },
+   {
+    "name": "Multi-Policy Discount",
+    "amount": 148.85
+   }
+  ],
+  "policy_fee": 0,
+  "carrier_rate": 7.25,
+  "construction": "Stucco",
+  "prior_premium": 2805.3
+ }
+}

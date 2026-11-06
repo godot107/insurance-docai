@@ -1,0 +1,87 @@
+# Databricks bundle: Unity Catalog medallion (bronze/silver/gold schemas) + one job + MLflow review router.
+#   databricks bundle deploy -t free      # Databricks Free Edition (serverless; nothing to leave running)
+#   databricks bundle deploy -t azure     # Azure Databricks premium (single-node JOB cluster, ends with the run)
+#   python push_landing.py --catalog <catalog>    # upload ../data/landing/*.jsonl to the landing volume
+#   databricks bundle run -t <target> docai_lakehouse
+bundle:
+  name: insurance-docai-lakehouse
+
+include:
+  - resources/*.yml
+
+artifacts:
+  lakehouse_wheel:
+    type: whl
+    path: .
+    build: .venv/bin/python -m pip wheel . --no-deps -w dist   # databricks/.venv (see tests)
+
+variables:
+  catalog:
+    description: Unity Catalog catalog that holds the bronze/silver/gold schemas
+    default: workspace
+  threshold:
+    description: Confidence cutoff for the review policy (chosen in phase 3 from the trade-off curve)
+    default: "0.78"
+
+targets:
+  free:
+    # No `mode: development`: it renames UC schemas to dev_<user>_bronze etc., and the medallion layout is
+    # meant to be exactly <catalog>.bronze/.silver/.gold. Single-user Free Edition; job has no schedule.
+    default: true
+    resources:
+      jobs:
+        docai_lakehouse:
+          environments:
+            - environment_key: default
+              spec:
+                environment_version: "2"
+                dependencies:
+                  - ./dist/*.whl
+                  - scikit-learn
+                  - mlflow
+          tasks:
+            - task_key: bronze
+              environment_key: default
+            - task_key: silver
+              environment_key: default
+            - task_key: gold
+              environment_key: default
+            - task_key: train_router
+              environment_key: default
+
+  azure:
+    mode: development
+    variables:
+      catalog: dbw_docai_i777yv     # Azure workspace catalog (needs a Unity Catalog-enabled workspace)
+    resources:
+      jobs:
+        docai_lakehouse:
+          job_clusters:
+            - job_cluster_key: single_node
+              new_cluster:                # a JOB cluster: created for the run, terminated when it ends
+                spark_version: 15.4.x-cpu-ml-scala2.12
+                node_type_id: Standard_DS3_v2   # 4 vCPU = the whole Free Trial quota
+                num_workers: 0
+                data_security_mode: SINGLE_USER
+                spark_conf:
+                  spark.databricks.cluster.profile: singleNode
+                  spark.master: "local[*]"
+                custom_tags:
+                  ResourceClass: SingleNode
+                  project: insurance-docai
+                  environment: dev
+                  owner: williemaize
+                  cost-center: personal
+          tasks:
+            - task_key: bronze
+              job_cluster_key: single_node
+              libraries: [{whl: ./dist/*.whl}]
+            - task_key: silver
+              job_cluster_key: single_node
+              libraries: [{whl: ./dist/*.whl}]
+            - task_key: gold
+              job_cluster_key: single_node
+              libraries: [{whl: ./dist/*.whl}]
+            - task_key: train_router
+              job_cluster_key: single_node
+              libraries: [{whl: ./dist/*.whl}]

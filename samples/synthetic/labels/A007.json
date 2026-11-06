@@ -1,0 +1,31 @@
+{
+ "doc_id": "A007",
+ "carrier_id": "C1",
+ "layout": "mailer_prose",
+ "scanned": false,
+ "fields": {
+  "coverage_a_dwelling": 706500.0,
+  "coverage_b_other_structures": null,
+  "coverage_c_personal_property": 529900.0,
+  "coverage_d_loss_of_use": null,
+  "coverage_e_liability": 300000,
+  "coverage_f_medical": null,
+  "premium_annual_total": 5798.41,
+  "deductible_all_peril": null,
+  "deductible_wind_hail_pct": null,
+  "year_built": 2023,
+  "square_feet": null
+ },
+ "labels_used": {
+  "coverage_a_dwelling": "Dwelling Coverage",
+  "coverage_c_personal_property": "Contents",
+  "coverage_e_liability": "Family Liability",
+  "premium_annual_total": "Total Estimated Annual Premium",
+  "year_built": "Year Home Built"
+ },
+ "augment": {
+  "omitted": [],
+  "distractor": true,
+  "scan_mode": "clean"
+ }
+}

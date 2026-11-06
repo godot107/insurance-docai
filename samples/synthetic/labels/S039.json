@@ -1,0 +1,47 @@
+{
+ "doc_id": "S039",
+ "carrier_id": "C4",
+ "layout": "quote_proposal",
+ "scanned": false,
+ "fields": {
+  "coverage_a_dwelling": 642600.0,
+  "coverage_b_other_structures": 64300.0,
+  "coverage_c_personal_property": 160600.0,
+  "coverage_d_loss_of_use": 64300.0,
+  "coverage_e_liability": 100000,
+  "coverage_f_medical": 2500,
+  "premium_annual_total": 3457.39,
+  "deductible_all_peril": 1000,
+  "deductible_wind_hail_pct": 5,
+  "year_built": null,
+  "square_feet": null
+ },
+ "labels_used": {
+  "coverage_a_dwelling": "Dwelling Protection",
+  "coverage_b_other_structures": "Separate Structure Coverage",
+  "coverage_c_personal_property": "Contents",
+  "coverage_d_loss_of_use": "Additional Living Expense",
+  "coverage_e_liability": "Family Liability",
+  "coverage_f_medical": "Guest Medical Protection",
+  "premium_annual_total": "Estimated Yearly Premium",
+  "deductible_all_peril": "AOP Deductible",
+  "deductible_wind_hail_pct": "Wind Hail Deductible"
+ },
+ "hidden_truth": {
+  "base_premium": 3775.4,
+  "discounts": [
+   {
+    "name": "Multi-Policy Discount",
+    "amount": 135.52
+   },
+   {
+    "name": "Paperless Discount",
+    "amount": 232.49
+   }
+  ],
+  "policy_fee": 50,
+  "carrier_rate": 5.12,
+  "construction": "Stucco",
+  "prior_premium": 3465.6
+ }
+}

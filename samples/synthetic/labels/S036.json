@@ -1,0 +1,47 @@
+{
+ "doc_id": "S036",
+ "carrier_id": "C3",
+ "layout": "mailer_prose",
+ "scanned": false,
+ "fields": {
+  "coverage_a_dwelling": 432500.0,
+  "coverage_b_other_structures": null,
+  "coverage_c_personal_property": 216200.0,
+  "coverage_d_loss_of_use": null,
+  "coverage_e_liability": 300000,
+  "coverage_f_medical": null,
+  "premium_annual_total": 4553.47,
+  "deductible_all_peril": null,
+  "deductible_wind_hail_pct": null,
+  "year_built": 1985,
+  "square_feet": null
+ },
+ "labels_used": {
+  "coverage_a_dwelling": "Dwelling Protection",
+  "coverage_c_personal_property": "Contents",
+  "coverage_e_liability": "Family Liability",
+  "premium_annual_total": "Estimated Yearly Premium",
+  "year_built": "Year Home Built"
+ },
+ "hidden_truth": {
+  "base_premium": 5682.75,
+  "discounts": [
+   {
+    "name": "Claim Free Discount",
+    "amount": 547.55
+   },
+   {
+    "name": "Protective Device Discount",
+    "amount": 258.29
+   },
+   {
+    "name": "Paid in Full Discount",
+    "amount": 348.44
+   }
+  ],
+  "policy_fee": 25,
+  "carrier_rate": 10.03,
+  "construction": "Brick Veneer",
+  "prior_premium": 4115.77
+ }
+}

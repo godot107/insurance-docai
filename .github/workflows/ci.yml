@@ -1,0 +1,43 @@
+name: ci
+on:
+  push:
+  pull_request:
+
+jobs:
+  test-and-iac:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Unit tests (parsing + review rules)
+        run: |
+          pip install pyyaml python-dotenv azure-identity azure-ai-textanalytics azure-storage-blob pytest
+          pytest -q tests
+      - name: Bicep build + lint (templates compile, linter warnings shown)
+        run: |
+          az bicep install
+          az bicep build -f infra/main.bicep --outfile main.json
+          az bicep build -f infra/governance.bicep --outfile governance.json
+      - name: Tag policy check (every taggable resource carries the required tags)
+        run: python tools/check_template_tags.py main.json
+
+  lakehouse:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: databricks
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: "17"
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Lakehouse transforms + router on local Spark (end-to-end test skips without landing data)
+        run: |
+          pip install "pyspark==3.5.*" pytest pandas pyarrow scikit-learn setuptools
+          python -m pytest -q tests

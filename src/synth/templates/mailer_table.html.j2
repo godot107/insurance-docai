@@ -1,0 +1,12 @@
+{% extends "base.html.j2" %}{% block body %}
+<h2>{{ k.headline }}</h2>
+<p>Prepared for: <b>{{ p.first }}</b><br>{{ p.street }}, {{ p.city }}, TX {{ p.zip }}</p>
+<p>{{ k.paragraphs[0] }}</p>
+<div class="cols"><div>
+<table>{% if "year_built" not in omit %}<tr><td>{{ L.year_built }}</td><td class="v">{{ t.year_built }}</td></tr>{% endif %}
+{% if "square_feet" not in omit %}<tr><td>{{ L.square_feet }}</td><td class="v">{{ fmt_int(t.square_feet) }}</td></tr>{% endif %}
+{% for f in ["coverage_a_dwelling","coverage_b_other_structures","coverage_c_personal_property","coverage_d_loss_of_use","coverage_e_liability","coverage_f_medical"] %}
+{% if f not in omit %}<tr><td>{{ L[f] }}</td><td class="v">{{ s[f] }}</td></tr>{% endif %}{% endfor %}</table>
+</div><div><div class="box">{{ L.premium_annual_total }}:<div class="big">{{ s.premium_annual_total }}</div></div>
+<p>{{ k.paragraphs[1] }}</p><p><b>{{ k.cta }}</b></p></div></div>
+{% endblock %}

@@ -1,0 +1,21 @@
+# Unity Catalog layout: <catalog>.bronze / .silver / .gold (+ a landing volume in bronze for raw files).
+resources:
+  schemas:
+    bronze:
+      catalog_name: ${var.catalog}
+      name: bronze
+      comment: Raw landing data as delivered + ingest metadata. Nothing dropped.
+    silver:
+      catalog_name: ${var.catalog}
+      name: silver
+      comment: Typed, deduplicated, validated. Failing rows in *_quarantine with reasons.
+    gold:
+      catalog_name: ${var.catalog}
+      name: gold
+      comment: Evaluation, method metrics, threshold curve, review queue, review-router model.
+  volumes:
+    landing:
+      catalog_name: ${var.catalog}
+      schema_name: ${resources.schemas.bronze.name}
+      name: landing
+      comment: Raw files from the local pipeline (src/export_landing.py), uploaded by push_landing.py

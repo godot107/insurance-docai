@@ -1,0 +1,39 @@
+# bronze -> silver (quality gate) -> gold -> train_router. Compute is set per target in databricks.yml
+# (serverless on Free Edition; a single-node job cluster on Azure, which terminates when the run ends).
+# No schedule: runs on demand after new documents are processed.
+resources:
+  jobs:
+    docai_lakehouse:
+      name: insurance-docai-lakehouse
+      tags:
+        project: insurance-docai
+        component: databricks
+      max_concurrent_runs: 1
+      timeout_seconds: 3600
+      email_notifications:
+        on_failure:
+          - ${workspace.current_user.userName}
+      tasks:
+        - task_key: bronze
+          python_wheel_task:
+            package_name: docai_lakehouse
+            entry_point: bronze
+            parameters: ["--catalog", "${var.catalog}"]
+        - task_key: silver
+          depends_on: [{task_key: bronze}]
+          python_wheel_task:
+            package_name: docai_lakehouse
+            entry_point: silver
+            parameters: ["--catalog", "${var.catalog}"]
+        - task_key: gold
+          depends_on: [{task_key: silver}]
+          python_wheel_task:
+            package_name: docai_lakehouse
+            entry_point: gold
+            parameters: ["--catalog", "${var.catalog}", "--threshold", "${var.threshold}"]
+        - task_key: train_router
+          depends_on: [{task_key: gold}]
+          python_wheel_task:
+            package_name: docai_lakehouse
+            entry_point: train_router
+            parameters: ["--catalog", "${var.catalog}", "--threshold", "${var.threshold}"]

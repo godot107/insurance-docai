@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CanvasApp xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Name>idoc_insurancedocaireview_b69d0</Name>
+  <AppVersion>2026-11-06T20:54:53Z</AppVersion>
+  <Status>Ready</Status>
+  <CreatedByClientVersion>3.26102.13.0</CreatedByClientVersion>
+  <MinClientVersion>3.26102.13.0</MinClientVersion>
+  <Tags>{"primaryDeviceWidth":"1366","primaryDeviceHeight":"768","supportsPortrait":"true","supportsLandscape":"true","primaryFormFactor":"Tablet","showStatusBar":"false","publisherVersion":"3.26102.13","minimumRequiredApiVersion":"2.2.0","hasComponent":"false","hasUnlockedComponent":"false","isUnifiedRootApp":"false","m365CopilotSettingValue":"0","sienaVersion":"20261106T175317Z-3.26102.13.0"}</Tags>
+  <IsCdsUpgraded>0</IsCdsUpgraded>
+  <GalleryItemId xsi:nil="true"></GalleryItemId>
+  <BackgroundColor>RGBA(0,176,240,1)</BackgroundColor>
+  <DisplayName>Insurance DocAI Review</DisplayName>
+  <Description></Description>
+  <CommitMessage></CommitMessage>
+  <Publisher></Publisher>
+  <AuthorizationReferences>[]</AuthorizationReferences>
+  <ConnectionReferences>{"5124ecc6-eec0-47f0-8d97-f074bdc23dbd":{"id":"/providers/microsoft.powerapps/apis/shared_sql","displayName":"SQL Server","iconUri":"https://static.powerapps.com/resource/ppcr/releases/v1.0.1828/1.0.1828.4964/sql/icon.png","dataSources":["review.item","review.document"],"dependencies":[],"dependents":[],"parameterHints":{},"parameterHintsV2":{},"isOnPremiseConnection":false,"bypassConsent":false,"dataSets":{"sql-docai-i777yv-cus.database.windows.net,docai":{"dataSources":{"review.item":{"tableName":"[review].[item]"},"review.document":{"tableName":"[review].[document]"}}}},"apiTier":"Premium","actions":["providers/PowerPlatform.Governance/Operations/Read","providers/PowerPlatform.Governance/Operations/Write"],"endpoints":["sql-docai-i777yv-cus.database.windows.net,docai"],"authenticationType":"oauth"}}</ConnectionReferences>
+  <DatabaseReferences>{}</DatabaseReferences>
+  <AppComponents>[]</AppComponents>
+  <AppComponentDependencies>[]</AppComponentDependencies>
+  <CanConsumeAppPass>1</CanConsumeAppPass>
+  <CanvasAppType>0</CanvasAppType>
+  <BypassConsent>0</BypassConsent>
+  <AdminControlBypassConsent>0</AdminControlBypassConsent>
+  <EmbeddedApp xsi:nil="true"></EmbeddedApp>
+  <IntroducedVersion>1.0</IntroducedVersion>
+  <CdsDependencies>{"cdsdependencies":[]}</CdsDependencies>
+  <IsCustomizable>1</IsCustomizable>
+  <BackgroundImageUri>/CanvasApps/idoc_insurancedocaireview_b69d0_BackgroundImageUri</BackgroundImageUri>
+  <DocumentUri>/CanvasApps/idoc_insurancedocaireview_b69d0_DocumentUri.msapp</DocumentUri>
+  <AdditionalUris>
+    <AdditionalUri>/CanvasApps/idoc_insurancedocaireview_b69d0_AdditionalUris0_identity.json</AdditionalUri>
+  </AdditionalUris>
+</CanvasApp>

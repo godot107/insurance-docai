@@ -1,0 +1,97 @@
+doc_id,carrier_id,carrier_name,layout,scanned,split
+S001,C1,Kestrelite Mutual Insurance,dec_page,True,train
+S002,C1,Kestrelite Mutual Insurance,dec_page,False,train
+S003,C1,Kestrelite Mutual Insurance,dec_page,True,train
+S004,C1,Kestrelite Mutual Insurance,dec_page,True,train
+S005,C1,Kestrelite Mutual Insurance,dec_page,True,train
+S006,C1,Kestrelite Mutual Insurance,dec_page,False,train
+S007,C1,Kestrelite Mutual Insurance,dec_page,True,train
+S008,C1,Kestrelite Mutual Insurance,dec_page,False,train
+S009,C1,Kestrelite Mutual Insurance,dec_page,True,train
+S010,C1,Kestrelite Mutual Insurance,dec_page,False,train
+S011,C1,Kestrelite Mutual Insurance,dec_page,False,train
+S012,C1,Kestrelite Mutual Insurance,dec_page,False,train
+S013,C2,Marlowcrest Insurance Group,mailer_table,False,train
+S014,C2,Marlowcrest Insurance Group,mailer_table,True,train
+S015,C2,Marlowcrest Insurance Group,mailer_table,False,train
+S016,C2,Marlowcrest Insurance Group,mailer_table,True,train
+S017,C2,Marlowcrest Insurance Group,mailer_table,True,train
+S018,C2,Marlowcrest Insurance Group,mailer_table,True,train
+S019,C2,Marlowcrest Insurance Group,mailer_table,False,train
+S020,C2,Marlowcrest Insurance Group,mailer_table,False,train
+S021,C2,Marlowcrest Insurance Group,mailer_table,False,train
+S022,C2,Marlowcrest Insurance Group,mailer_table,False,train
+S023,C2,Marlowcrest Insurance Group,mailer_table,False,train
+S024,C2,Marlowcrest Insurance Group,mailer_table,False,train
+S025,C3,Quarrypoint Insurance,mailer_prose,False,train
+S026,C3,Quarrypoint Insurance,mailer_prose,False,train
+S027,C3,Quarrypoint Insurance,mailer_prose,True,train
+S028,C3,Quarrypoint Insurance,mailer_prose,True,train
+S029,C3,Quarrypoint Insurance,mailer_prose,True,train
+S030,C3,Quarrypoint Insurance,mailer_prose,True,train
+S031,C3,Quarrypoint Insurance,mailer_prose,False,train
+S032,C3,Quarrypoint Insurance,mailer_prose,True,train
+S033,C3,Quarrypoint Insurance,mailer_prose,False,train
+S034,C3,Quarrypoint Insurance,mailer_prose,True,train
+S035,C3,Quarrypoint Insurance,mailer_prose,False,train
+S036,C3,Quarrypoint Insurance,mailer_prose,False,train
+S037,C4,Tidewell Prairie Mutual,quote_proposal,False,train
+S038,C4,Tidewell Prairie Mutual,quote_proposal,True,train
+S039,C4,Tidewell Prairie Mutual,quote_proposal,False,train
+S040,C4,Tidewell Prairie Mutual,quote_proposal,True,train
+S041,C4,Tidewell Prairie Mutual,quote_proposal,True,train
+S042,C4,Tidewell Prairie Mutual,quote_proposal,True,train
+S043,C4,Tidewell Prairie Mutual,quote_proposal,True,train
+S044,C4,Tidewell Prairie Mutual,quote_proposal,False,train
+S045,C4,Tidewell Prairie Mutual,quote_proposal,True,train
+S046,C4,Tidewell Prairie Mutual,quote_proposal,False,train
+S047,C4,Tidewell Prairie Mutual,quote_proposal,True,train
+S048,C4,Tidewell Prairie Mutual,quote_proposal,True,train
+S049,C5,Corbelleon Insurance,postcard,False,test
+S050,C5,Corbelleon Insurance,postcard,True,test
+S051,C5,Corbelleon Insurance,postcard,False,test
+S052,C5,Corbelleon Insurance,postcard,False,test
+S053,C5,Corbelleon Insurance,postcard,True,test
+S054,C5,Corbelleon Insurance,postcard,True,test
+S055,C5,Corbelleon Insurance,postcard,True,test
+S056,C5,Corbelleon Insurance,postcard,True,test
+S057,C5,Corbelleon Insurance,postcard,False,test
+S058,C5,Corbelleon Insurance,postcard,False,test
+S059,C5,Corbelleon Insurance,postcard,True,test
+S060,C5,Corbelleon Insurance,postcard,True,test
+S061,C6,Ashgrove Sentinel Insurance,renewal_notice,False,test
+S062,C6,Ashgrove Sentinel Insurance,renewal_notice,True,test
+S063,C6,Ashgrove Sentinel Insurance,renewal_notice,True,test
+S064,C6,Ashgrove Sentinel Insurance,renewal_notice,True,test
+S065,C6,Ashgrove Sentinel Insurance,renewal_notice,False,test
+S066,C6,Ashgrove Sentinel Insurance,renewal_notice,True,test
+S067,C6,Ashgrove Sentinel Insurance,renewal_notice,True,test
+S068,C6,Ashgrove Sentinel Insurance,renewal_notice,True,test
+S069,C6,Ashgrove Sentinel Insurance,renewal_notice,True,test
+S070,C6,Ashgrove Sentinel Insurance,renewal_notice,True,test
+S071,C6,Ashgrove Sentinel Insurance,renewal_notice,True,test
+S072,C6,Ashgrove Sentinel Insurance,renewal_notice,True,test
+S073,C7,Pennvera Assurance,dec_page,True,train
+S074,C7,Pennvera Assurance,dec_page,True,train
+S075,C7,Pennvera Assurance,dec_page,True,train
+S076,C7,Pennvera Assurance,dec_page,True,train
+S077,C7,Pennvera Assurance,dec_page,False,train
+S078,C7,Pennvera Assurance,dec_page,True,train
+S079,C7,Pennvera Assurance,dec_page,False,train
+S080,C7,Pennvera Assurance,dec_page,False,train
+S081,C7,Pennvera Assurance,dec_page,True,train
+S082,C7,Pennvera Assurance,dec_page,True,train
+S083,C7,Pennvera Assurance,dec_page,True,train
+S084,C7,Pennvera Assurance,dec_page,False,train
+S085,C8,Wrenfield Haven Insurance,mailer_table,False,train
+S086,C8,Wrenfield Haven Insurance,mailer_table,True,train
+S087,C8,Wrenfield Haven Insurance,mailer_table,True,train
+S088,C8,Wrenfield Haven Insurance,mailer_table,False,train
+S089,C8,Wrenfield Haven Insurance,mailer_table,False,train
+S090,C8,Wrenfield Haven Insurance,mailer_table,False,train
+S091,C8,Wrenfield Haven Insurance,mailer_table,True,train
+S092,C8,Wrenfield Haven Insurance,mailer_table,False,train
+S093,C8,Wrenfield Haven Insurance,mailer_table,True,train
+S094,C8,Wrenfield Haven Insurance,mailer_table,True,train
+S095,C8,Wrenfield Haven Insurance,mailer_table,True,train
+S096,C8,Wrenfield Haven Insurance,mailer_table,True,train

@@ -1,0 +1,47 @@
+{
+ "doc_id": "S016",
+ "carrier_id": "C2",
+ "layout": "mailer_table",
+ "scanned": true,
+ "fields": {
+  "coverage_a_dwelling": 369100.0,
+  "coverage_b_other_structures": 36900.0,
+  "coverage_c_personal_property": 184600.0,
+  "coverage_d_loss_of_use": 73800.0,
+  "coverage_e_liability": 100000,
+  "coverage_f_medical": 2500,
+  "premium_annual_total": 2890.36,
+  "deductible_all_peril": null,
+  "deductible_wind_hail_pct": null,
+  "year_built": 1992,
+  "square_feet": 2063
+ },
+ "labels_used": {
+  "coverage_a_dwelling": "Dwelling Coverage",
+  "coverage_b_other_structures": "Separate Structures",
+  "coverage_c_personal_property": "Contents",
+  "coverage_d_loss_of_use": "Additional Living Expenses",
+  "coverage_e_liability": "Family Liability",
+  "coverage_f_medical": "Guest Medical Protection",
+  "premium_annual_total": "Estimated Yearly Premium",
+  "year_built": "Year Home Built",
+  "square_feet": "Square Footage"
+ },
+ "hidden_truth": {
+  "base_premium": 3199.89,
+  "discounts": [
+   {
+    "name": "New Home Discount",
+    "amount": 111.95
+   },
+   {
+    "name": "Multi-Policy Discount",
+    "amount": 287.58
+   }
+  ],
+  "policy_fee": 90,
+  "carrier_rate": 5.78,
+  "construction": "Frame",
+  "prior_premium": 2386.44
+ }
+}

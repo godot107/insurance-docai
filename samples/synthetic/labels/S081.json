@@ -1,0 +1,40 @@
+{
+ "doc_id": "S081",
+ "carrier_id": "C7",
+ "layout": "dec_page",
+ "scanned": true,
+ "fields": {
+  "coverage_a_dwelling": 479200.0,
+  "coverage_b_other_structures": 24000.0,
+  "coverage_c_personal_property": 359400.0,
+  "coverage_d_loss_of_use": 47900.0,
+  "coverage_e_liability": 300000,
+  "coverage_f_medical": 1000,
+  "premium_annual_total": 2728.15,
+  "deductible_all_peril": 5000,
+  "deductible_wind_hail_pct": 1,
+  "year_built": 1991,
+  "square_feet": 2472
+ },
+ "labels_used": {
+  "coverage_a_dwelling": "Dwelling Protection",
+  "coverage_b_other_structures": "Separate Structure Coverage",
+  "coverage_c_personal_property": "Contents",
+  "coverage_d_loss_of_use": "Additional Living Expenses",
+  "coverage_e_liability": "Family Liability",
+  "coverage_f_medical": "Guest Medical",
+  "premium_annual_total": "Estimated Yearly Premium",
+  "deductible_all_peril": "All Peril Deductible",
+  "deductible_wind_hail_pct": "Wind And Hail",
+  "year_built": "Year Home Built",
+  "square_feet": "Sq Ft"
+ },
+ "hidden_truth": {
+  "base_premium": 2678.15,
+  "discounts": [],
+  "policy_fee": 50,
+  "carrier_rate": 4.99,
+  "construction": "Brick Veneer",
+  "prior_premium": 2345.4
+ }
+}

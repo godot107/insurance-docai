@@ -1,0 +1,47 @@
+{
+ "doc_id": "S021",
+ "carrier_id": "C2",
+ "layout": "mailer_table",
+ "scanned": false,
+ "fields": {
+  "coverage_a_dwelling": 399500.0,
+  "coverage_b_other_structures": 40000.0,
+  "coverage_c_personal_property": 99900.0,
+  "coverage_d_loss_of_use": 40000.0,
+  "coverage_e_liability": 300000,
+  "coverage_f_medical": 5000,
+  "premium_annual_total": 2159.88,
+  "deductible_all_peril": null,
+  "deductible_wind_hail_pct": null,
+  "year_built": 2006,
+  "square_feet": 2080
+ },
+ "labels_used": {
+  "coverage_a_dwelling": "Dwelling Coverage",
+  "coverage_b_other_structures": "Separate Structures",
+  "coverage_c_personal_property": "Contents",
+  "coverage_d_loss_of_use": "Additional Living Expenses",
+  "coverage_e_liability": "Family Liability",
+  "coverage_f_medical": "Guest Medical Protection",
+  "premium_annual_total": "Estimated Yearly Premium",
+  "year_built": "Year Home Built",
+  "square_feet": "Square Footage"
+ },
+ "hidden_truth": {
+  "base_premium": 2468.9,
+  "discounts": [
+   {
+    "name": "Claim Free Discount",
+    "amount": 125.48
+   },
+   {
+    "name": "Paid in Full Discount",
+    "amount": 273.54
+   }
+  ],
+  "policy_fee": 90,
+  "carrier_rate": 5.78,
+  "construction": "Frame",
+  "prior_premium": 2021.94
+ }
+}

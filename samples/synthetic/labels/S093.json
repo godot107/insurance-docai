@@ -1,0 +1,47 @@
+{
+ "doc_id": "S093",
+ "carrier_id": "C8",
+ "layout": "mailer_table",
+ "scanned": true,
+ "fields": {
+  "coverage_a_dwelling": 764500.0,
+  "coverage_b_other_structures": 76400.0,
+  "coverage_c_personal_property": 382200.0,
+  "coverage_d_loss_of_use": 152900.0,
+  "coverage_e_liability": 300000,
+  "coverage_f_medical": 2500,
+  "premium_annual_total": 6070.4,
+  "deductible_all_peril": null,
+  "deductible_wind_hail_pct": null,
+  "year_built": 1998,
+  "square_feet": 4297
+ },
+ "labels_used": {
+  "coverage_a_dwelling": "Dwelling Protection",
+  "coverage_b_other_structures": "Separate Structure Coverage",
+  "coverage_c_personal_property": "Contents",
+  "coverage_d_loss_of_use": "Living Expenses",
+  "coverage_e_liability": "Family Liability",
+  "coverage_f_medical": "Guest Medical Coverage",
+  "premium_annual_total": "Estimated Annual Premium",
+  "year_built": "Year Home Built",
+  "square_feet": "Sq Ft"
+ },
+ "hidden_truth": {
+  "base_premium": 6755.45,
+  "discounts": [
+   {
+    "name": "Multi-Policy Discount",
+    "amount": 227.74
+   },
+   {
+    "name": "Claim Free Discount",
+    "amount": 547.31
+   }
+  ],
+  "policy_fee": 90,
+  "carrier_rate": 8.81,
+  "construction": "Stucco",
+  "prior_premium": 4969.39
+ }
+}

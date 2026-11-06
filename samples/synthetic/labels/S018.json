@@ -1,0 +1,43 @@
+{
+ "doc_id": "S018",
+ "carrier_id": "C2",
+ "layout": "mailer_table",
+ "scanned": true,
+ "fields": {
+  "coverage_a_dwelling": 662100.0,
+  "coverage_b_other_structures": 132400.0,
+  "coverage_c_personal_property": 264800.0,
+  "coverage_d_loss_of_use": 132400.0,
+  "coverage_e_liability": 300000,
+  "coverage_f_medical": 1000,
+  "premium_annual_total": 2494.66,
+  "deductible_all_peril": null,
+  "deductible_wind_hail_pct": null,
+  "year_built": 2016,
+  "square_feet": 3030
+ },
+ "labels_used": {
+  "coverage_a_dwelling": "Dwelling Coverage",
+  "coverage_b_other_structures": "Separate Structures",
+  "coverage_c_personal_property": "Contents",
+  "coverage_d_loss_of_use": "Additional Living Expenses",
+  "coverage_e_liability": "Family Liability",
+  "coverage_f_medical": "Guest Medical Protection",
+  "premium_annual_total": "Estimated Yearly Premium",
+  "year_built": "Year Home Built",
+  "square_feet": "Square Footage"
+ },
+ "hidden_truth": {
+  "base_premium": 2764.96,
+  "discounts": [
+   {
+    "name": "Protective Device Discount",
+    "amount": 270.3
+   }
+  ],
+  "policy_fee": 0,
+  "carrier_rate": 5.78,
+  "construction": "Stucco",
+  "prior_premium": 2082.49
+ }
+}

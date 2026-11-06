@@ -1,0 +1,36 @@
+{
+ "doc_id": "A103",
+ "carrier_id": "C7",
+ "layout": "quote_proposal",
+ "scanned": false,
+ "fields": {
+  "coverage_a_dwelling": 387800.0,
+  "coverage_b_other_structures": null,
+  "coverage_c_personal_property": 193900.0,
+  "coverage_d_loss_of_use": null,
+  "coverage_e_liability": 100000,
+  "coverage_f_medical": null,
+  "premium_annual_total": 2564.12,
+  "deductible_all_peril": 1000,
+  "deductible_wind_hail_pct": null,
+  "year_built": null,
+  "square_feet": null
+ },
+ "labels_used": {
+  "coverage_a_dwelling": "Dwelling Protection",
+  "coverage_c_personal_property": "Contents",
+  "coverage_e_liability": "Family Liability",
+  "premium_annual_total": "Estimated Yearly Premium",
+  "deductible_all_peril": "All Peril Deductible"
+ },
+ "augment": {
+  "omitted": [
+   "coverage_b_other_structures",
+   "coverage_d_loss_of_use",
+   "coverage_f_medical",
+   "deductible_wind_hail_pct"
+  ],
+  "distractor": true,
+  "scan_mode": "clean"
+ }
+}

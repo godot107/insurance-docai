@@ -1,0 +1,47 @@
+{
+ "doc_id": "S094",
+ "carrier_id": "C8",
+ "layout": "mailer_table",
+ "scanned": true,
+ "fields": {
+  "coverage_a_dwelling": 369900.0,
+  "coverage_b_other_structures": 74000.0,
+  "coverage_c_personal_property": 148000.0,
+  "coverage_d_loss_of_use": 74000.0,
+  "coverage_e_liability": 100000,
+  "coverage_f_medical": 1000,
+  "premium_annual_total": 2194.48,
+  "deductible_all_peril": null,
+  "deductible_wind_hail_pct": null,
+  "year_built": 2024,
+  "square_feet": 2239
+ },
+ "labels_used": {
+  "coverage_a_dwelling": "Dwelling Protection",
+  "coverage_b_other_structures": "Separate Structure Coverage",
+  "coverage_c_personal_property": "Contents",
+  "coverage_d_loss_of_use": "Living Expenses",
+  "coverage_e_liability": "Family Liability",
+  "coverage_f_medical": "Guest Medical Coverage",
+  "premium_annual_total": "Estimated Annual Premium",
+  "year_built": "Year Home Built",
+  "square_feet": "Sq Ft"
+ },
+ "hidden_truth": {
+  "base_premium": 2542.86,
+  "discounts": [
+   {
+    "name": "Claim Free Discount",
+    "amount": 78.3
+   },
+   {
+    "name": "New Home Discount",
+    "amount": 295.08
+   }
+  ],
+  "policy_fee": 25,
+  "carrier_rate": 8.81,
+  "construction": "Frame",
+  "prior_premium": 1796.99
+ }
+}

@@ -1,0 +1,4 @@
+build/
+*.msapp
+solution/CanvasApps/*.msapp
+.last_sync

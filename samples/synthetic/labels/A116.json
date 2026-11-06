@@ -1,0 +1,36 @@
+{
+ "doc_id": "A116",
+ "carrier_id": "C1",
+ "layout": "quote_proposal",
+ "scanned": true,
+ "fields": {
+  "coverage_a_dwelling": null,
+  "coverage_b_other_structures": null,
+  "coverage_c_personal_property": 183300.0,
+  "coverage_d_loss_of_use": 45800.0,
+  "coverage_e_liability": 300000,
+  "coverage_f_medical": 5000,
+  "premium_annual_total": 3940.27,
+  "deductible_all_peril": null,
+  "deductible_wind_hail_pct": 5,
+  "year_built": null,
+  "square_feet": null
+ },
+ "labels_used": {
+  "coverage_c_personal_property": "Contents",
+  "coverage_d_loss_of_use": "Living Expenses",
+  "coverage_e_liability": "Family Liability",
+  "coverage_f_medical": "Guest Medical Coverage",
+  "premium_annual_total": "Total Estimated Annual Premium",
+  "deductible_wind_hail_pct": "Wind And Hail"
+ },
+ "augment": {
+  "omitted": [
+   "coverage_a_dwelling",
+   "coverage_b_other_structures",
+   "deductible_all_peril"
+  ],
+  "distractor": true,
+  "scan_mode": "harsh"
+ }
+}

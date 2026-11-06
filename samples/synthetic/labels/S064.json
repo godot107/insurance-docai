@@ -1,0 +1,40 @@
+{
+ "doc_id": "S064",
+ "carrier_id": "C6",
+ "layout": "renewal_notice",
+ "scanned": true,
+ "fields": {
+  "coverage_a_dwelling": 350800.0,
+  "coverage_b_other_structures": null,
+  "coverage_c_personal_property": 140300.0,
+  "coverage_d_loss_of_use": null,
+  "coverage_e_liability": 300000,
+  "coverage_f_medical": null,
+  "premium_annual_total": 2476.77,
+  "deductible_all_peril": 5000,
+  "deductible_wind_hail_pct": 2,
+  "year_built": null,
+  "square_feet": null
+ },
+ "labels_used": {
+  "coverage_a_dwelling": "Dwelling Protection",
+  "coverage_c_personal_property": "Contents",
+  "coverage_e_liability": "Family Liability",
+  "deductible_all_peril": "All Peril Deductible",
+  "deductible_wind_hail_pct": "Windstorm And Hail",
+  "premium_annual_total": "Estimated Yearly Premium"
+ },
+ "hidden_truth": {
+  "base_premium": 2690.94,
+  "discounts": [
+   {
+    "name": "Claim Free Discount",
+    "amount": 304.17
+   }
+  ],
+  "policy_fee": 90,
+  "carrier_rate": 7.61,
+  "construction": "Brick Veneer",
+  "prior_premium": 2331.71
+ }
+}

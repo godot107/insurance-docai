@@ -1,0 +1,36 @@
+{
+ "doc_id": "A058",
+ "carrier_id": "C3",
+ "layout": "quote_proposal",
+ "scanned": true,
+ "fields": {
+  "coverage_a_dwelling": null,
+  "coverage_b_other_structures": 24700.0,
+  "coverage_c_personal_property": 123400.0,
+  "coverage_d_loss_of_use": null,
+  "coverage_e_liability": 300000,
+  "coverage_f_medical": 1000,
+  "premium_annual_total": 3385.11,
+  "deductible_all_peril": null,
+  "deductible_wind_hail_pct": null,
+  "year_built": null,
+  "square_feet": null
+ },
+ "labels_used": {
+  "coverage_b_other_structures": "Separate Structure Coverage",
+  "coverage_c_personal_property": "Contents",
+  "coverage_e_liability": "Family Liability",
+  "coverage_f_medical": "Guest Medical Protection",
+  "premium_annual_total": "Estimated Yearly Premium"
+ },
+ "augment": {
+  "omitted": [
+   "coverage_a_dwelling",
+   "coverage_d_loss_of_use",
+   "deductible_all_peril",
+   "deductible_wind_hail_pct"
+  ],
+  "distractor": true,
+  "scan_mode": "harsh"
+ }
+}

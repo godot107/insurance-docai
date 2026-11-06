@@ -1,0 +1,49 @@
+{
+ "doc_id": "S077",
+ "carrier_id": "C7",
+ "layout": "dec_page",
+ "scanned": false,
+ "fields": {
+  "coverage_a_dwelling": 713100.0,
+  "coverage_b_other_structures": 71300.0,
+  "coverage_c_personal_property": 534800.0,
+  "coverage_d_loss_of_use": 71300.0,
+  "coverage_e_liability": 300000,
+  "coverage_f_medical": 2500,
+  "premium_annual_total": 3105.31,
+  "deductible_all_peril": 5000,
+  "deductible_wind_hail_pct": 2,
+  "year_built": 1981,
+  "square_feet": 3192
+ },
+ "labels_used": {
+  "coverage_a_dwelling": "Dwelling Protection",
+  "coverage_b_other_structures": "Separate Structure Coverage",
+  "coverage_c_personal_property": "Contents",
+  "coverage_d_loss_of_use": "Additional Living Expenses",
+  "coverage_e_liability": "Family Liability",
+  "coverage_f_medical": "Guest Medical",
+  "premium_annual_total": "Estimated Yearly Premium",
+  "deductible_all_peril": "All Peril Deductible",
+  "deductible_wind_hail_pct": "Wind And Hail",
+  "year_built": "Year Home Built",
+  "square_feet": "Sq Ft"
+ },
+ "hidden_truth": {
+  "base_premium": 3843.04,
+  "discounts": [
+   {
+    "name": "Multi-Policy Discount",
+    "amount": 328.45
+   },
+   {
+    "name": "Paperless Discount",
+    "amount": 409.28
+   }
+  ],
+  "policy_fee": 0,
+  "carrier_rate": 4.99,
+  "construction": "Stucco",
+  "prior_premium": 2650.42
+ }
+}

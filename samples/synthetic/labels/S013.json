@@ -1,0 +1,38 @@
+{
+ "doc_id": "S013",
+ "carrier_id": "C2",
+ "layout": "mailer_table",
+ "scanned": false,
+ "fields": {
+  "coverage_a_dwelling": 452700.0,
+  "coverage_b_other_structures": 22600.0,
+  "coverage_c_personal_property": 113200.0,
+  "coverage_d_loss_of_use": 90500.0,
+  "coverage_e_liability": 100000,
+  "coverage_f_medical": 1000,
+  "premium_annual_total": 3000.71,
+  "deductible_all_peril": null,
+  "deductible_wind_hail_pct": null,
+  "year_built": 1999,
+  "square_feet": 2254
+ },
+ "labels_used": {
+  "coverage_a_dwelling": "Dwelling Coverage",
+  "coverage_b_other_structures": "Separate Structures",
+  "coverage_c_personal_property": "Contents",
+  "coverage_d_loss_of_use": "Additional Living Expenses",
+  "coverage_e_liability": "Family Liability",
+  "coverage_f_medical": "Guest Medical Protection",
+  "premium_annual_total": "Estimated Yearly Premium",
+  "year_built": "Year Home Built",
+  "square_feet": "Square Footage"
+ },
+ "hidden_truth": {
+  "base_premium": 2975.71,
+  "discounts": [],
+  "policy_fee": 25,
+  "carrier_rate": 5.78,
+  "construction": "Frame",
+  "prior_premium": 2910.11
+ }
+}

@@ -1,0 +1,36 @@
+{
+ "doc_id": "A069",
+ "carrier_id": "C7",
+ "layout": "mailer_table",
+ "scanned": true,
+ "fields": {
+  "coverage_a_dwelling": null,
+  "coverage_b_other_structures": 40000.0,
+  "coverage_c_personal_property": 160000.0,
+  "coverage_d_loss_of_use": 120000.0,
+  "coverage_e_liability": null,
+  "coverage_f_medical": null,
+  "premium_annual_total": 2203.86,
+  "deductible_all_peril": null,
+  "deductible_wind_hail_pct": null,
+  "year_built": 2007,
+  "square_feet": null
+ },
+ "labels_used": {
+  "coverage_b_other_structures": "Separate Structure Coverage",
+  "coverage_c_personal_property": "Contents",
+  "coverage_d_loss_of_use": "Additional Living Expenses",
+  "premium_annual_total": "Estimated Yearly Premium",
+  "year_built": "Year Home Built"
+ },
+ "augment": {
+  "omitted": [
+   "coverage_a_dwelling",
+   "coverage_e_liability",
+   "coverage_f_medical",
+   "square_feet"
+  ],
+  "distractor": true,
+  "scan_mode": "harsh"
+ }
+}

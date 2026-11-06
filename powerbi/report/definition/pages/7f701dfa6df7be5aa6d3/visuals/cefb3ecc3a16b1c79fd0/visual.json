@@ -1,0 +1,181 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "cefb3ecc3a16b1c79fd0",
+  "position": {
+    "x": 420,
+    "y": 215,
+    "z": 0,
+    "width": 840,
+    "height": 490,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_quote"
+                    }
+                  },
+                  "Property": "carrier"
+                }
+              },
+              "queryRef": "fact_quote.carrier",
+              "nativeQueryRef": "carrier",
+              "displayName": "Insurer"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_quote"
+                    }
+                  },
+                  "Property": "premium"
+                }
+              },
+              "queryRef": "fact_quote.premium",
+              "nativeQueryRef": "premium",
+              "displayName": "Premium"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_quote"
+                    }
+                  },
+                  "Property": "premium_per_1k_a"
+                }
+              },
+              "queryRef": "fact_quote.premium_per_1k_a",
+              "nativeQueryRef": "premium_per_1k_a",
+              "displayName": "Per $1k A"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_quote"
+                    }
+                  },
+                  "Property": "coverage_a"
+                }
+              },
+              "queryRef": "fact_quote.coverage_a",
+              "nativeQueryRef": "coverage_a",
+              "displayName": "Dwelling (A)"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_quote"
+                    }
+                  },
+                  "Property": "aop_deductible"
+                }
+              },
+              "queryRef": "fact_quote.aop_deductible",
+              "nativeQueryRef": "aop_deductible",
+              "displayName": "Deductible"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_quote"
+                    }
+                  },
+                  "Property": "wind_hail_pct"
+                }
+              },
+              "queryRef": "fact_quote.wind_hail_pct",
+              "nativeQueryRef": "wind_hail_pct",
+              "displayName": "Wind/hail"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_quote"
+                    }
+                  },
+                  "Property": "apples_to_apples"
+                }
+              },
+              "queryRef": "fact_quote.apples_to_apples",
+              "nativeQueryRef": "apples_to_apples",
+              "displayName": "Comparable?"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_quote"
+                    }
+                  },
+                  "Property": "vs_current_usd"
+                }
+              },
+              "queryRef": "fact_quote.vs_current_usd",
+              "nativeQueryRef": "vs_current_usd",
+              "displayName": "vs current"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_quote"
+                    }
+                  },
+                  "Property": "notes"
+                }
+              },
+              "queryRef": "fact_quote.notes",
+              "nativeQueryRef": "notes",
+              "displayName": "Why not comparable"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Quotes vs current policy'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

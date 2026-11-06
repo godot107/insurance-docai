@@ -1,0 +1,49 @@
+{
+ "doc_id": "S079",
+ "carrier_id": "C7",
+ "layout": "dec_page",
+ "scanned": false,
+ "fields": {
+  "coverage_a_dwelling": 242400.0,
+  "coverage_b_other_structures": 48500.0,
+  "coverage_c_personal_property": 60600.0,
+  "coverage_d_loss_of_use": 24200.0,
+  "coverage_e_liability": 100000,
+  "coverage_f_medical": 5000,
+  "premium_annual_total": 1020.69,
+  "deductible_all_peril": 2424,
+  "deductible_wind_hail_pct": 5,
+  "year_built": 1993,
+  "square_feet": 1352
+ },
+ "labels_used": {
+  "coverage_a_dwelling": "Dwelling Protection",
+  "coverage_b_other_structures": "Separate Structure Coverage",
+  "coverage_c_personal_property": "Contents",
+  "coverage_d_loss_of_use": "Additional Living Expenses",
+  "coverage_e_liability": "Family Liability",
+  "coverage_f_medical": "Guest Medical",
+  "premium_annual_total": "Estimated Yearly Premium",
+  "deductible_all_peril": "All Peril Deductible",
+  "deductible_wind_hail_pct": "Wind And Hail",
+  "year_built": "Year Home Built",
+  "square_feet": "Sq Ft"
+ },
+ "hidden_truth": {
+  "base_premium": 1160.91,
+  "discounts": [
+   {
+    "name": "Protective Device Discount",
+    "amount": 91.09
+   },
+   {
+    "name": "Paid in Full Discount",
+    "amount": 139.13
+   }
+  ],
+  "policy_fee": 90,
+  "carrier_rate": 4.99,
+  "construction": "Frame",
+  "prior_premium": 956.73
+ }
+}

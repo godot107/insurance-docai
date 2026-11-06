@@ -1,0 +1,38 @@
+{
+  "5124ecc6-eec0-47f0-8d97-f074bdc23dbd": {
+    "appActions": [
+      "providers/PowerPlatform.Governance/Operations/Read"
+    ],
+    "connectionRef": {
+      "apiTier": "Premium",
+      "authenticationType": "oauth",
+      "displayName": "SQL Server",
+      "iconUri": "https://static.powerapps.com/resource/ppcr/releases/v1.0.1828/1.0.1828.4964/sql/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_sql",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {
+      "sql-docai-i777yv-cus.database.windows.net,docai": {
+        "dataSources": {
+          "review.document": {
+            "tableName": "[review].[document]"
+          },
+          "review.item": {
+            "tableName": "[review].[item]"
+          }
+        }
+      }
+    },
+    "dataSources": [
+      "review.item",
+      "review.document"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "endpoints": [
+      "sql-docai-i777yv-cus.database.windows.net,docai"
+    ],
+    "id": "5124ecc6-eec0-47f0-8d97-f074bdc23dbd"
+  }
+}

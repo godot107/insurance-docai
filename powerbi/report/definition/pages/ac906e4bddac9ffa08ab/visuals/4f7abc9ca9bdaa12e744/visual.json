@@ -1,0 +1,106 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "4f7abc9ca9bdaa12e744",
+  "position": {
+    "x": 535,
+    "y": 215,
+    "z": 0,
+    "width": 725,
+    "height": 490,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_assumption"
+                    }
+                  },
+                  "Property": "name"
+                }
+              },
+              "queryRef": "dim_assumption.name",
+              "nativeQueryRef": "name",
+              "displayName": "Assumption"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_assumption"
+                    }
+                  },
+                  "Property": "value"
+                }
+              },
+              "queryRef": "dim_assumption.value",
+              "nativeQueryRef": "value",
+              "displayName": "Value"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_assumption"
+                    }
+                  },
+                  "Property": "unit"
+                }
+              },
+              "queryRef": "dim_assumption.unit",
+              "nativeQueryRef": "unit",
+              "displayName": "Unit"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_assumption"
+                    }
+                  },
+                  "Property": "note"
+                }
+              },
+              "queryRef": "dim_assumption.note",
+              "nativeQueryRef": "note",
+              "displayName": "Source / note"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Assumptions (edit in build_dashboard_tables.py)'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

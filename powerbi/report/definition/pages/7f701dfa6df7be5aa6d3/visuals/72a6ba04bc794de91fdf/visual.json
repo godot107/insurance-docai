@@ -1,0 +1,126 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "72a6ba04bc794de91fdf",
+  "position": {
+    "x": 20,
+    "y": 215,
+    "z": 0,
+    "width": 390,
+    "height": 490,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "clusteredBarChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_quote"
+                    }
+                  },
+                  "Property": "carrier"
+                }
+              },
+              "queryRef": "fact_quote.carrier",
+              "nativeQueryRef": "carrier"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fact_quote"
+                        }
+                      },
+                      "Property": "premium"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Avg(fact_quote.premium)",
+              "nativeQueryRef": "Average of premium",
+              "displayName": "Annual premium"
+            }
+          ]
+        },
+        "Series": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_quote"
+                    }
+                  },
+                  "Property": "apples_to_apples"
+                }
+              },
+              "queryRef": "fact_quote.apples_to_apples",
+              "nativeQueryRef": "apples_to_apples",
+              "displayName": "Comparable?"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "fact_quote"
+                      }
+                    },
+                    "Property": "premium"
+                  }
+                },
+                "Function": 1
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": false
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Annual premium by insurer'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

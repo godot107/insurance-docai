@@ -1,0 +1,66 @@
+# Canonical schema for homeowners documents (declarations pages, renewal notices, quotes, mailers).
+# One schema drives: normalization, review rules, custom-model labels, synthetic ground truth, SQL columns.
+#
+# synonyms: label variants seen on real documents (matched case-insensitively, punctuation and
+#           leading "A." / "Coverage A" style prefixes ignored). Add new variants here, not in code.
+# type:     money | percent | int | date | text
+# range:    plausible [min, max]; outside → human review
+# ratio_to: plausible range as a fraction of another field; outside → human review
+# required: missing on a doc of these types → human review
+
+version: 1
+review:
+  confidence_threshold: 0.80   # placeholder; phase 3 calibrates this against measured error rates
+
+fields:
+  coverage_a_dwelling:
+    type: money
+    synonyms: [dwelling, dwelling protection, dwelling coverage, coverage a]
+    range: [50000, 5000000]
+    required: [declarations, quote-mailer, quote]
+  coverage_b_other_structures:
+    type: money
+    synonyms: [other structures, other structure, separate structures, separate structure coverage, separate structure, coverage b]
+    ratio_to: {field: coverage_a_dwelling, range: [0.02, 0.5]}
+  coverage_c_personal_property:
+    type: money
+    synonyms: [personal property, personal property protection, contents, coverage c]
+    ratio_to: {field: coverage_a_dwelling, range: [0.1, 1.0]}
+  coverage_d_loss_of_use:
+    type: money
+    synonyms: [loss of use, loss of use protection, additional living expenses, additional living expense, living expenses, coverage d]
+    ratio_to: {field: coverage_a_dwelling, range: [0.05, 0.5]}
+  coverage_e_liability:
+    type: money
+    synonyms: [personal liability each occurrence, personal liability, personal liability protection, family liability, liability, coverage e]
+    range: [25000, 2000000]
+  coverage_f_medical:
+    type: money
+    synonyms: [medical payments to others each person, medical payments to others, guest medical protection, guest medical coverage, guest medical, medical, coverage f]
+    range: [500, 50000]
+  premium_annual_total:
+    type: money
+    synonyms: [total policy premium, total estimated annual premium, estimated annual premium, est annual premium,
+               estimated yearly premium, yearly premium, annual premium, estimated annual payment, estimated annual]
+    range: [200, 30000]
+    required: [declarations, quote-mailer, quote]
+  deductible_all_peril:
+    type: money
+    synonyms: [all other perils, all perils, all peril deductible, aop deductible, deductible]
+    range: [250, 25000]
+  deductible_wind_hail_pct:
+    type: percent
+    synonyms: [wind hail, windstorm and hail, wind and hail, wind hail deductible]
+    range: [0.5, 10]
+  policy_fee:
+    type: money
+    pattern: 'POLICY FEE OF \$\s?([\d,]+(?:\.\d\d)?)'
+    range: [0, 500]
+  year_built:
+    type: int
+    synonyms: [year built, year home built]
+    range: [1850, 2030]
+  square_feet:
+    type: int
+    synonyms: [square feet, square footage, sq ft]
+    range: [300, 20000]

@@ -1,0 +1,40 @@
+{
+ "doc_id": "S068",
+ "carrier_id": "C6",
+ "layout": "renewal_notice",
+ "scanned": true,
+ "fields": {
+  "coverage_a_dwelling": 511300.0,
+  "coverage_b_other_structures": null,
+  "coverage_c_personal_property": 204500.0,
+  "coverage_d_loss_of_use": null,
+  "coverage_e_liability": 100000,
+  "coverage_f_medical": null,
+  "premium_annual_total": 5120.89,
+  "deductible_all_peril": 1000,
+  "deductible_wind_hail_pct": 2,
+  "year_built": null,
+  "square_feet": null
+ },
+ "labels_used": {
+  "coverage_a_dwelling": "Dwelling Protection",
+  "coverage_c_personal_property": "Contents",
+  "coverage_e_liability": "Family Liability",
+  "deductible_all_peril": "All Peril Deductible",
+  "deductible_wind_hail_pct": "Windstorm And Hail",
+  "premium_annual_total": "Estimated Yearly Premium"
+ },
+ "hidden_truth": {
+  "base_premium": 5213.93,
+  "discounts": [
+   {
+    "name": "Paperless Discount",
+    "amount": 183.04
+   }
+  ],
+  "policy_fee": 90,
+  "carrier_rate": 7.61,
+  "construction": "Stucco",
+  "prior_premium": 4588.56
+ }
+}

@@ -1,0 +1,40 @@
+{
+ "doc_id": "S069",
+ "carrier_id": "C6",
+ "layout": "renewal_notice",
+ "scanned": true,
+ "fields": {
+  "coverage_a_dwelling": 352900.0,
+  "coverage_b_other_structures": null,
+  "coverage_c_personal_property": 264700.0,
+  "coverage_d_loss_of_use": null,
+  "coverage_e_liability": 500000,
+  "coverage_f_medical": null,
+  "premium_annual_total": 2775.62,
+  "deductible_all_peril": 1000,
+  "deductible_wind_hail_pct": 2,
+  "year_built": null,
+  "square_feet": null
+ },
+ "labels_used": {
+  "coverage_a_dwelling": "Dwelling Protection",
+  "coverage_c_personal_property": "Contents",
+  "coverage_e_liability": "Family Liability",
+  "deductible_all_peril": "All Peril Deductible",
+  "deductible_wind_hail_pct": "Windstorm And Hail",
+  "premium_annual_total": "Estimated Yearly Premium"
+ },
+ "hidden_truth": {
+  "base_premium": 2927.27,
+  "discounts": [
+   {
+    "name": "Paid in Full Discount",
+    "amount": 201.65
+   }
+  ],
+  "policy_fee": 50,
+  "carrier_rate": 7.61,
+  "construction": "Stucco",
+  "prior_premium": 2221.52
+ }
+}

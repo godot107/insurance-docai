@@ -1,0 +1,36 @@
+{
+ "doc_id": "A120",
+ "carrier_id": "C2",
+ "layout": "mailer_table",
+ "scanned": true,
+ "fields": {
+  "coverage_a_dwelling": null,
+  "coverage_b_other_structures": 104700.0,
+  "coverage_c_personal_property": null,
+  "coverage_d_loss_of_use": 104700.0,
+  "coverage_e_liability": null,
+  "coverage_f_medical": 2500,
+  "premium_annual_total": 2265.65,
+  "deductible_all_peril": null,
+  "deductible_wind_hail_pct": null,
+  "year_built": 2020,
+  "square_feet": null
+ },
+ "labels_used": {
+  "coverage_b_other_structures": "Separate Structures",
+  "coverage_d_loss_of_use": "Additional Living Expenses",
+  "coverage_f_medical": "Guest Medical Protection",
+  "premium_annual_total": "Estimated Yearly Premium",
+  "year_built": "Year Home Built"
+ },
+ "augment": {
+  "omitted": [
+   "coverage_a_dwelling",
+   "coverage_c_personal_property",
+   "coverage_e_liability",
+   "square_feet"
+  ],
+  "distractor": true,
+  "scan_mode": "scan"
+ }
+}

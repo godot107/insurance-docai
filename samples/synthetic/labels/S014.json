@@ -1,0 +1,38 @@
+{
+ "doc_id": "S014",
+ "carrier_id": "C2",
+ "layout": "mailer_table",
+ "scanned": true,
+ "fields": {
+  "coverage_a_dwelling": 434400.0,
+  "coverage_b_other_structures": 43400.0,
+  "coverage_c_personal_property": 217200.0,
+  "coverage_d_loss_of_use": 43400.0,
+  "coverage_e_liability": 300000,
+  "coverage_f_medical": 1000,
+  "premium_annual_total": 2987.78,
+  "deductible_all_peril": null,
+  "deductible_wind_hail_pct": null,
+  "year_built": 1998,
+  "square_feet": 2354
+ },
+ "labels_used": {
+  "coverage_a_dwelling": "Dwelling Coverage",
+  "coverage_b_other_structures": "Separate Structures",
+  "coverage_c_personal_property": "Contents",
+  "coverage_d_loss_of_use": "Additional Living Expenses",
+  "coverage_e_liability": "Family Liability",
+  "coverage_f_medical": "Guest Medical Protection",
+  "premium_annual_total": "Estimated Yearly Premium",
+  "year_built": "Year Home Built",
+  "square_feet": "Square Footage"
+ },
+ "hidden_truth": {
+  "base_premium": 2962.78,
+  "discounts": [],
+  "policy_fee": 25,
+  "carrier_rate": 5.78,
+  "construction": "Brick Veneer",
+  "prior_premium": 3080.23
+ }
+}

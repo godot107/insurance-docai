@@ -1,0 +1,8 @@
+{% extends "base.html.j2" %}{% block body %}
+<h2>{{ k.headline }}</h2><p>Dear {{ p.first }},</p><p>{{ k.paragraphs[0] }}</p>
+<p>For your {{ t.year_built }} home at {{ p.street }}, we estimate {{ L.coverage_a_dwelling|lower }} of {{ s.coverage_a_dwelling }},
+with {{ L.coverage_c_personal_property|lower }} of {{ s.coverage_c_personal_property }} and {{ L.coverage_e_liability|lower }} of {{ s.coverage_e_liability }}.
+Your {{ L.premium_annual_total|lower }} could be as low as <b>{{ s.premium_annual_total }}</b>.</p>
+<p>{{ k.paragraphs[1] }}</p><p>{{ k.paragraphs[2] }}</p><p><b>{{ k.cta }}</b></p>
+<p>Sincerely,<br>{{ p.agent }}<br>{{ k.agency_name }}</p>
+{% endblock %}

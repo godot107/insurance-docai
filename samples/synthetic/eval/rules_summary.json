@@ -1,0 +1,28 @@
+{
+ "overall": {
+  "recall": 0.9283854166666666,
+  "precision": 0.9431216931216931,
+  "wrong": 43,
+  "missed": 12,
+  "spurious": 0,
+  "n_truth": 768
+ },
+ "by_split": {
+  "train": {
+   "recall": 0.9567901234567902,
+   "precision": 0.9748427672955975,
+   "wrong": 16,
+   "missed": 12,
+   "spurious": 0,
+   "n_truth": 648
+  },
+  "test": {
+   "recall": 0.775,
+   "precision": 0.775,
+   "wrong": 27,
+   "missed": 0,
+   "spurious": 0,
+   "n_truth": 120
+  }
+ }
+}

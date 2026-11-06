@@ -1,0 +1,9 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definitionProperties/2.0.0/schema.json",
+  "version": "4.0",
+  "datasetReference": {
+    "byConnection": {
+      "connectionString": "Data Source=powerbi://api.powerbi.com/v1.0/myorg/insurance-docai;initial catalog=\"Insurance DocAI\";integrated security=ClaimsToken;semanticmodelid=d7cf3ae4-0081-4af6-b822-faafef2f5ed7"
+    }
+  }
+}

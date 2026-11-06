@@ -1,0 +1,10 @@
+{% extends "base.html.j2" %}{% block body %}
+<h2>Homeowners Quote Proposal</h2><p>Quote Proposal Prepared For: {{ p.name }} · Reference# {{ p.policy_no }}</p>
+<table><tr><th>COVERAGES</th><th>LIMITS</th></tr>
+{% for f in ["coverage_a_dwelling","coverage_b_other_structures","coverage_c_personal_property","coverage_d_loss_of_use","coverage_e_liability","coverage_f_medical","deductible_all_peril","deductible_wind_hail_pct"] %}
+{% if f not in omit %}<tr><td>{{ L[f] }}</td><td class="v">{{ s[f] }}</td></tr>{% endif %}{% endfor %}</table>
+<table><tr><th>Discounts applied</th><th>Savings</th></tr>
+{% for d in t.discounts %}<tr><td>{{ d.name }}</td><td class="v">{{ money(d.amount) }}</td></tr>{% else %}<tr><td>None</td><td></td></tr>{% endfor %}</table>
+<div class="box">{{ L.premium_annual_total }}: <span class="big">{{ s.premium_annual_total }}</span></div>
+<p>{{ k.paragraphs[0] }}</p><p><b>{{ k.cta }}</b></p>
+{% endblock %}

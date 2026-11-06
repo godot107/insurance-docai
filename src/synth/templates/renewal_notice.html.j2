@@ -1,0 +1,10 @@
+{% extends "base.html.j2" %}{% block body %}
+<h2>{{ k.headline }}</h2><p>{{ p.name }}<br>{{ p.street }}<br>{{ p.city }}, TX {{ p.zip }}</p>
+<p>{{ k.paragraphs[0] }}</p>
+<table><tr><th></th><th>Current term</th><th>Renewal term</th></tr>
+<tr><td>{{ L.premium_annual_total }}</td><td class="v">{{ money(t.prior_premium) }}</td><td class="v">{{ s.premium_annual_total }}</td></tr>
+<tr><td>Change</td><td></td><td class="v">{{ "%+.1f"|format(t.premium_change_pct) }}%</td></tr></table>
+<table>{% for f in ["coverage_a_dwelling","coverage_c_personal_property","coverage_e_liability","deductible_all_peril","deductible_wind_hail_pct"] %}
+{% if f not in omit %}<tr><td>{{ L[f] }}</td><td class="v">{{ s[f] }}</td></tr>{% endif %}{% endfor %}</table>
+<p>{{ k.paragraphs[1] }}</p><p><b>{{ k.cta }}</b></p>
+{% endblock %}

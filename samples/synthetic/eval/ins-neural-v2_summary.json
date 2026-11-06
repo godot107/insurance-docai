@@ -1,0 +1,20 @@
+{
+ "overall": {
+  "recall": 0.95,
+  "precision": 0.9193548387096774,
+  "wrong": 5,
+  "missed": 1,
+  "spurious": 5,
+  "n_truth": 120
+ },
+ "by_split": {
+  "test": {
+   "recall": 0.95,
+   "precision": 0.9193548387096774,
+   "wrong": 5,
+   "missed": 1,
+   "spurious": 5,
+   "n_truth": 120
+  }
+ }
+}

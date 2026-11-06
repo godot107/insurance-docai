@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "docai_lakehouse"
+version = "0.1.1"
+description = "Medallion transforms + review router for insurance-docai"
+requires-python = ">=3.10"
+
+[project.scripts]
+bronze = "docai_lakehouse.jobs:bronze"
+silver = "docai_lakehouse.jobs:silver"
+gold = "docai_lakehouse.jobs:gold"
+train_router = "docai_lakehouse.jobs:train_router"
+
+[tool.setuptools.packages.find]
+where = ["src"]

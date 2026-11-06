@@ -1,0 +1,17 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+@page { size: letter; margin: {{ margin }}in; }
+body { font-family: {{ font }}; font-size: {{ fs }}pt; color: #222; }
+.brand { background: {{ k.brand_color }}; color: #fff; padding: 10px 14px; }
+.brand h1 { margin: 0; font-size: 20pt; } .brand .tag { font-size: 9pt; opacity: .9; }
+table { border-collapse: collapse; width: 100%; margin: 8px 0; }
+td, th { border: 1px solid #999; padding: 4px 6px; text-align: left; } th { background: #eee; }
+td.v { text-align: right; } .big { font-size: 26pt; font-weight: bold; color: {{ k.brand_color }}; }
+.small { font-size: 7pt; color: #555; } .box { border: 2px solid {{ k.brand_color }}; padding: 8px; margin: 8px 0; }
+{% if stacked %}td { display: block; border: none; padding: 1px 4px; } td.v { text-align: left; font-weight: bold; }{% endif %}
+.cols { display: flex; gap: 16px; } .cols > div { flex: 1; } h2 { font-size: 13pt; margin: 10px 0 4px; }
+</style></head><body>
+<div class="brand"><h1>{{ k.carrier_name }}</h1><div class="tag">{{ k.tagline }} · {{ k.agency_name }}</div></div>
+{% block body %}{% endblock %}
+{% if distractor %}<div class="box">{{ distractor }}</div>{% endif %}
+<p class="small">{{ k.disclaimer }}</p>
+</body></html>

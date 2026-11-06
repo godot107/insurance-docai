@@ -1,0 +1,43 @@
+{
+ "doc_id": "S023",
+ "carrier_id": "C2",
+ "layout": "mailer_table",
+ "scanned": false,
+ "fields": {
+  "coverage_a_dwelling": 503500.0,
+  "coverage_b_other_structures": 100700.0,
+  "coverage_c_personal_property": 352400.0,
+  "coverage_d_loss_of_use": 100700.0,
+  "coverage_e_liability": 100000,
+  "coverage_f_medical": 1000,
+  "premium_annual_total": 2119.44,
+  "deductible_all_peril": null,
+  "deductible_wind_hail_pct": null,
+  "year_built": 2001,
+  "square_feet": 2219
+ },
+ "labels_used": {
+  "coverage_a_dwelling": "Dwelling Coverage",
+  "coverage_b_other_structures": "Separate Structures",
+  "coverage_c_personal_property": "Contents",
+  "coverage_d_loss_of_use": "Additional Living Expenses",
+  "coverage_e_liability": "Family Liability",
+  "coverage_f_medical": "Guest Medical Protection",
+  "premium_annual_total": "Estimated Yearly Premium",
+  "year_built": "Year Home Built",
+  "square_feet": "Square Footage"
+ },
+ "hidden_truth": {
+  "base_premium": 2275.8,
+  "discounts": [
+   {
+    "name": "Paperless Discount",
+    "amount": 246.36
+   }
+  ],
+  "policy_fee": 90,
+  "carrier_rate": 5.78,
+  "construction": "Stucco",
+  "prior_premium": 2197.01
+ }
+}

@@ -1,0 +1,17 @@
+{% extends "base.html.j2" %}{% block body %}
+<h2>Homeowners Declarations</h2>
+<table><tr><td>Named Insured</td><td>{{ p.name }}</td><td>Policy Number</td><td>{{ p.policy_no }}</td></tr>
+<tr><td>Residence Premises</td><td>{{ p.street }}<br>{{ p.city }}, TX {{ p.zip }}</td><td>Policy Period</td><td>{{ p.period }}</td></tr></table>
+<table><tr><th>Coverage</th><th>Limit</th></tr>
+{% for f in ["coverage_a_dwelling","coverage_b_other_structures","coverage_c_personal_property","coverage_d_loss_of_use","coverage_e_liability","coverage_f_medical"] %}
+{% if f not in omit %}<tr><td>{{ "ABCDEF"[loop.index0] }}. {{ L[f] }}</td><td class="v">{{ s[f] }}</td></tr>{% endif %}{% endfor %}</table>
+<table><tr><th>Deductibles</th><th></th></tr>
+{% if "deductible_all_peril" not in omit %}<tr><td>{{ L.deductible_all_peril }}</td><td class="v">{{ s.deductible_all_peril }}</td></tr>{% endif %}
+{% if "deductible_wind_hail_pct" not in omit %}<tr><td>{{ L.deductible_wind_hail_pct }}</td><td class="v">{{ s.deductible_wind_hail_pct }}</td></tr>{% endif %}</table>
+<table><tr><th>Premium Summary</th><th></th></tr>
+<tr><td>Base premium</td><td class="v">{{ s.base_premium }}</td></tr>
+{% for d in t.discounts %}<tr><td>{{ d.name }}</td><td class="v">-{{ money(d.amount) }}</td></tr>{% endfor %}
+<tr><td>Policy fee</td><td class="v">{{ money(t.policy_fee) }}</td></tr>
+<tr><th>{{ L.premium_annual_total }}</th><th class="v">{{ s.premium_annual_total }}</th></tr></table>
+<table><tr>{% if "year_built" not in omit %}<td>{{ L.year_built }}: {{ t.year_built }}</td>{% endif %}{% if "square_feet" not in omit %}<td>{{ L.square_feet }}: {{ fmt_int(t.square_feet) }}</td>{% endif %}<td>Construction: {{ t.construction }}</td></tr></table>
+{% endblock %}

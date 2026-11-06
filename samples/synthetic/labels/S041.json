@@ -1,0 +1,47 @@
+{
+ "doc_id": "S041",
+ "carrier_id": "C4",
+ "layout": "quote_proposal",
+ "scanned": true,
+ "fields": {
+  "coverage_a_dwelling": 416800.0,
+  "coverage_b_other_structures": 41700.0,
+  "coverage_c_personal_property": 208400.0,
+  "coverage_d_loss_of_use": 83400.0,
+  "coverage_e_liability": 100000,
+  "coverage_f_medical": 1000,
+  "premium_annual_total": 1855.83,
+  "deductible_all_peril": 1000,
+  "deductible_wind_hail_pct": 2,
+  "year_built": null,
+  "square_feet": null
+ },
+ "labels_used": {
+  "coverage_a_dwelling": "Dwelling Protection",
+  "coverage_b_other_structures": "Separate Structure Coverage",
+  "coverage_c_personal_property": "Contents",
+  "coverage_d_loss_of_use": "Additional Living Expense",
+  "coverage_e_liability": "Family Liability",
+  "coverage_f_medical": "Guest Medical Protection",
+  "premium_annual_total": "Estimated Yearly Premium",
+  "deductible_all_peril": "AOP Deductible",
+  "deductible_wind_hail_pct": "Wind Hail Deductible"
+ },
+ "hidden_truth": {
+  "base_premium": 2134.02,
+  "discounts": [
+   {
+    "name": "Protective Device Discount",
+    "amount": 144.24
+   },
+   {
+    "name": "New Home Discount",
+    "amount": 133.95
+   }
+  ],
+  "policy_fee": 0,
+  "carrier_rate": 5.12,
+  "construction": "Brick Veneer",
+  "prior_premium": 1875.32
+ }
+}
