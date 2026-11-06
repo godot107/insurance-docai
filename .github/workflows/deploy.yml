@@ -84,7 +84,10 @@ jobs:
       - uses: databricks/setup-cli@main
       - name: Bundle validate / deploy
         run: |
-          set -a; source "../config/$DOCAI_ENV.env"; set +a
+          set -a
+          # shellcheck source=/dev/null
+          source "../config/$DOCAI_ENV.env"
+          set +a
           python -m venv .venv                             # databricks.yml builds the wheel with .venv/bin/python
           databricks bundle validate -t "$DATABRICKS_TARGET"
           if [ "$WHAT_IF" != "true" ]; then databricks bundle deploy -t "$DATABRICKS_TARGET"; fi
@@ -107,7 +110,10 @@ jobs:
         run: |
           dotnet tool install --global Microsoft.PowerApps.CLI.Tool
           infra/env.sh "$DOCAI_ENV"                       # this environment's SQL server + telemetry
-          set -a; source "config/$DOCAI_ENV.env"; set +a
+          set -a
+          # shellcheck source=/dev/null
+          source "config/$DOCAI_ENV.env"
+          set +a
           pac auth create --name "$PAC_PROFILE" --githubFederated --applicationId "${{ vars.PP_CLIENT_ID }}" \
             --tenant "${{ vars.AZURE_TENANT_ID }}" --environment "${{ vars.PP_ENVIRONMENT_URL }}"
           if [ "$DOCAI_ENV" != "dev" ]; then               # promotion reads the managed build from dev

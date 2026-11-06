@@ -18,7 +18,10 @@ shift || true
 WHATIF=false
 [[ "${1:-}" == "--what-if" ]] && { WHATIF=true; shift; }
 
-set -a; source "config/$ENV.env"; set +a          # RG, LOCATION, ... for this environment
+set -a          # RG, LOCATION, ... for this environment
+# shellcheck source=/dev/null
+source "config/$ENV.env"
+set +a
 TAGS=(project=insurance-docai environment="$ENV" owner=williemaize cost-center=personal
       managed-by=bicep repository=github.com/godot107/insurance-docai)
 

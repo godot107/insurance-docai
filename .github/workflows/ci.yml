@@ -15,7 +15,8 @@ jobs:
         run: |
           pip install pyyaml python-dotenv azure-identity azure-ai-textanalytics azure-storage-blob pytest pandas pyarrow pillow actionlint-py
           pytest -q tests
-          actionlint                                       # workflow files are valid
+          actionlint                                       # workflow files are valid (incl. shellcheck of run steps)
+          shellcheck infra/*.sh powerapps/deploy.sh         # deploy scripts
       - name: Bicep build + lint (templates compile, linter warnings shown)
         run: |
           az bicep install

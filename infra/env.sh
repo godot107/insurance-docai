@@ -6,7 +6,10 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 ENV=${1:-dev}
 [[ "$ENV" =~ ^(dev|qa|prod)$ ]] || { echo "usage: infra/env.sh [dev|qa|prod]" >&2; exit 2; }
-set -a; source "config/$ENV.env"; set +a
+set -a
+# shellcheck source=/dev/null
+source "config/$ENV.env"
+set +a
 OUTPUTS=$(mktemp)
 az deployment group show -g "$RG" -n main --query properties.outputs -o json > "$OUTPUTS"
 python3 - "$OUTPUTS" "$ENV" <<'PY'

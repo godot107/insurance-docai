@@ -32,7 +32,10 @@ while [ $# -gt 0 ]; do
   esac
 done
 [[ "$ENV" =~ ^(dev|qa|prod)$ ]] || { echo "--env must be dev, qa or prod" >&2; exit 2; }
-set -a; source "../config/$ENV.env"; set +a
+set -a
+# shellcheck source=/dev/null
+source "../config/$ENV.env"
+set +a
 ENVFILE=../.env.$ENV; [ -f "$ENVFILE" ] || { [ "$ENV" = dev ] && ENVFILE=../.env; }
 mkdir -p build
 
@@ -126,11 +129,11 @@ case "$CMD" in
     # 2. rebuild the app against the TARGET environment's SQL server + telemetry, pack as managed
     pack_app
     for f in build/promote/CanvasApps/*_DocumentUri.msapp; do cp build/app.msapp "$f"; done
-    "$PAC" solution pack --zipfile build/${SOLUTION}_${ENV}_managed.zip --folder build/promote --packagetype Managed >/dev/null
+    "$PAC" solution pack --zipfile "build/${SOLUTION}_${ENV}_managed.zip" --folder build/promote --packagetype Managed >/dev/null
     echo "[$ENV] built managed solution build/${SOLUTION}_${ENV}_managed.zip"
     # 3. import into the target environment (needs its own profile; prod is approved in CI)
     $DRY || use_profile "$PAC_PROFILE"
-    import_zip build/${SOLUTION}_${ENV}_managed.zip
+    import_zip "build/${SOLUTION}_${ENV}_managed.zip"
     ;;
   *) sed -n '2,16p' "$0"; exit 2 ;;
 esac
