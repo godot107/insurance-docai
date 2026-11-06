@@ -13,7 +13,7 @@ jobs:
           python-version: "3.12"
       - name: Unit tests (parsing + review rules)
         run: |
-          pip install pyyaml python-dotenv azure-identity azure-ai-textanalytics azure-storage-blob pytest
+          pip install pyyaml python-dotenv azure-identity azure-ai-textanalytics azure-storage-blob pytest pandas pyarrow pillow
           pytest -q tests
       - name: Bicep build + lint (templates compile, linter warnings shown)
         run: |
