@@ -13,13 +13,15 @@ jobs:
           python-version: "3.12"
       - name: Unit tests (parsing + review rules)
         run: |
-          pip install pyyaml python-dotenv azure-identity azure-ai-textanalytics azure-storage-blob pytest pandas pyarrow pillow
+          pip install pyyaml python-dotenv azure-identity azure-ai-textanalytics azure-storage-blob pytest pandas pyarrow pillow actionlint-py
           pytest -q tests
+          actionlint                                       # workflow files are valid
       - name: Bicep build + lint (templates compile, linter warnings shown)
         run: |
           az bicep install
           az bicep build -f infra/main.bicep --outfile main.json
           az bicep build -f infra/governance.bicep --outfile governance.json
+          for e in dev qa prod; do OPERATOR_OBJECT_ID=00000000-0000-0000-0000-000000000000 az bicep build-params -f infra/params/$e.bicepparam --outfile params-$e.json; done
       - name: Tag policy check (every taggable resource carries the required tags)
         run: python tools/check_template_tags.py main.json
 

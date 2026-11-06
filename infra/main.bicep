@@ -2,8 +2,16 @@
 // Deploy with infra/up.sh. Resources are added phase by phase (roadmap in CLAUDE.md).
 targetScope = 'resourceGroup'
 
+@description('Deployment environment. Only dev is deployed for this project; qa/prod are defined in infra/params.')
+@allowed(['dev', 'qa', 'prod'])
+param environmentName string = 'dev'
+
 @description('Azure region for all resources')
 param location string = resourceGroup().location
+
+@description('Log Analytics retention (days) and daily ingestion cap (GB, as text)')
+param logRetentionDays int = 30
+param logDailyCapGb string = '0.1'
 
 @description('Entra object ID of the operator (gets data-plane roles; no keys are used)')
 param operatorObjectId string
@@ -15,7 +23,7 @@ param docIntelSku string = 'S0'   // S0 since 2026-11-06 (augmentation experimen
 @description('Tags applied to every resource (mirrors shared/TAGGING.md)')
 param tags object = {
   project: 'insurance-docai'
-  environment: 'dev'
+  environment: environmentName
   owner: 'williemaize'
   'cost-center': 'personal'
   'managed-by': 'bicep'
@@ -143,8 +151,8 @@ resource logs 'Microsoft.OperationalInsights/workspaces@2023-09-01' = {
   tags: union(tags, { component: 'monitoring' })
   properties: {
     sku: { name: 'PerGB2018' }
-    retentionInDays: 30
-    workspaceCapping: { dailyQuotaGb: json('0.1') }   // hard cap ≈ cents/day
+    retentionInDays: logRetentionDays
+    workspaceCapping: { dailyQuotaGb: json(logDailyCapGb) }   // hard cap (dev ≈ cents/day)
   }
 }
 

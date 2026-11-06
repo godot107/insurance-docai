@@ -168,14 +168,19 @@ reports rebound on schema change) → `build_report.py` (report pages as code). 
 
 ### 5. Release (everything as code)
 
+Environments: **dev is deployed; qa and prod are defined** (per-environment config and Bicep parameters, bundle
+targets, managed-solution promotion, a GitHub Actions deploy workflow with an approval gate on prod). See
+[docs/ENVIRONMENTS.md](docs/ENVIRONMENTS.md).
+
 | Asset | Source of truth | Deploy |
 | :--- | :--- | :--- |
-| Azure resources | `infra/main.bicep` | `infra/up.sh` |
+| Azure resources | `infra/main.bicep` + `infra/params/<env>.bicepparam` | `infra/up.sh <env>` (`--what-if` to preview) |
 | Lakehouse jobs, schemas, volume | `databricks/databricks.yml` | `databricks bundle deploy -t free` |
 | Power BI report | `powerbi/report/` (PBIR) | `src/build_report.py` |
-| Power Apps review app | `powerapps/src/` (unpacked canvas app) | `powerapps/deploy.sh push` (Dataverse solution import) |
+| Power Apps review app | `powerapps/src/` (unpacked canvas app) | dev: `powerapps/deploy.sh push`; qa/prod: `deploy.sh promote --env <env>` (managed) |
 | Review queue schema + grants | `src/review_queue.py` | `src/review_queue.py --reviewer <upn>` |
-| Tests | `tests/`, `databricks/tests/` | GitHub Actions (`.github/workflows/ci.yml`) |
+| Tests | `tests/`, `databricks/tests/` | GitHub Actions `ci.yml` (tests, actionlint, Bicep + params) |
+| Release | `.github/workflows/deploy.yml` | Manual per environment; prod needs an approval; off until `DEPLOY_ENABLED` |
 
 ---
 

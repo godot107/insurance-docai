@@ -67,6 +67,6 @@ def main():
 
 
 if __name__ == "__main__":
-    from dotenv import load_dotenv
-    load_dotenv(ROOT / ".env")
+    from common import load_env
+    load_env()   # DOCAI_ENV=dev|qa|prod (default dev)
     main()

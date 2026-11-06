@@ -1,0 +1,148 @@
+# Deploy one environment (dev | qa | prod). Same commands as a laptop deploy, signed in with GitHub OIDC
+# (federated credentials: no secrets stored in GitHub). Promotion order: dev → qa → prod; prod needs an approval
+# (GitHub environment protection rule). Only dev exists for this project.
+#
+# OFF until set up: every deploy job is skipped unless the repository variable DEPLOY_ENABLED is 'true'.
+# Setup (app registration, federated credentials, roles, variables): docs/ENVIRONMENTS.md.
+name: deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: Environment to deploy
+        type: choice
+        options: [dev, qa, prod]
+        default: dev
+      what_if:
+        description: Infrastructure what-if only (deploy nothing)
+        type: boolean
+        default: true
+  pull_request:
+    paths: [infra/**, config/**, databricks/**, powerapps/**]
+
+permissions:
+  id-token: write        # OIDC token for Azure / Databricks / Power Platform sign-in
+  contents: read
+  pull-requests: write
+
+concurrency:
+  group: deploy-${{ github.event.inputs.environment || 'dev' }}
+  cancel-in-progress: false
+
+env:
+  DOCAI_ENV: ${{ github.event.inputs.environment || 'dev' }}
+  WHAT_IF: ${{ github.event_name == 'pull_request' || github.event.inputs.what_if == 'true' }}
+
+jobs:
+  status:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Report whether deploys are enabled
+        run: |
+          if [ "${{ vars.DEPLOY_ENABLED }}" = "true" ]; then
+            echo "Deploys enabled → $DOCAI_ENV (what-if only: $WHAT_IF)" >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "Deploys are **off** (repository variable DEPLOY_ENABLED is not 'true'). Jobs below are skipped." >> "$GITHUB_STEP_SUMMARY"
+            echo "To enable: docs/ENVIRONMENTS.md → 'Turn on CI deploys'." >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+  infra:
+    needs: status
+    if: vars.DEPLOY_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    environment: ${{ github.event.inputs.environment || 'dev' }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: azure/login@v2
+        with:
+          client-id: ${{ vars.AZURE_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+      - name: Bicep what-if / deploy
+        env:
+          OPERATOR_OBJECT_ID: ${{ vars.OPERATOR_OBJECT_ID }}   # who gets data-plane roles in this environment
+          SQL_ADMIN_LOGIN: ${{ vars.SQL_ADMIN_LOGIN }}
+          SQL_CLIENT_IPS: "[]"                                 # CI needs no firewall hole; Azure services rule covers it
+        run: |
+          if [ "$WHAT_IF" = "true" ]; then infra/up.sh "$DOCAI_ENV" --what-if; else infra/up.sh "$DOCAI_ENV"; fi
+
+  lakehouse:
+    needs: infra
+    if: vars.DEPLOY_ENABLED == 'true' && vars.DATABRICKS_HOST != ''
+    runs-on: ubuntu-latest
+    environment: ${{ github.event.inputs.environment || 'dev' }}
+    defaults: { run: { working-directory: databricks } }
+    env:
+      DATABRICKS_HOST: ${{ vars.DATABRICKS_HOST }}
+      DATABRICKS_CLIENT_ID: ${{ vars.DATABRICKS_CLIENT_ID }}   # service principal with a GitHub federation policy
+      DATABRICKS_AUTH_TYPE: github-oidc
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with: { python-version: "3.12" }
+      - uses: databricks/setup-cli@main
+      - name: Bundle validate / deploy
+        run: |
+          set -a; source "../config/$DOCAI_ENV.env"; set +a
+          python -m venv .venv                             # databricks.yml builds the wheel with .venv/bin/python
+          databricks bundle validate -t "$DATABRICKS_TARGET"
+          if [ "$WHAT_IF" != "true" ]; then databricks bundle deploy -t "$DATABRICKS_TARGET"; fi
+
+  review_app:
+    needs: infra
+    if: vars.DEPLOY_ENABLED == 'true' && vars.PP_ENVIRONMENT_URL != ''
+    runs-on: ubuntu-latest
+    environment: ${{ github.event.inputs.environment || 'dev' }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-dotnet@v5
+        with: { dotnet-version: "10.0.x" }
+      - uses: azure/login@v2
+        with:
+          client-id: ${{ vars.AZURE_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+      - name: Power Platform CLI + profiles (GitHub OIDC)
+        run: |
+          dotnet tool install --global Microsoft.PowerApps.CLI.Tool
+          infra/env.sh "$DOCAI_ENV"                       # this environment's SQL server + telemetry
+          set -a; source "config/$DOCAI_ENV.env"; set +a
+          pac auth create --name "$PAC_PROFILE" --githubFederated --applicationId "${{ vars.PP_CLIENT_ID }}" \
+            --tenant "${{ vars.AZURE_TENANT_ID }}" --environment "${{ vars.PP_ENVIRONMENT_URL }}"
+          if [ "$DOCAI_ENV" != "dev" ]; then               # promotion reads the managed build from dev
+            pac auth create --name docai-dev --githubFederated --applicationId "${{ vars.PP_CLIENT_ID }}" \
+              --tenant "${{ vars.AZURE_TENANT_ID }}" --environment "${{ vars.PP_DEV_ENVIRONMENT_URL }}"
+          fi
+      - name: Push (dev) or promote managed solution (qa / prod)
+        run: |
+          DRY=""; [ "$WHAT_IF" = "true" ] && DRY="--dry-run"
+          if [ "$DOCAI_ENV" = "dev" ]; then powerapps/deploy.sh push $DRY; else powerapps/deploy.sh promote --env "$DOCAI_ENV" $DRY; fi
+
+  reporting:
+    needs: [infra, review_app]
+    if: always() && vars.DEPLOY_ENABLED == 'true' && needs.infra.result == 'success' && github.event.inputs.what_if == 'false'
+    runs-on: ubuntu-latest
+    environment: ${{ github.event.inputs.environment || 'dev' }}
+    env:
+      PBI_AZURE_CONFIG_DIR: /home/runner/.azure     # the job's own az login (service principal allowed in Power BI)
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with: { python-version: "3.12" }
+      - uses: azure/login@v2
+        with:
+          client-id: ${{ vars.AZURE_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+          allow-no-subscriptions: true
+      - name: Refresh serving layer + Power BI model and report
+        run: |
+          pip install -q -r requirements.txt
+          infra/env.sh "$DOCAI_ENV"
+          cd src
+          python build_dashboard_tables.py --methods rules,ins-neural-v1,ins-neural-v2
+          python build_review_feedback.py --no-app
+          python load_sql.py
+          python publish_powerbi.py
+          python build_report.py

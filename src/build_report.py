@@ -36,7 +36,7 @@ W, H = 1280, 720
 
 
 def token(resource):
-    env = dict(os.environ, AZURE_CONFIG_DIR=str(Path.home() / ".azure-powerbi"))
+    env = dict(os.environ, AZURE_CONFIG_DIR=os.environ.get("PBI_AZURE_CONFIG_DIR", str(Path.home() / ".azure-powerbi")))
     out = subprocess.run(["az", "account", "get-access-token", "--resource", resource, "--query", "accessToken",
                           "-o", "tsv"], capture_output=True, text=True, env=env, check=True)
     return out.stdout.strip()
@@ -363,7 +363,7 @@ def parts_from(folder):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--workspace", default="insurance-docai")
+    ap.add_argument("--workspace", default=os.environ.get("PBI_WORKSPACE", "insurance-docai"))
     ap.add_argument("--dataset", default="Insurance DocAI")
     ap.add_argument("--report", default="Insurance DocAI")
     ap.add_argument("--pull", action="store_true", help="save the report as it is in the service into powerbi/report/")
@@ -403,6 +403,6 @@ def main():
 
 
 if __name__ == "__main__":
-    from dotenv import load_dotenv
-    load_dotenv(ROOT / ".env")
+    from common import load_env
+    load_env()   # DOCAI_ENV=dev|qa|prod (default dev)
     main()

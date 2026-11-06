@@ -174,7 +174,7 @@ sequenceDiagram
 | Test | `test` | Workspace `test` | Sandbox managed environment | Synthetic + masked samples |
 | Prod | `prod` | Workspace `prod`, prod catalog, restricted groups | Production managed environment | Real documents |
 
-Promotion is the same command per asset in every environment (Bicep → `az deployment`, bundles →
+Implemented as a mechanism (only dev is deployed): [ENVIRONMENTS.md](ENVIRONMENTS.md). Promotion is the same command per asset in every environment (Bicep → `az deployment`, bundles →
 `databricks bundle deploy -t <env>`, Power Apps → solution import through a Power Platform pipeline, Power BI →
 deployment pipeline or PBIR via the Fabric API), gated by tests and an approval.
 

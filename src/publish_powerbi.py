@@ -23,7 +23,7 @@ import requests
 from common import ROOT, connect_sql
 
 API = "https://api.powerbi.com/v1.0/myorg"
-PBI_PROFILE = Path.home() / ".azure-powerbi"
+PBI_PROFILE = Path(os.environ.get("PBI_AZURE_CONFIG_DIR", Path.home() / ".azure-powerbi"))   # CI: the job's own az login
 
 # Model: which SQL tables, extra key columns, relationships, and DAX measures.
 TABLES = ["fact_document", "fact_field", "fact_quote", "fact_threshold", "fact_review", "fact_app_event", "dim_field", "dim_carrier", "dim_assumption"]
@@ -158,7 +158,7 @@ def read_sql():
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--workspace", default="insurance-docai")
+    ap.add_argument("--workspace", default=os.environ.get("PBI_WORKSPACE", "insurance-docai"))
     ap.add_argument("--dataset", default="Insurance DocAI")
     ap.add_argument("--recreate", action="store_true",
                     help="drop and recreate the dataset (needed for new tables/relationships); reports on it are rebound")
@@ -225,6 +225,6 @@ def main():
 
 
 if __name__ == "__main__":
-    from dotenv import load_dotenv
-    load_dotenv(ROOT / ".env")
+    from common import load_env
+    load_env()   # DOCAI_ENV=dev|qa|prod (default dev)
     main()

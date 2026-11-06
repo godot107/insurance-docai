@@ -16,9 +16,11 @@ No API keys or SQL passwords exist: every service has local auth disabled and ac
 ## 1. Deploy, update, tear down
 
 ```bash
-infra/up.sh             # create/refresh RG + all resources, write .env (idempotent)
+infra/up.sh [dev]       # create/refresh RG + all resources, write .env.dev + .env (idempotent)
+infra/up.sh qa --what-if   # preview another environment (qa/prod are defined, not deployed; docs/ENVIRONMENTS.md)
+infra/env.sh dev        # rewrite .env.<env> from the existing deployment (no deploy)
 infra/governance.sh     # once per subscription: tag-inheritance policy (operator decision; changes the subscription)
-infra/down.sh           # delete the resource group (asks first)
+infra/down.sh [dev]     # delete that environment's resource group (type its name to confirm)
 az cognitiveservices account list-deleted -o table      # then purge soft-deleted AI accounts if re-creating names
 ```
 

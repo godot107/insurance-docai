@@ -19,6 +19,9 @@ variables:
   catalog:
     description: Unity Catalog catalog that holds the bronze/silver/gold schemas
     default: workspace
+  prod_service_principal:
+    description: Application ID of the service principal prod jobs run as (set in CI)
+    default: "00000000-0000-0000-0000-000000000000"
   threshold:
     description: Confidence cutoff for the review policy (chosen in phase 3 from the trade-off curve)
     default: "0.78"
@@ -49,11 +52,13 @@ targets:
             - task_key: train_router
               environment_key: default
 
+  # Azure Databricks targets share one job definition (YAML anchor). None are deployed for this project:
+  # Azure Databricks on a free-trial subscription can't attach Unity Catalog (docs/ENVIRONMENTS.md).
   azure:
     mode: development
     variables:
       catalog: dbw_docai_i777yv     # Azure workspace catalog (needs a Unity Catalog-enabled workspace)
-    resources:
+    resources: &azure_resources
       jobs:
         docai_lakehouse:
           job_clusters:
@@ -69,7 +74,7 @@ targets:
                 custom_tags:
                   ResourceClass: SingleNode
                   project: insurance-docai
-                  environment: dev
+                  environment: ${bundle.target}
                   owner: williemaize
                   cost-center: personal
           tasks:
@@ -85,3 +90,29 @@ targets:
             - task_key: train_router
               job_cluster_key: single_node
               libraries: [{whl: ./dist/*.whl}]
+
+  qa:
+    # Separate workspace + catalog per environment. Set the host when the qa workspace exists.
+    workspace:
+      host: https://adb-qa-workspace.azuredatabricks.net
+      root_path: /Workspace/Shared/.bundle/${bundle.name}/${bundle.target}
+    variables:
+      catalog: docai_qa
+    resources: *azure_resources
+
+  prod:
+    mode: production                # no dev prefixes, deploys must come from CI, paused schedules not allowed
+    workspace:
+      host: https://adb-prod-workspace.azuredatabricks.net
+      root_path: /Workspace/Shared/.bundle/${bundle.name}/${bundle.target}
+    variables:
+      catalog: docai_prod
+    run_as:
+      service_principal_name: ${var.prod_service_principal}   # jobs run as a service principal, not a person
+    permissions:
+      - group_name: docai-operators
+        level: CAN_MANAGE
+      - group_name: docai-analysts
+        level: CAN_VIEW
+    resources: *azure_resources
+

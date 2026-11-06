@@ -13,7 +13,6 @@ from pathlib import Path
 
 import yaml
 from azure.identity import AzureCliCredential, get_bearer_token_provider
-from dotenv import load_dotenv
 from openai import AzureOpenAI
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -50,7 +49,9 @@ TONES = ["formal insurer", "pushy direct-mail agent", "friendly local agency", "
 
 
 def client():
-    load_dotenv(ROOT / ".env")
+    sys.path.insert(0, str(ROOT / "src"))
+    from common import load_env
+    load_env()
     tp = get_bearer_token_provider(AzureCliCredential(), "https://cognitiveservices.azure.com/.default")
     return AzureOpenAI(azure_endpoint=os.environ["OPENAI_ENDPOINT"], azure_ad_token_provider=tp,
                        api_version="2024-10-21")

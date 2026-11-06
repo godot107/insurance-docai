@@ -6,7 +6,10 @@ data/private/
 
 # Secrets
 .env
+.env.*
 *.env
+# per-environment names/policies (no secrets) are committed:
+!config/*.env
 local.settings.json
 
 # Documents: only synthetic samples are tracked

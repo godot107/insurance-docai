@@ -10,7 +10,27 @@ PRIVATE = ROOT / "private"
 LETTERS = PRIVATE / "letters"
 DI_OUT = PRIVATE / "di"
 
-load_dotenv(ROOT / ".env")
+
+def load_env(env: str | None = None) -> str:
+    """Load settings for one environment (dev | qa | prod; default: $DOCAI_ENV or dev).
+
+    config/<env>.env  committed names and policies (resource group, Power BI workspace, solution type, ...)
+    .env.<env>        endpoints written by `infra/up.sh <env>` (gitignored); dev also accepts the legacy .env
+    Values already in the environment win (CI sets them explicitly). Never mixes two environments' files.
+    """
+    env = env or os.environ.get("DOCAI_ENV", "dev")
+    if env not in ("dev", "qa", "prod"):
+        raise SystemExit(f"unknown environment {env!r} (dev | qa | prod)")
+    load_dotenv(ROOT / "config" / f"{env}.env")
+    endpoints = ROOT / f".env.{env}"
+    if not endpoints.exists() and env == "dev":
+        endpoints = ROOT / ".env"
+    load_dotenv(endpoints)
+    os.environ["DOCAI_ENV"] = env
+    return env
+
+
+load_env()
 DOCINTEL_ENDPOINT = os.environ.get("DOCINTEL_ENDPOINT", "")
 BLOB_ENDPOINT = os.environ.get("BLOB_ENDPOINT", "")
 

@@ -183,4 +183,10 @@ cd .. && .venv/bin/pytest -q tests
   powerapps/src/CanvasManifest.json, deploy.sh substitutes from .env. `simulate_app_telemetry.py` (sim=true,
   sim_time) + `pull_app_telemetry.py` (pseudonymous reviewers, no city/IP) → dash.fact_app_event → Power BI page 4
   "Review app usage". Report = 5 pages.
+- 2026-11-06: Environments = mechanism only (Willie: dev only, but show qa/prod). config/{dev,qa,prod}.env
+  (names/policies), infra/params/*.bicepparam (identity via OPERATOR_OBJECT_ID/SQL_ADMIN_LOGIN/SQL_CLIENT_IPS env),
+  infra/up.sh <env> [--what-if], infra/env.sh, infra/down.sh <env>; common.load_env() (DOCAI_ENV) everywhere;
+  bundle targets free(dev)/qa/prod; powerapps/deploy.sh --env + promote (managed, target SQL); pac profile
+  renamed docai-dev; .github/workflows/deploy.yml (OIDC, off until DEPLOY_ENABLED=true); GitHub environments
+  dev/qa/prod created, prod = required reviewer + main only. Enabling steps: docs/ENVIRONMENTS.md.
 

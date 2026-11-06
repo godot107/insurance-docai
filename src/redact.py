@@ -108,7 +108,6 @@ def main():
 
 
 if __name__ == "__main__":
-    from dotenv import load_dotenv
-    from common import ROOT
-    load_dotenv(ROOT / ".env", override=True)
+    from common import load_env
+    load_env()
     main()
