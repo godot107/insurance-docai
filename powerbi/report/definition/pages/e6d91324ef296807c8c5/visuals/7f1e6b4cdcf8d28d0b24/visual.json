@@ -1,0 +1,48 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "7f1e6b4cdcf8d28d0b24",
+  "position": {
+    "x": 20,
+    "y": 10,
+    "z": 0,
+    "width": 860,
+    "height": 110,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Operations: review feedback & drift",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "20pt"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Simulated reviewer, real benchmark outcomes, replaying the project's history: rules (week of Oct 12) \u2192 custom model v1 (Oct 19) \u2192 v2 augmented (Oct 26). Watch 'not on document' spike with v1 (made-up values) and fall with v2. Source 'app' = live decisions from the Power Apps queue.",
+                    "textStyle": {
+                      "fontSize": "10pt",
+                      "color": "#605E5C"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

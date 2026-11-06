@@ -26,7 +26,7 @@ API = "https://api.powerbi.com/v1.0/myorg"
 PBI_PROFILE = Path.home() / ".azure-powerbi"
 
 # Model: which SQL tables, extra key columns, relationships, and DAX measures.
-TABLES = ["fact_document", "fact_field", "fact_quote", "fact_threshold", "dim_field", "dim_carrier", "dim_assumption"]
+TABLES = ["fact_document", "fact_field", "fact_quote", "fact_threshold", "fact_review", "dim_field", "dim_carrier", "dim_assumption"]
 RELATIONSHIPS = [  # (from table, from column, to table, to column)  many → one
     ("fact_field", "doc_key", "fact_document", "doc_key"),
     ("fact_field", "field", "dim_field", "field"),
@@ -78,11 +78,28 @@ MEASURES = {
         "Comparable quotes": "CALCULATE(COUNTROWS(fact_quote), fact_quote[apples_to_apples] = \"yes\")",
         "Days to renewal": "DATEDIFF(TODAY(), MAX(fact_quote[renewal_date]), DAY)",
     },
+    "fact_review": {   # review feedback & drift (src/build_review_feedback.py)
+        "Values flagged": "COUNTROWS(fact_review)",
+        "Decisions": "CALCULATE(COUNTROWS(fact_review), fact_review[decided] = TRUE()) + 0",
+        "Accept rate": "DIVIDE(CALCULATE(COUNTROWS(fact_review), fact_review[decision] = \"accepted\") + 0, [Decisions])",
+        "Correction rate": "DIVIDE(CALCULATE(COUNTROWS(fact_review), fact_review[decision] = \"corrected\") + 0, [Decisions])",
+        "Not-on-document rate": "DIVIDE(CALCULATE(COUNTROWS(fact_review), fact_review[decision] = \"not_on_document\") + 0, [Decisions])",
+        "No reply": "CALCULATE(COUNTROWS(fact_review), fact_review[decision] = \"open\") + 0",
+        "No-reply rate": "DIVIDE([No reply], [Values flagged])",
+        "Oldest open (days)": "CALCULATE(MAX(fact_review[open_days]), fact_review[decision] = \"open\")",
+        "Median hours": "MEDIAN(fact_review[hours_to_decision])",
+        "Reviewer agreement": "DIVIDE(CALCULATE(COUNTROWS(fact_review), fact_review[reviewer_agrees] = TRUE()), [Decisions])",
+        "Flagged but right": "DIVIDE(CALCULATE(COUNTROWS(fact_review), fact_review[model_was_right] = TRUE()), [Values flagged])",
+        "Changed decisions": "CALCULATE(COUNTROWS(fact_review), fact_review[changed_mind] = TRUE()) + 0",
+    },
 }
 FORMATS = {"Accuracy": "0.0%", "Recall": "0.0%", "Precision": "0.0%", "Flag rate": "0.0%", "Silent error rate": "0.0%", "Errors caught by review": "0.0%",
            "Straight-through rate": "0.0%", "Savings %": "0.0%", "Avg confidence": "0.000",
            "Extraction cost": "$#,0.00", "Cost per document": "$#,0.0000", "Labor $ avoided": "$#,0",
-           "Current premium": "$#,0", "Best comparable quote": "$#,0", "Annual savings": "$#,0"}
+           "Current premium": "$#,0", "Best comparable quote": "$#,0", "Annual savings": "$#,0",
+           "Accept rate": "0%", "Correction rate": "0%", "Not-on-document rate": "0%", "No-reply rate": "0%",
+           "Reviewer agreement": "0%", "Flagged but right": "0%", "Oldest open (days)": "0.0",
+           "Median hours": "0.0"}
 COLUMN_FORMATS = {("fact_quote", c): "$#,0" for c in ("premium", "coverage_a", "coverage_c", "coverage_e",
                                                       "aop_deductible", "vs_current_usd")}
 COLUMN_FORMATS |= {("fact_quote", "premium_per_1k_a"): "$#,0.00", ("fact_quote", "wind_hail_pct"): '0.0"%"',

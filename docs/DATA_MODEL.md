@@ -96,6 +96,27 @@ erDiagram
     string unit
     string note
   }
+  fact_review["dash.fact_review"] {
+    string item_key PK "app-### or sim-###"
+    string source "app | simulated"
+    string method
+    string doc_id
+    string field
+    string field_label
+    string layout
+    float confidence
+    string reason "low confidence | validity rule"
+    string decision "accepted | corrected | not_on_document | open"
+    bit decided
+    datetime created_at
+    datetime decided_at
+    datetime week
+    float hours_to_decision
+    float open_days "no-reply age"
+    bit changed_mind "from temporal history"
+    bit model_was_right
+    bit reviewer_agrees "vs answer key"
+  }
   fact_document ||--o{ fact_field : "method + doc_id"
   dim_field ||--o{ fact_field : field
   dim_carrier ||--o{ fact_document : carrier_id
@@ -107,6 +128,7 @@ erDiagram
 | `fact_field` | method × document × field | 1,043 | Operations: recall, precision, silent errors, flag reasons |
 | `fact_threshold` | method × cutoff × rules on/off | 606 | Operations: review-load and silent-error curves |
 | `fact_quote` | household × document | 9 | Homeowner page (simulated household only) |
+| `fact_review` | value sent to a person | 97 | Review feedback & drift: decision, timing, no-reply age, agreement with answer key (`source` = app / simulated) |
 | `dim_field` | field | 12 | Field names / groups |
 | `dim_carrier` | carrier | 8 | Fictional insurers, layout, train/test split |
 | `dim_assumption` | assumption | 6 | Unit prices and minutes behind the Finance measures |

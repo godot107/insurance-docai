@@ -31,7 +31,7 @@ def sql_type(s: pd.Series) -> str:
 
 
 def clean(v):
-    if v is None or (isinstance(v, float) and pd.isna(v)) or v is pd.NaT:
+    if v is None or v is pd.NA or (isinstance(v, float) and pd.isna(v)) or v is pd.NaT:
         return None
     if isinstance(v, pd.Timestamp):
         return v.tz_convert(None).to_pydatetime() if v.tzinfo else v.to_pydatetime()

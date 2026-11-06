@@ -172,4 +172,9 @@ cd .. && .venv/bin/pytest -q tests
   Refresh after Patch, friendly labels, layout. Close Studio before push (lock).
 - Docs for req 373221: README.md maps JD → repo; docs/ARCHITECTURE.md = closed-network Azure reference
   architecture (private endpoints, Azure Databricks Premium + UC, Fabric/PBI + VNet gateway, PP managed env).
+- 2026-11-06: Power BI page 3 "Review feedback & drift" (`src/build_review_feedback.py` → dash.fact_review;
+  source app = live queue, simulated = seeded reviewer replaying rules→v1→v2 weeks on real outcomes). Measures in
+  publish_powerbi.py (Accept/Correction/Not-on-document rate, No reply, Oldest open, Median hours, Reviewer
+  agreement, Flagged but right, Changed decisions). Report now 4 pages; screenshots + PDF in docs/img/powerbi.
+  Optional next: Application Insights + Trace() in the app for usage telemetry.
 

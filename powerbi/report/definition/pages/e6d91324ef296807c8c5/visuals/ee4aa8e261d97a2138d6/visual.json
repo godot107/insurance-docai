@@ -1,0 +1,99 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "ee4aa8e261d97a2138d6",
+  "position": {
+    "x": 20,
+    "y": 250,
+    "z": 0,
+    "width": 420,
+    "height": 455,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "columnChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_review"
+                    }
+                  },
+                  "Property": "week"
+                }
+              },
+              "queryRef": "fact_review.week",
+              "nativeQueryRef": "week",
+              "displayName": "Week"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_review"
+                    }
+                  },
+                  "Property": "Values flagged"
+                }
+              },
+              "queryRef": "fact_review.Values flagged",
+              "nativeQueryRef": "Values flagged",
+              "displayName": "Values"
+            }
+          ]
+        },
+        "Series": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_review"
+                    }
+                  },
+                  "Property": "decision"
+                }
+              },
+              "queryRef": "fact_review.decision",
+              "nativeQueryRef": "decision",
+              "displayName": "Decision"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Decisions by week'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

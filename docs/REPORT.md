@@ -112,6 +112,16 @@ confidence (AUC 0.91 vs 0.53), yet at the same review budget it didn't beat a ca
 validity rules. With eight insurers, the simple policy wins. I kept the router as a ranking aid to re-test
 once real review decisions accumulate. Negative results are results.
 
+### Result 4c: Reviewer decisions are a drift monitor
+
+Every decision in the review app is stored with who made it and when, so the review queue doubles as a model
+monitor that needs no extra labels. Replaying this project's own history (rules, then the first custom model,
+then the augmented one) through a simulated reviewer on the real benchmark outcomes, the decision mix tells
+the story by itself: under rules, 95% of flagged values needed **correcting**; when the first custom model went
+live, the share marked **"not on the document"** jumped from 0% to 59% (it was making values up); after
+augmentation it fell to 29% and half of flagged values were simply **accepted**. In production that spike is the
+alert that triggers retraining, and "no reply" aging shows when the review team is falling behind.
+
 ### Result 5: Generic privacy tools miss domain IDs
 
 Azure AI Language (the counterpart of AWS Comprehend's PII detection) found names, addresses and phone numbers,
@@ -128,7 +138,9 @@ Fabric API. The household page uses a simulated household.
 
 ![Operations: recall, precision, silent errors, review load vs cutoff](img/powerbi/2-operations.png)
 
-![Finance: cost per document and labor avoided](img/powerbi/3-finance.png)
+![Review feedback & drift: decision mix by week](img/powerbi/3-review-feedback.png)
+
+![Finance: cost per document and labor avoided](img/powerbi/4-finance.png)
 
 ## What I'd tell a client
 

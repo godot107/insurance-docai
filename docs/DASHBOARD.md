@@ -37,7 +37,19 @@ Audience: product owner / ops lead running intake at scale.
 - **Silent-error rate**: wrong values that would pass the review rules (the risk the client cares about)
 - Run failures and latency (Log Analytics)
 
-## Page 3: Finance ("what does it cost and what does it return?")
+## Page 3: Review feedback & drift ("are reviewers keeping up, and is the model changing?")
+
+Audience: ops lead and model owner. Source: `dash.fact_review` (`src/build_review_feedback.py`): one row per value
+sent to a person, from the Power Apps queue (`source = app`) plus a simulated reviewer replaying the project's
+history on real benchmark outcomes (`source = simulated`, clearly labelled).
+
+- Accept / correct / not-on-document rates (feedback on the model, per field, layout, model version)
+- **No reply**: values still open and how long they've waited; median hours to a decision
+- **Drift**: decision mix by week; a jump in "not on document" (made-up values) or in corrections after a model or
+  layout change is the retraining trigger
+- Reviewer agreement with the answer key (synthetic data only) and changed decisions (from the temporal history)
+
+## Page 4: Finance ("what does it cost and what does it return?")
 
 Audience: CFO / budget owner.
 

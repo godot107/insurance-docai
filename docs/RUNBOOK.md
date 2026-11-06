@@ -72,6 +72,7 @@ never report a trained model's score on its own training docs.
 ```bash
 cd src
 ../.venv/bin/python build_dashboard_tables.py --methods rules,ins-neural-v1   # → data/dashboard/*.parquet
+../.venv/bin/python build_review_feedback.py       # → fact_review (app decisions + simulated history)
 ../.venv/bin/python load_sql.py                     # → Azure SQL schema dash (full refresh)
 ../.venv/bin/python publish_powerbi.py              # → Power BI push dataset, updated in place
 ```

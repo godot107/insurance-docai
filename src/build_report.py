@@ -1,9 +1,10 @@
 """Build the Power BI report as code (PBIR JSON) and publish it to the workspace, from Linux (no Desktop).
 
-Three pages from docs/DASHBOARD.md, on the push dataset that publish_powerbi.py maintains:
+Four pages from docs/DASHBOARD.md, on the push dataset that publish_powerbi.py maintains:
   1. Should I Switch?   homeowner: current premium vs comparable quotes (simulated `demo` household)
   2. Operations         product owner / ops: recall, precision, silent errors, review load, threshold curve
-  3. Finance            CFO: cost per document, labor avoided, the assumptions behind them
+  3. Review feedback    ops: accept / correct / not-on-document rates, no-reply aging, drift by week
+  4. Finance            CFO: cost per document, labor avoided, the assumptions behind them
 
 The definition is written to powerbi/report/ (versioned like the Bicep) and uploaded with the Fabric
 item-definition API, which works in a Power BI PPU workspace. Edit visuals in the browser afterwards if you
@@ -120,15 +121,16 @@ def card(page, key, x, y, m, w=200, h=110):
                   objects={"categoryLabels": [{"properties": {"fontSize": lit("10D")}}]})
 
 
-def slicer(page, key, x, y, w, h, c, title, values, default):
-    """Single-select slicer limited to `values` (hides the blank member push datasets add on the one side),
-    with `default` preselected so the cards never mix methods or train/test."""
+def slicer(page, key, x, y, w, h, c, title, values, default=None, mode="Basic"):
+    """Slicer limited to `values` (hides the blank member push datasets add on the one side). With `default`:
+    single-select and preselected, so cards never mix methods or train/test. Without: multi-select, all shown."""
     t, name = c["Column"]["Expression"]["SourceRef"]["Entity"], c["Column"]["Property"]
+    objects = {"data": [{"properties": {"mode": lit(f"'{mode}'")}}]}
+    if default is not None:
+        objects["selection"] = [{"properties": {"singleSelect": lit("true")}}]
+        objects["general"] = [{"properties": {"filter": {"filter": where_in(t, name, [f"'{default}'"])}}}]
     return visual(page, key, "slicer", x, y, w, h, {"Values": [c]}, title=title,
-                  filters=[filt(f"{key}_values", t, name, [f"'{v}'" for v in values])],
-                  objects={"data": [{"properties": {"mode": lit("'Basic'")}}],
-                           "selection": [{"properties": {"singleSelect": lit("true")}}],
-                           "general": [{"properties": {"filter": {"filter": where_in(t, name, [f"'{default}'"])}}}]})
+                  filters=[filt(f"{key}_values", t, name, [f"'{v}'" for v in values])], objects=objects)
 
 
 H1 = {"fontWeight": "bold", "fontSize": "20pt"}
@@ -226,6 +228,44 @@ def page_finance():
     return p, "Finance", vs
 
 
+def page_feedback():
+    """Operations, part 2: what reviewers do with flagged values, and whether that mix drifts."""
+    p = "feedback"
+    r = "fact_review"
+    vs = [
+        text(p, "title", 20, 10, 860, 110, [[("Operations: review feedback & drift", H1)],
+             [("Simulated reviewer, real benchmark outcomes, replaying the project's history: rules (week of Oct 12) → "
+               "custom model v1 (Oct 19) → v2 augmented (Oct 26). Watch 'not on document' spike with v1 (made-up "
+               "values) and fall with v2. Source 'app' = live decisions from the Power Apps queue.", NOTE)]]),
+        slicer(p, "source", 900, 10, 170, 90, col(r, "source"), "Source", ["simulated", "app"], "simulated",
+               mode="Dropdown"),
+        slicer(p, "method", 1090, 10, 170, 90, col(r, "method"), "Model",
+               ["rules", "ins-neural-v1", "ins-neural-v2"], mode="Dropdown"),
+        card(p, "flagged", 20, 135, meas(r, "Values flagged"), w=170, h=100),
+        card(p, "accept", 200, 135, meas(r, "Accept rate"), w=170, h=100),
+        card(p, "correct", 380, 135, meas(r, "Correction rate"), w=170, h=100),
+        card(p, "notondoc", 560, 135, meas(r, "Not-on-document rate"), w=170, h=100),
+        card(p, "noreply", 740, 135, meas(r, "No reply"), w=170, h=100),
+        card(p, "hours", 920, 135, meas(r, "Median hours"), w=170, h=100),
+        card(p, "agree", 1100, 135, meas(r, "Reviewer agreement"), w=160, h=100),
+        visual(p, "by_week", "columnChart", 20, 250, 420, 455,
+               {"Category": [(col(r, "week"), "Week")], "Y": [(meas(r, "Values flagged"), "Values")],
+                "Series": [(col(r, "decision"), "Decision")]},
+               title="Decisions by week"),
+        visual(p, "drift", "lineChart", 450, 250, 420, 455,
+               {"Category": [(col(r, "week"), "Week")],
+                "Y": [meas(r, "Correction rate"), meas(r, "Not-on-document rate"), meas(r, "Accept rate")]},
+               title="Decision mix by week (drift)",
+               objects={"lineStyles": [{"properties": {"lineChartType": lit("'straight'"), "showMarker": lit("true")}}]}),
+        visual(p, "open", "tableEx", 880, 250, 380, 455,
+               {"Values": [(col(r, "doc_id"), "Letter"),
+                           (col(r, "field_label"), "Field"), (meas(r, "Oldest open (days)"), "Open (days)")]},
+               title="No reply: values still waiting", sort=(meas(r, "Oldest open (days)"), "Descending"),
+               filters=[filt("open_only", r, "decision", ["'open'"])]),
+    ]
+    return p, "Review feedback & drift", vs
+
+
 # ---------- write + publish ----------
 def write_definition(dataset_id, dataset_name, workspace):
     if OUT.exists():
@@ -241,7 +281,7 @@ def write_definition(dataset_id, dataset_name, workspace):
         "datasetReference": {"byConnection": {"connectionString":
             f"Data Source=powerbi://api.powerbi.com/v1.0/myorg/{workspace};initial catalog=\"{dataset_name}\";"
             f"integrated security=ClaimsToken;semanticmodelid={dataset_id}"}}}, indent=2))
-    pages = [page_switch(), page_ops(), page_finance()]
+    pages = [page_switch(), page_ops(), page_feedback(), page_finance()]
     pdir = OUT / "definition" / "pages"
     order = []
     for key, name, visuals in pages:
@@ -257,7 +297,7 @@ def write_definition(dataset_id, dataset_name, workspace):
     (pdir / "pages.json").write_text(json.dumps({
         "$schema": f"{SCHEMA}/pagesMetadata/1.1.0/schema.json", "pageOrder": order, "activePageName": order[0]},
         indent=2))
-    return sum(len(v) for _, _, v in pages)
+    return len(pages), sum(len(v) for _, _, v in pages)
 
 
 def wait(s, resp):
@@ -311,8 +351,8 @@ def main():
         print(f"pulled '{a.report}' → {OUT.relative_to(ROOT)}")
         return
 
-    n = write_definition(did, a.dataset, a.workspace)
-    print(f"wrote {OUT.relative_to(ROOT)}: 3 pages, {n} visuals, bound to dataset {did}")
+    n_pages, n = write_definition(did, a.dataset, a.workspace)
+    print(f"wrote {OUT.relative_to(ROOT)}: {n_pages} pages, {n} visuals, bound to dataset {did}")
     if a.dry_run:
         return
     body = {"definition": {"parts": parts_from(OUT)}}

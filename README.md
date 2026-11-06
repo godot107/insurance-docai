@@ -53,6 +53,7 @@ Power BI / Fabric capacity behind a VNet data gateway, Power Platform managed en
 | Real letters (provisional) | ~97% of printed fields correct, no silent errors |
 | Privacy | Generic PII service missed policy and loan numbers; domain rules caught the rest |
 | Review app | Accept / correct / not-on-document tested end to end; 3/3 decisions scored correct against a hidden answer key |
+| Review feedback as drift monitor | Replaying the project's history: "not on document" jumps 0% → 59% when the first custom model ships (made-up values), falls to 29% after augmentation; no-reply aging shows review backlog |
 
 Details: [docs/RESULTS.md](docs/RESULTS.md). Narrative: [docs/REPORT.md](docs/REPORT.md).
 
@@ -159,7 +160,7 @@ letters, every value planted) → `synth_layout.py` → `build_training_set.py` 
 
 ### 4. Analytics refresh
 
-`build_dashboard_tables.py` → `load_sql.py` (Azure SQL `dash`) → `publish_powerbi.py` (semantic model,
+`build_dashboard_tables.py` → `build_review_feedback.py` (review decisions → feedback/drift table) → `load_sql.py` (Azure SQL `dash`) → `publish_powerbi.py` (semantic model,
 reports rebound on schema change) → `build_report.py` (report pages as code). Lakehouse:
 `export_landing.py` → `databricks bundle deploy/run` (bronze → silver → gold → router).
 
@@ -181,6 +182,10 @@ reports rebound on schema change) → `build_report.py` (report pages as code). 
 | Review app (Power Apps) | Operations dashboard (Power BI) |
 | :--- | :--- |
 | ![Review queue](docs/img/powerapps/review-app-after-accept.png) | ![Operations](docs/img/powerbi/2-operations.png) |
+
+| Review feedback & drift (Power BI) |
+| :--- |
+| ![Review feedback & drift](docs/img/powerbi/3-review-feedback.png) |
 
 | Databricks job run (bronze → silver → gold → router) | Unity Catalog lineage into `gold.method_metrics` |
 | :--- | :--- |
