@@ -45,7 +45,10 @@ cd .. && .venv/bin/pytest -q tests
 
 - **PII rule** (`docs/PRIVACY.md`): real letters live only in `private/` (gitignored) and in a private blob
   container. Nothing public is derived from them except aggregate metrics and redacted/synthetic stand-ins.
-  The GitHub repo stays PRIVATE until the PII audit passes.
+  PUBLIC since 2026-11-06 as github.com/godot107/insurance-docai (fresh single-commit history; the earlier
+  history is the private repo godot107/insurance-docai-private + private/insurance-docai-full-history.bundle).
+  Commit author here = GitHub noreply email (repo-local git config). Re-run the PRIVACY.md checklist before
+  adding anything derived from real letters or new screenshots.
 - Ground truth: synthetic letters with planted values, so extraction accuracy is exact. Report the ~10
   real letters separately (they're harder than synthetic).
 - Evaluate on **held-out layouts/carriers**, never a random split (same layout in train and test = leakage).

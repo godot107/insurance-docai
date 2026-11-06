@@ -30,7 +30,8 @@ premium + carrier + year + ZIP can identify a household even with the name remov
 5. **Git history:** earlier commits contain the work-account address (it embeds the personal Gmail handle)
    and account IDs. Publish from a fresh single-commit history (new public repo, or `git filter-repo`), not by
    flipping this repo's visibility. Operator identifiers now live in `private/NOTES.md`.
-6. Only then switch the GitHub repo to public.
+6. Only then switch the GitHub repo to public. (Done 2026-11-06: published from a fresh history; commits use
+   the GitHub no-reply email.)
 
 `docs/img/` is the one place images are tracked: screenshots of synthetic letters (watermarked) and the simulated
 household only. Check every new image before committing it.
