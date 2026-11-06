@@ -177,4 +177,10 @@ cd .. && .venv/bin/pytest -q tests
   publish_powerbi.py (Accept/Correction/Not-on-document rate, No reply, Oldest open, Median hours, Reviewer
   agreement, Flagged but right, Changed decisions). Report now 4 pages; screenshots + PDF in docs/img/powerbi.
   Optional next: Application Insights + Trace() in the app for usage telemetry.
+- 2026-11-06: App telemetry. Bicep `appi-docai-*` (workspace-based App Insights; local auth on because Power Apps
+  ingests with the connection string). App sends Trace(): queue_opened, item_viewed, review_decision
+  (+seconds_on_item) → AppTraces. Connection string NOT in git: placeholder __APPINSIGHTS_CONNECTION_STRING__ in
+  powerapps/src/CanvasManifest.json, deploy.sh substitutes from .env. `simulate_app_telemetry.py` (sim=true,
+  sim_time) + `pull_app_telemetry.py` (pseudonymous reviewers, no city/IP) → dash.fact_app_event → Power BI page 4
+  "Review app usage". Report = 5 pages.
 

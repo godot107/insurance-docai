@@ -122,6 +122,12 @@ live, the share marked **"not on the document"** jumped from 0% to 59% (it was m
 augmentation it fell to 29% and half of flagged values were simply **accepted**. In production that spike is the
 alert that triggers retraining, and "no reply" aging shows when the review team is falling behind.
 
+The app also reports its own usage: each view and decision is a telemetry event in Azure Application Insights
+(time spent per item, items opened but skipped), with reviewers reduced to pseudonyms. Corrections take about
+three times as long as accepting a value, which turns "make the model better" into a staffing number. Because
+real usage takes weeks to accumulate, a simulator sends matching events through the same pipeline, labelled as
+simulated, so the whole path from app to dashboard is exercised end to end.
+
 ### Result 5: Generic privacy tools miss domain IDs
 
 Azure AI Language (the counterpart of AWS Comprehend's PII detection) found names, addresses and phone numbers,
@@ -140,7 +146,9 @@ Fabric API. The household page uses a simulated household.
 
 ![Review feedback & drift: decision mix by week](img/powerbi/3-review-feedback.png)
 
-![Finance: cost per document and labor avoided](img/powerbi/4-finance.png)
+![Review app usage: sessions, views vs decisions, seconds per decision](img/powerbi/4-review-app-usage.png)
+
+![Finance: cost per document and labor avoided](img/powerbi/5-finance.png)
 
 ## What I'd tell a client
 

@@ -1,10 +1,11 @@
 """Build the Power BI report as code (PBIR JSON) and publish it to the workspace, from Linux (no Desktop).
 
-Four pages from docs/DASHBOARD.md, on the push dataset that publish_powerbi.py maintains:
+Five pages from docs/DASHBOARD.md, on the push dataset that publish_powerbi.py maintains:
   1. Should I Switch?   homeowner: current premium vs comparable quotes (simulated `demo` household)
   2. Operations         product owner / ops: recall, precision, silent errors, review load, threshold curve
   3. Review feedback    ops: accept / correct / not-on-document rates, no-reply aging, drift by week
-  4. Finance            CFO: cost per document, labor avoided, the assumptions behind them
+  4. Review app usage   ops: sessions, views vs decisions, skip rate, seconds per decision (App Insights)
+  5. Finance            CFO: cost per document, labor avoided, the assumptions behind them
 
 The definition is written to powerbi/report/ (versioned like the Bicep) and uploaded with the Fabric
 item-definition API, which works in a Power BI PPU workspace. Edit visuals in the browser afterwards if you
@@ -266,6 +267,42 @@ def page_feedback():
     return p, "Review feedback & drift", vs
 
 
+def page_usage():
+    """Operations, part 3: how the review app is used (Application Insights telemetry from Trace() events)."""
+    p = "usage"
+    e = "fact_app_event"
+    vs = [
+        text(p, "title", 20, 10, 860, 110, [[("Operations: review app usage", H1)],
+             [("Telemetry from the Power Apps review app (Application Insights). 'simulated' = events sent through the "
+               "same pipeline by a simulator matching the feedback page's weeks; 'app' = real sessions. Reviewers are "
+               "pseudonyms; no location or user identifiers are kept.", NOTE)]]),
+        slicer(p, "source", 900, 10, 170, 90, col(e, "source"), "Source", ["simulated", "app"], "simulated",
+               mode="Dropdown"),
+        slicer(p, "method", 1090, 10, 170, 90, col(e, "method"), "Model",
+               ["rules", "ins-neural-v1", "ins-neural-v2"], mode="Dropdown"),
+        card(p, "sessions", 20, 135, meas(e, "Sessions"), w=170, h=100),
+        card(p, "reviewers", 200, 135, meas(e, "Active reviewers"), w=170, h=100),
+        card(p, "viewed", 380, 135, meas(e, "Items viewed"), w=170, h=100),
+        card(p, "decisions", 560, 135, meas(e, "Decisions logged"), w=170, h=100),
+        card(p, "skip", 740, 135, meas(e, "Skip rate"), w=170, h=100),
+        card(p, "secs", 920, 135, meas(e, "Seconds per decision"), w=170, h=100),
+        card(p, "per_session", 1100, 135, meas(e, "Decisions per session"), w=160, h=100),
+        visual(p, "by_week", "clusteredColumnChart", 20, 250, 420, 455,
+               {"Category": [(col(e, "week"), "Week")],
+                "Y": [meas(e, "Items viewed"), meas(e, "Decisions logged")]},
+               title="Views vs decisions by week"),
+        visual(p, "secs_by_decision", "clusteredBarChart", 450, 250, 420, 455,
+               {"Category": [(col(e, "decision"), "Decision")], "Y": [(meas(e, "Seconds per decision"), "Median seconds")]},
+               title="Median seconds per decision type", sort=(meas(e, "Seconds per decision"), "Descending"),
+               filters=[filt("decisions_only", e, "event", ["'review_decision'"])]),
+        visual(p, "by_reviewer", "tableEx", 880, 250, 380, 455,
+               {"Values": [(col(e, "reviewer"), "Reviewer"), (meas(e, "Decisions logged"), "Decisions"),
+                           (meas(e, "Seconds per decision"), "Sec"), (meas(e, "Skip rate"), "Skip")]},
+               title="By reviewer (pseudonyms)", sort=(meas(e, "Decisions logged"), "Descending")),
+    ]
+    return p, "Review app usage", vs
+
+
 # ---------- write + publish ----------
 def write_definition(dataset_id, dataset_name, workspace):
     if OUT.exists():
@@ -281,7 +318,7 @@ def write_definition(dataset_id, dataset_name, workspace):
         "datasetReference": {"byConnection": {"connectionString":
             f"Data Source=powerbi://api.powerbi.com/v1.0/myorg/{workspace};initial catalog=\"{dataset_name}\";"
             f"integrated security=ClaimsToken;semanticmodelid={dataset_id}"}}}, indent=2))
-    pages = [page_switch(), page_ops(), page_feedback(), page_finance()]
+    pages = [page_switch(), page_ops(), page_feedback(), page_usage(), page_finance()]
     pdir = OUT / "definition" / "pages"
     order = []
     for key, name, visuals in pages:

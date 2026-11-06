@@ -32,6 +32,9 @@ pack_app() {   # src → build/app.msapp, pointed at this deployment's SQL serve
     grep -rl "$SOURCE_SQL_SERVER" build/src_push | xargs -r sed -i "s/$SOURCE_SQL_SERVER/$server/g"
   fi
   rm -f build/app.msapp
+  local ai
+  ai=$(grep -s '^APPINSIGHTS_CONNECTION_STRING=' ../.env | cut -d= -f2- || true)   # telemetry (not in git)
+  sed -i "s|__APPINSIGHTS_CONNECTION_STRING__|${ai}|" build/src_push/CanvasManifest.json
   "$PAC" canvas pack --sources build/src_push --msapp build/app.msapp > build/pack.log 2>&1 || { cat build/pack.log >&2; exit 1; }
   [ -s build/app.msapp ] || { echo "pack produced no app file" >&2; cat build/pack.log >&2; exit 1; }
 }

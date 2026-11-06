@@ -26,7 +26,7 @@ API = "https://api.powerbi.com/v1.0/myorg"
 PBI_PROFILE = Path.home() / ".azure-powerbi"
 
 # Model: which SQL tables, extra key columns, relationships, and DAX measures.
-TABLES = ["fact_document", "fact_field", "fact_quote", "fact_threshold", "fact_review", "dim_field", "dim_carrier", "dim_assumption"]
+TABLES = ["fact_document", "fact_field", "fact_quote", "fact_threshold", "fact_review", "fact_app_event", "dim_field", "dim_carrier", "dim_assumption"]
 RELATIONSHIPS = [  # (from table, from column, to table, to column)  many → one
     ("fact_field", "doc_key", "fact_document", "doc_key"),
     ("fact_field", "field", "dim_field", "field"),
@@ -92,6 +92,16 @@ MEASURES = {
         "Flagged but right": "DIVIDE(CALCULATE(COUNTROWS(fact_review), fact_review[model_was_right] = TRUE()), [Values flagged])",
         "Changed decisions": "CALCULATE(COUNTROWS(fact_review), fact_review[changed_mind] = TRUE()) + 0",
     },
+    "fact_app_event": {   # review-app usage telemetry (Application Insights → src/pull_app_telemetry.py)
+        "Sessions": "DISTINCTCOUNT(fact_app_event[session_id])",
+        "Active reviewers": "DISTINCTCOUNT(fact_app_event[reviewer])",
+        "Items viewed": "CALCULATE(COUNTROWS(fact_app_event), fact_app_event[event] = \"item_viewed\") + 0",
+        "Decisions logged": "CALCULATE(COUNTROWS(fact_app_event), fact_app_event[event] = \"review_decision\") + 0",
+        "Skip rate": "1 - DIVIDE([Decisions logged], [Items viewed])",
+        "Seconds per decision": "CALCULATE(MEDIAN(fact_app_event[seconds_on_item]), fact_app_event[event] = \"review_decision\")",
+        "Decisions per session": "DIVIDE([Decisions logged], [Sessions])",
+        "Review hours logged": "DIVIDE(SUM(fact_app_event[seconds_on_item]), 3600)",
+    },
 }
 FORMATS = {"Accuracy": "0.0%", "Recall": "0.0%", "Precision": "0.0%", "Flag rate": "0.0%", "Silent error rate": "0.0%", "Errors caught by review": "0.0%",
            "Straight-through rate": "0.0%", "Savings %": "0.0%", "Avg confidence": "0.000",
@@ -99,7 +109,8 @@ FORMATS = {"Accuracy": "0.0%", "Recall": "0.0%", "Precision": "0.0%", "Flag rate
            "Current premium": "$#,0", "Best comparable quote": "$#,0", "Annual savings": "$#,0",
            "Accept rate": "0%", "Correction rate": "0%", "Not-on-document rate": "0%", "No-reply rate": "0%",
            "Reviewer agreement": "0%", "Flagged but right": "0%", "Oldest open (days)": "0.0",
-           "Median hours": "0.0"}
+           "Median hours": "0.0", "Skip rate": "0%", "Seconds per decision": "0",
+           "Decisions per session": "0.0", "Review hours logged": "0.00"}
 COLUMN_FORMATS = {("fact_quote", c): "$#,0" for c in ("premium", "coverage_a", "coverage_c", "coverage_e",
                                                       "aop_deductible", "vs_current_usd")}
 COLUMN_FORMATS |= {("fact_quote", "premium_per_1k_a"): "$#,0.00", ("fact_quote", "wind_hail_pct"): '0.0"%"',

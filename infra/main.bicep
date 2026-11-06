@@ -148,6 +148,24 @@ resource logs 'Microsoft.OperationalInsights/workspaces@2023-09-01' = {
   }
 }
 
+// Application Insights (workspace-based): usage telemetry from the Power Apps review app (sessions, screen views,
+// Trace() events per decision) lands in the same Log Analytics workspace (tables AppEvents, AppPageViews).
+// Local auth stays enabled: Power Apps sends telemetry with the connection string (it can't use Entra ID here);
+// the connection string only allows *writing* telemetry, not reading it.
+resource appInsights 'Microsoft.Insights/components@2020-02-02' = {
+  name: 'appi-docai-${suffix}'
+  location: location
+  kind: 'web'
+  tags: union(tags, { component: 'monitoring' })
+  properties: {
+    Application_Type: 'web'
+    WorkspaceResourceId: logs.id
+    IngestionMode: 'LogAnalytics'
+    DisableIpMasking: false        // client IPs are masked (only coarse location is kept)
+    RetentionInDays: 30
+  }
+}
+
 resource diDiag 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' = {
   scope: docIntel
   name: 'to-log-analytics'
@@ -325,3 +343,5 @@ output languageEndpoint string = language.properties.endpoint
 output databricksUrl string = deployDatabricks ? 'https://${databricks!.properties.workspaceUrl}' : ''
 output sqlServer string = sql.properties.fullyQualifiedDomainName
 output sqlDatabase string = sqlDb.name
+output logWorkspaceId string = logs.properties.customerId
+output appInsightsConnectionString string = appInsights.properties.ConnectionString

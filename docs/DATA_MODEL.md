@@ -117,6 +117,22 @@ erDiagram
     bit model_was_right
     bit reviewer_agrees "vs answer key"
   }
+  fact_app_event["dash.fact_app_event"] {
+    string source "app | simulated"
+    datetime event_time
+    string event "queue_opened | item_viewed | review_decision"
+    string session_id
+    string reviewer "pseudonym"
+    string item_id
+    string field
+    string method
+    string layout
+    float confidence
+    string decision
+    float seconds_on_item
+    datetime event_date
+    datetime week
+  }
   fact_document ||--o{ fact_field : "method + doc_id"
   dim_field ||--o{ fact_field : field
   dim_carrier ||--o{ fact_document : carrier_id
@@ -129,6 +145,7 @@ erDiagram
 | `fact_threshold` | method × cutoff × rules on/off | 606 | Operations: review-load and silent-error curves |
 | `fact_quote` | household × document | 9 | Homeowner page (simulated household only) |
 | `fact_review` | value sent to a person | 97 | Review feedback & drift: decision, timing, no-reply age, agreement with answer key (`source` = app / simulated) |
+| `fact_app_event` | review-app telemetry event | 194 | Usage: sessions, views, decisions, seconds per item (`source` = app / simulated; reviewers pseudonymous) |
 | `dim_field` | field | 12 | Field names / groups |
 | `dim_carrier` | carrier | 8 | Fictional insurers, layout, train/test split |
 | `dim_assumption` | assumption | 6 | Unit prices and minutes behind the Finance measures |

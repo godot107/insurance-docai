@@ -1,0 +1,124 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "048b8cb18ab33b22e7f9",
+  "position": {
+    "x": 880,
+    "y": 250,
+    "z": 0,
+    "width": 380,
+    "height": 455,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_app_event"
+                    }
+                  },
+                  "Property": "reviewer"
+                }
+              },
+              "queryRef": "fact_app_event.reviewer",
+              "nativeQueryRef": "reviewer",
+              "displayName": "Reviewer"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_app_event"
+                    }
+                  },
+                  "Property": "Decisions logged"
+                }
+              },
+              "queryRef": "fact_app_event.Decisions logged",
+              "nativeQueryRef": "Decisions logged",
+              "displayName": "Decisions"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_app_event"
+                    }
+                  },
+                  "Property": "Seconds per decision"
+                }
+              },
+              "queryRef": "fact_app_event.Seconds per decision",
+              "nativeQueryRef": "Seconds per decision",
+              "displayName": "Sec"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_app_event"
+                    }
+                  },
+                  "Property": "Skip rate"
+                }
+              },
+              "queryRef": "fact_app_event.Skip rate",
+              "nativeQueryRef": "Skip rate",
+              "displayName": "Skip"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "fact_app_event"
+                  }
+                },
+                "Property": "Decisions logged"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": false
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'By reviewer (pseudonyms)'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -125,6 +125,7 @@ flowchart TB
 | Review app | Power Apps (premium licenses), **managed environment** | VNet support so the SQL connector goes through the delegated subnet; DLP policy blocks non-business connectors; solutions + **pipelines** (dev → test → prod) | The human-in-the-loop step, governed like code |
 | BI | Power BI Premium / **Fabric capacity** (F SKU) | **VNet data gateway** to SQL and Databricks SQL over private endpoints; RLS by agency/role; Purview sensitivity labels; tenant setting to restrict export | Import / DirectQuery semantic models with scheduled refresh (replaces the dev push dataset) |
 | Secrets | Key Vault (Premium for HSM keys) | Private endpoint, RBAC mode, purge protection | Holds CMKs; ideally no application secrets at all |
+| App telemetry | Application Insights (workspace-based) | Power Apps sends `Trace()` events with the connection string; ingestion over **Azure Monitor Private Link Scope (AMPLS)**; IP masking on | Review-tool usage (views, skips, seconds per decision) next to model metrics |
 | Operations | Azure Monitor, Log Analytics, Workbooks, alerts | Diagnostic settings on every resource; alerts on review-rate drift, quarantine rate, job failures, budget | Drift and data quality are watched without labels (review rate, confidence distribution) |
 | Security posture | Defender for Cloud | Plans for Storage, SQL, App Service/Functions, AI | Threat detection on the data plane |
 | Policy | Azure Policy | Deny public network access, require private endpoints, require tags (cost center, data classification), allowed regions | Guardrails that hold even when someone clicks in the portal |
@@ -217,6 +218,7 @@ deployment pipeline or PBIR via the Fabric API), gated by tests and an approval.
 | Model registry | UC model `workspace.gold.review_router` | Same, in the prod catalog with approval to promote |
 | Review app | Developer Plan, SQL connector over the public endpoint | Managed environment with VNet support, premium licenses, pipelines |
 | Review audit | Temporal table `review.item_history` | Same, plus SQL auditing to Log Analytics |
+| Usage telemetry | Application Insights over the public ingestion endpoint; simulator for demo traffic | Same events through AMPLS; alerts on skip rate and no-reply backlog |
 | BI | Push dataset via REST + PBIR report via Fabric API | Fabric capacity, Import/DirectQuery semantic model through a VNet data gateway, RLS |
 | Secrets | None (Entra ID + managed identity) | Same; Key Vault only for customer-managed keys |
 | Governance | Tags, budgets, tag-check in CI, subscription tag policy (written) | Azure Policy initiative, Purview lineage, Defender for Cloud |

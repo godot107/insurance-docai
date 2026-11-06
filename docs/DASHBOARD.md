@@ -49,7 +49,18 @@ history on real benchmark outcomes (`source = simulated`, clearly labelled).
   layout change is the retraining trigger
 - Reviewer agreement with the answer key (synthetic data only) and changed decisions (from the temporal history)
 
-## Page 4: Finance ("what does it cost and what does it return?")
+## Page 4: Review app usage ("how is the review tool used?")
+
+Audience: ops lead / product owner. Source: `dash.fact_app_event` (`src/pull_app_telemetry.py` from Application
+Insights `AppTraces`). The Power Apps app sends `Trace()` events: `queue_opened`, `item_viewed`,
+`review_decision` (with `seconds_on_item`); Power Apps adds sessions and screen views automatically.
+`src/simulate_app_telemetry.py` sends matching simulated events (`sim=true`) through the same pipeline.
+
+- Sessions, active reviewers (pseudonyms), items viewed vs decisions logged, **skip rate** (viewed, not decided)
+- Median seconds per decision, by decision type (corrections cost the most reviewer time)
+- Per-reviewer throughput; no location, IP or user identifiers are stored
+
+## Page 5: Finance ("what does it cost and what does it return?")
 
 Audience: CFO / budget owner.
 

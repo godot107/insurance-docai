@@ -19,3 +19,11 @@ def test_primary_reason():
     assert primary_reason("low_confidence") == "low confidence"
     assert primary_reason("low_confidence;out_of_range") == "validity rule"
     assert primary_reason("ratio_vs_coverage_a_dwelling") == "validity rule"
+
+
+def test_telemetry_pseudonym_is_stable_and_hides_the_id():
+    from pull_app_telemetry import pseudonym
+    uid = "cc234eb1-7f13-4dd0-b279-104f70c0f5d7"
+    assert pseudonym(uid) == pseudonym(uid)
+    assert pseudonym(uid).startswith("reviewer-") and uid[:6] not in pseudonym(uid)
+    assert pseudonym(uid) != pseudonym("another-user")

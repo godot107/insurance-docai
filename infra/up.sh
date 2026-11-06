@@ -29,6 +29,8 @@ with open(".env", "w") as f:
         f.write(f"DATABRICKS_HOST={o['databricksUrl']['value']}\n")
     f.write(f"SQL_SERVER={o['sqlServer']['value']}\n")
     f.write(f"SQL_DATABASE={o['sqlDatabase']['value']}\n")
+    f.write(f"LOG_WORKSPACE_ID={o['logWorkspaceId']['value']}\n")
+    f.write(f"APPINSIGHTS_CONNECTION_STRING={o['appInsightsConnectionString']['value']}\n")
 print(open(".env").read())
 PY
 rm -f /tmp/docai_outputs.$$

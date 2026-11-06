@@ -73,6 +73,8 @@ never report a trained model's score on its own training docs.
 cd src
 ../.venv/bin/python build_dashboard_tables.py --methods rules,ins-neural-v1   # → data/dashboard/*.parquet
 ../.venv/bin/python build_review_feedback.py       # → fact_review (app decisions + simulated history)
+../.venv/bin/python pull_app_telemetry.py          # → fact_app_event (Application Insights → Parquet)
+# once, to populate usage before real traffic exists: ../.venv/bin/python simulate_app_telemetry.py
 ../.venv/bin/python load_sql.py                     # → Azure SQL schema dash (full refresh)
 ../.venv/bin/python publish_powerbi.py              # → Power BI push dataset, updated in place
 ```

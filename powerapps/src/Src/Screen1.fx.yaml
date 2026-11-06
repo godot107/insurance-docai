@@ -3,6 +3,10 @@
         ={ ScreenName: Self.Name }
     CopilotPromptSuggestions: =[]
     LoadingSpinnerColor: =RGBA(0, 120, 212, 1)
+    OnVisible: |-
+        =Set(varShownAt, Now());
+        Trace("queue_opened", TraceSeverity.Information,
+              {open_items: CountRows(Filter('review.item', status = "open"))})
 
     lblTitle As label:
         BorderColor: =RGBA(0, 0, 0, 0)
@@ -44,6 +48,11 @@
         BorderColor: =RGBA(245, 245, 245, 1)
         DelayItemLoading: =true
         Height: =680
+        OnSelect: |-
+            =Set(varShownAt, Now());
+            Trace("item_viewed", TraceSeverity.Information,
+                  {item_id: galQueue.Selected.item_id, field: galQueue.Selected.field, method: galQueue.Selected.method,
+                   layout: galQueue.Selected.layout, confidence: galQueue.Selected.confidence})
         Default: =First(SortByColumns(Filter('review.item', status = "open"), "item_id"))
         Items: =SortByColumns(Filter('review.item', status = "open"), "item_id")
         Layout: =Layout.Vertical
@@ -250,10 +259,16 @@
         HoverColor: =RGBA(255, 255, 255, 1)
         HoverFill: =RGBA(16, 110, 190, 1)
         OnSelect: |-
-            =Patch('review.item', galQueue.Selected,
+            =Trace("review_decision", TraceSeverity.Information,
+                  {decision: "accepted", item_id: galQueue.Selected.item_id, field: galQueue.Selected.field,
+                   method: galQueue.Selected.method, layout: galQueue.Selected.layout,
+                   confidence: galQueue.Selected.confidence,
+                   seconds_on_item: DateDiff(varShownAt, Now(), TimeUnit.Seconds)});
+            Patch('review.item', galQueue.Selected,
                     {status: "accepted", reviewed_value: galQueue.Selected.extracted_value,
                      reviewer: User().Email, reviewed_at: Now()});
-            Refresh('review.item')
+            Refresh('review.item');
+            Set(varShownAt, Now())
         PressedBorderColor: =RGBA(0, 69, 120, 1)
         PressedColor: =RGBA(255, 255, 255, 1)
         PressedFill: =RGBA(16, 110, 190, 1)
@@ -284,10 +299,16 @@
         OnSelect: |-
             =If(IsBlank(txtValue.Text) || IsError(Value(txtValue.Text)),
                  Notify("Enter the value printed on the document", NotificationType.Warning),
+                 Trace("review_decision", TraceSeverity.Information,
+                       {decision: "corrected", item_id: galQueue.Selected.item_id, field: galQueue.Selected.field,
+                        method: galQueue.Selected.method, layout: galQueue.Selected.layout,
+                        confidence: galQueue.Selected.confidence,
+                        seconds_on_item: DateDiff(varShownAt, Now(), TimeUnit.Seconds)});
                  Patch('review.item', galQueue.Selected,
                        {status: "corrected", reviewed_value: Value(txtValue.Text),
                         reviewer: User().Email, reviewed_at: Now()});
-                 Refresh('review.item'))
+                 Refresh('review.item');
+                 Set(varShownAt, Now()))
         PressedBorderColor: =RGBA(0, 69, 120, 1)
         PressedColor: =RGBA(255, 255, 255, 1)
         PressedFill: =RGBA(16, 110, 190, 1)
@@ -317,10 +338,16 @@
         HoverColor: =RGBA(255, 255, 255, 1)
         HoverFill: =RGBA(16, 110, 190, 1)
         OnSelect: |-
-            =Patch('review.item', galQueue.Selected,
+            =Trace("review_decision", TraceSeverity.Information,
+                  {decision: "not_on_document", item_id: galQueue.Selected.item_id, field: galQueue.Selected.field,
+                   method: galQueue.Selected.method, layout: galQueue.Selected.layout,
+                   confidence: galQueue.Selected.confidence,
+                   seconds_on_item: DateDiff(varShownAt, Now(), TimeUnit.Seconds)});
+            Patch('review.item', galQueue.Selected,
                     {status: "not_on_document", reviewed_value: Blank(),
                      reviewer: User().Email, reviewed_at: Now()});
-            Refresh('review.item')
+            Refresh('review.item');
+            Set(varShownAt, Now())
         PressedBorderColor: =RGBA(0, 69, 120, 1)
         PressedColor: =RGBA(255, 255, 255, 1)
         PressedFill: =RGBA(16, 110, 190, 1)
