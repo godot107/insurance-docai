@@ -38,3 +38,4 @@ databricks/dist/
 databricks/build/
 databricks/.databricks/
 *.egg-info/
+CLAUDE.md

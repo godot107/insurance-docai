@@ -1,7 +1,6 @@
 # Azure reference architecture: document AI with human review in a closed network
 
-**Audience:** the AI & Data team hiring for *Project Analytics & Insights Engineer III* (req 373221), and anyone
-taking this pattern to a government or financial-services client.
+**Audience:** anyone taking this pattern to a government or financial-services setting.
 
 **What "closed" means here:** no service is reachable from the public internet. Every data path stays on
 private IPs inside the client's Azure landing zone (or comes in over ExpressRoute / VPN from the client network);

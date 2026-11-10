@@ -1,10 +1,9 @@
 # insurance-docai: AI document processing with a human in the loop, on Azure
 
-**Built for:** the *Project Analytics & Insights Engineer III* role on the AI & Data team
-(Government & Public Services, requisition 373221). This repo shows the work that role describes, end to end:
-*"design and develop AI enabled solutions to process unstructured data using … Azure AI Document Intelligence;
-Power Platform Tools; Python; Databricks."* It is an independent portfolio project, not affiliated with or
-endorsed by any employer or agency.
+**What it is:** an end-to-end example of AI-enabled processing of unstructured documents on Azure:
+Azure AI Document Intelligence, Power Platform, Python, Databricks and Azure SQL, with a person reviewing
+whatever the machine is unsure about. An independent personal project, not affiliated with or endorsed by
+any employer or agency.
 
 **The problem.** My home-insurance renewal came in at about **$7,200 a year**, while nine other insurers had
 mailed "personalized quotes" for the same house at roughly **$1,000-3,000**. No two letters used the same
@@ -20,16 +19,16 @@ deployed in a development setup. Public write-up: [docs/REPORT.md](docs/REPORT.m
 
 ---
 
-## How this maps to requisition 373221
+## What this demonstrates
 
-| The role asks for | What is in this repo | Where |
+| Capability | What is in this repo | Where |
 | :--- | :--- | :--- |
 | Process **unstructured data** with **Azure AI Document Intelligence** | Prebuilt layout baseline, two **custom neural extraction models** trained from auto-generated labels, per-field confidence, page-range control for long packets | `src/run_layout.py`, `src/build_training_set.py`, `src/train_custom.py` |
-| **AI Model Build** (4+ yrs) | Custom extraction models (v1 → v2 with data augmentation: precision 76% → 92%), confidence calibration, a gradient-boosting **review router** with leave-one-carrier-out validation, MLflow + Unity Catalog model registry | `docs/RESULTS.md`, `databricks/src/docai_lakehouse/router.py` |
-| **Power Platform** (4+ yrs) | **Power Apps** review queue (canvas app on Azure SQL, Entra ID connection) kept **as code**: unpacked sources in git, `pac` CLI pull/push through a Dataverse solution. **Power BI** report (3 pages) generated as code (PBIR) | `powerapps/`, `src/build_report.py`, `docs/POWERAPPS.md` |
-| **Azure Data Engineering, Intelligence and Analytics** (4+ yrs) | Bicep infrastructure, Blob raw/curated zones, Azure SQL serving layer, Log Analytics, budgets and tag governance, CI (GitHub Actions) | `infra/`, `tools/`, `.github/workflows/` |
-| **Databricks** (preferred) | Asset bundle: **Unity Catalog medallion** (bronze → silver with quarantine and a quality gate → gold), wheel tasks, MLflow, serverless / job clusters only. Deployed and run | `databricks/` |
-| **Azure SQL Server** (preferred) | Entra-only Azure SQL: dashboard star schema, review queue with **temporal-table audit history**, least-privilege column grants | `src/load_sql.py`, `src/review_queue.py` |
+| **AI model building** | Custom extraction models (v1 → v2 with data augmentation: precision 76% → 92%), confidence calibration, a gradient-boosting **review router** with leave-one-carrier-out validation, MLflow + Unity Catalog model registry | `docs/RESULTS.md`, `databricks/src/docai_lakehouse/router.py` |
+| **Power Platform** | **Power Apps** review queue (canvas app on Azure SQL, Entra ID connection) kept **as code**: unpacked sources in git, `pac` CLI pull/push through a Dataverse solution. **Power BI** report (3 pages) generated as code (PBIR) | `powerapps/`, `src/build_report.py`, `docs/POWERAPPS.md` |
+| **Azure data engineering and analytics** | Bicep infrastructure, Blob raw/curated zones, Azure SQL serving layer, Log Analytics, budgets and tag governance, CI (GitHub Actions) | `infra/`, `tools/`, `.github/workflows/` |
+| **Databricks** | Asset bundle: **Unity Catalog medallion** (bronze → silver with quarantine and a quality gate → gold), wheel tasks, MLflow, serverless / job clusters only. Deployed and run | `databricks/` |
+| **Azure SQL** | Entra-only Azure SQL: dashboard star schema, review queue with **temporal-table audit history**, least-privilege column grants | `src/load_sql.py`, `src/review_queue.py` |
 | **Python** | All pipeline, evaluation, synthetic-data and publishing code, with tests | `src/`, `tests/` |
 | **Financial services** (insurance, mortgage) | Homeowners policies, premiums, coverages A-F, deductibles, mortgagee requirements, TDI regulatory context | `schema/fields.yaml`, `docs/PROBLEM.md` |
 | Meticulous attention to quality | Held-out-layout benchmark with exact answers, silent-error metric, an honest threshold check that **overturned** an optimistic result, a negative result reported as such | `docs/RESULTS.md` Phases 3b, 4a |
