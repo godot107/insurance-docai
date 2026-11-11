@@ -77,9 +77,21 @@ cd src
 ../.venv/bin/python build_review_feedback.py       # → fact_review (app decisions + simulated history)
 ../.venv/bin/python pull_app_telemetry.py          # → fact_app_event (Application Insights → Parquet)
 # once, to populate usage before real traffic exists: ../.venv/bin/python simulate_app_telemetry.py
-../.venv/bin/python load_sql.py                     # → Azure SQL schema dash (full refresh)
+../.venv/bin/python build_dim_date.py               # → dim_date + day keys on fact_review / fact_app_event (date slider)
+# private, optional: real households for the "Should I switch?" picker (needs private/household.yaml)
+# ../.venv/bin/python build_private_household.py   # → private/dashboard/*.parquet (gitignored)
+../.venv/bin/python load_sql.py                     # → Azure SQL schema dash (full refresh); add --include-private for real households
+../.venv/bin/python quote_letters.py                # → review.document: a letter per quote row (Power BI "Letter" link); --include-private adds real letters
 ../.venv/bin/python publish_powerbi.py              # → Power BI push dataset, updated in place
 ```
+
+Power BI scripts use the default account of the `~/.azure-powerbi` az profile, which must be the **work account**:
+`az account set --subscription <tenant id>` (the tenant-level entry) before, and back to "Azure subscription 1" after
+(other projects use the personal account in that profile). The "Letter" links need `POWERAPPS_PLAY_URL` in `.env`.
+
+"Should I switch?" has a household picker (4 fictional demo houses; real ones only with `--include-private`) and a
+policy-year toggle (demo houses have 2024-2026). Power BI remembers each viewer's last selection: click
+**Reset to default** before taking screenshots, so they show the demo house.
 
 `publish_powerbi.py --recreate` is needed when tables or relationships change. It creates the new dataset,
 **rebinds every report** that used the old one (same names, so visuals keep working), then deletes the old one.

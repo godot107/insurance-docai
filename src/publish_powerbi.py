@@ -26,12 +26,14 @@ API = "https://api.powerbi.com/v1.0/myorg"
 PBI_PROFILE = Path(os.environ.get("PBI_AZURE_CONFIG_DIR", Path.home() / ".azure-powerbi"))   # CI: the job's own az login
 
 # Model: which SQL tables, extra key columns, relationships, and DAX measures.
-TABLES = ["fact_document", "fact_field", "fact_quote", "fact_threshold", "fact_review", "fact_app_event", "dim_field", "dim_carrier", "dim_assumption", "dim_household"]
+TABLES = ["fact_document", "fact_field", "fact_quote", "fact_threshold", "fact_review", "fact_app_event", "dim_field", "dim_carrier", "dim_assumption", "dim_household", "dim_date"]
 RELATIONSHIPS = [  # (from table, from column, to table, to column)  many → one
     ("fact_field", "doc_key", "fact_document", "doc_key"),
     ("fact_field", "field", "dim_field", "field"),
     ("fact_document", "carrier_id", "dim_carrier", "carrier_id"),
     ("fact_quote", "household_id", "dim_household", "household_id"),
+    ("fact_review", "date", "dim_date", "date"),
+    ("fact_app_event", "date", "dim_date", "date"),
 ]
 
 
@@ -77,7 +79,7 @@ MEASURES = {
         "Annual savings": "IF(ISBLANK([Best comparable quote]), BLANK(), [Current premium] - [Best comparable quote])",
         "Savings %": "DIVIDE([Annual savings], [Current premium])",
         "Comparable quotes": "CALCULATE(COUNTROWS(fact_quote), fact_quote[apples_to_apples] = \"yes\") + 0",
-        "Days to renewal": "DATEDIFF(TODAY(), MAX(fact_quote[renewal_date]), DAY)",
+        "Days to renewal": "VAR d = DATEDIFF(TODAY(), MAX(fact_quote[renewal_date]), DAY) RETURN IF(d < 0, BLANK(), d)",
     },
     "fact_review": {   # review feedback & drift (src/build_review_feedback.py)
         "Values flagged": "COUNTROWS(fact_review)",

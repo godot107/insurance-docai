@@ -45,6 +45,7 @@ def main():
         comp["notes"] = comp["notes"].fillna("")
         comp["renewal_date"] = pd.Timestamp(str(h.get("renewal_date", "2026-12-27")))
         comp["letter_url"] = comp.doc_id.map(letter_url)
+        comp["policy_year"] = str(pd.Timestamp(str(h.get("renewal_date", "2026-12-27"))).year)
         quotes.append(comp)
         homes.append({"household_id": hid, "household": f"{h.get('label', hid)} · {h.get('address', '')}".strip(" ·"),
                       "simulated": False})

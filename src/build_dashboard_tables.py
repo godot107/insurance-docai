@@ -54,9 +54,21 @@ def letter_url(doc_id):
     return f"{base}&doc={doc_id}" if base else ""
 
 
+POLICY_YEARS = [2024, 2025, 2026]   # demo houses renew every Dec 27; premiums rise ~13%/yr, dwelling ~4%/yr
+
+
 def demo_households():
-    return pd.concat([demo_household(seed, hid, a, prem, same) for hid, _, seed, a, prem, same in DEMO_HOUSEHOLDS],
-                     ignore_index=True)
+    rows = []
+    for hid, _, seed, a, prem, same in DEMO_HOUSEHOLDS:
+        for y in POLICY_YEARS:
+            back = 2026 - y
+            df = demo_household(seed + y, hid, round(a / 1.04 ** back, -2), round(prem / 1.13 ** back, 2), same)
+            df["doc_id"] = df.doc_id.str.replace(f"{hid}-", f"{hid}-{y}-", regex=False)
+            df["policy_year"] = str(y)
+            df["renewal_date"] = pd.Timestamp(f"{y}-12-27")
+            df["letter_url"] = df.doc_id.map(letter_url)
+            rows.append(df)
+    return pd.concat(rows, ignore_index=True)
 
 
 def demo_household(seed=11, hid="demo", a=512000.0, current=6480.00, p_same=0.6):

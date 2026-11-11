@@ -118,6 +118,7 @@ def main():
         images |= real_letters()
     conn = connect_sql()
     cur = conn.cursor()
+    cur.execute("DELETE FROM review.document WHERE doc_id LIKE 'demo%'")   # demo letters are regenerated each run
     for doc_id, uri in images.items():
         cur.execute("DELETE FROM review.document WHERE doc_id = ?", doc_id)
         cur.execute("INSERT INTO review.document (doc_id, page_image) VALUES (?, ?)", (doc_id, uri))

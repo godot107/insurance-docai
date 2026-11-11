@@ -134,6 +134,26 @@ def slicer(page, key, x, y, w, h, c, title, values, default=None, mode="Basic"):
                   filters=[filt(f"{key}_values", t, name, [f"'{v}'" for v in values])], objects=objects)
 
 
+def date_slicer(page):
+    """Date-range slider (drag both ends) on dim_date[date]; filters the page's dated facts through relationships."""
+    return visual(page, "dates", "slicer", 950, 8, 310, 118, {"Values": [col("dim_date", "date")]},
+                  title="Dates (drag to narrow)", objects={"data": [{"properties": {"mode": lit("'Between'")}}],
+                                                           "header": [{"properties": {"show": lit("false")}}]})
+
+
+def year_slicer(page):
+    """Policy-year toggle: single-select tiles, default the latest year, so the cards always show one year."""
+    c = col("fact_quote", "policy_year")
+    years = ["2024", "2025", "2026"]
+    objects = {"data": [{"properties": {"mode": lit("'Basic'")}}],
+               "selection": [{"properties": {"singleSelect": lit("true")}}],
+               "header": [{"properties": {"show": lit("false")}}],
+               "general": [{"properties": {"orientation": lit("1D"),
+                                           "filter": {"filter": where_in("fact_quote", "policy_year", ["'2026'"])}}}]}
+    return visual(page, "policy_year", "slicer", 600, 8, 320, 72, {"Values": [c]}, title="Policy year",
+                  objects=objects, filters=[filt("years", "fact_quote", "policy_year", [f"'{y}'" for y in years])])
+
+
 def household_slicer(page):
     """Single-select dropdown with search over dim_household[household] ("label · address"), default = demo.
     Listing every household (not a fixed value list) so real ones loaded with --include-private appear."""
@@ -163,10 +183,11 @@ def page_switch():
     p = "switch"
     q = "fact_quote"
     vs = [
-        text(p, "title", 20, 5, 900, 82, [[("Should I switch?", H1)],
+        text(p, "title", 20, 5, 570, 82, [[("Should I switch?", H1)],
              [("Pick a household at the right. Mailers are estimates, not offers: only quotes with the same "
                "dwelling coverage, deductible and wind/hail % count as comparable.", NOTE)]]),
         household_slicer(p),
+        year_slicer(p),
         card(p, "current", 20, 90, meas(q, "Current premium")),
         card(p, "best", 230, 90, meas(q, "Best comparable quote")),
         card(p, "savings", 440, 90, meas(q, "Annual savings")),
@@ -257,13 +278,14 @@ def page_feedback():
     p = "feedback"
     r = "fact_review"
     vs = [
-        text(p, "title", 20, 10, 860, 110, [[("Operations: review feedback & drift", H1)],
+        text(p, "title", 20, 6, 580, 124, [[("Operations: review feedback & drift", H1)],
              [("Simulated reviewer, real benchmark outcomes, replaying the project's history: rules (week of Oct 12) → "
                "custom model v1 (Oct 19) → v2 augmented (Oct 26). Watch 'not on document' spike with v1 (made-up "
                "values) and fall with v2. Source 'app' = live decisions from the Power Apps queue.", NOTE)]]),
-        slicer(p, "source", 900, 10, 170, 90, col(r, "source"), "Source", ["simulated", "app"], "simulated",
+        slicer(p, "source", 610, 8, 160, 80, col(r, "source"), "Source", ["simulated", "app"], "simulated",
                mode="Dropdown"),
-        slicer(p, "method", 1090, 10, 170, 90, col(r, "method"), "Model",
+        date_slicer(p),
+        slicer(p, "method", 780, 8, 160, 80, col(r, "method"), "Model",
                ["rules", "ins-neural-v1", "ins-neural-v2"], mode="Dropdown"),
         card(p, "flagged", 20, 135, meas(r, "Values flagged"), w=170, h=100),
         card(p, "accept", 200, 135, meas(r, "Accept rate"), w=170, h=100),
@@ -295,13 +317,14 @@ def page_usage():
     p = "usage"
     e = "fact_app_event"
     vs = [
-        text(p, "title", 20, 10, 860, 110, [[("Operations: review app usage", H1)],
+        text(p, "title", 20, 6, 580, 124, [[("Operations: review app usage", H1)],
              [("Telemetry from the Power Apps review app (Application Insights). 'simulated' = events sent through the "
                "same pipeline by a simulator matching the feedback page's weeks; 'app' = real sessions. Reviewers are "
                "pseudonyms; no location or user identifiers are kept.", NOTE)]]),
-        slicer(p, "source", 900, 10, 170, 90, col(e, "source"), "Source", ["simulated", "app"], "simulated",
+        slicer(p, "source", 610, 8, 160, 80, col(e, "source"), "Source", ["simulated", "app"], "simulated",
                mode="Dropdown"),
-        slicer(p, "method", 1090, 10, 170, 90, col(e, "method"), "Model",
+        date_slicer(p),
+        slicer(p, "method", 780, 8, 160, 80, col(e, "method"), "Model",
                ["rules", "ins-neural-v1", "ins-neural-v2"], mode="Dropdown"),
         card(p, "sessions", 20, 135, meas(e, "Sessions"), w=170, h=100),
         card(p, "reviewers", 200, 135, meas(e, "Active reviewers"), w=170, h=100),

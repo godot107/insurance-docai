@@ -3,7 +3,7 @@
   "version": "4.0",
   "datasetReference": {
     "byConnection": {
-      "connectionString": "Data Source=powerbi://api.powerbi.com/v1.0/myorg/insurance-docai;initial catalog=\"Insurance DocAI\";integrated security=ClaimsToken;semanticmodelid=718a0d20-f7e9-4e7e-9c6c-d05959f49e9d"
+      "connectionString": "Data Source=powerbi://api.powerbi.com/v1.0/myorg/insurance-docai;initial catalog=\"Insurance DocAI\";integrated security=ClaimsToken;semanticmodelid=46b306f2-3389-4574-b661-ef46490f4a15"
     }
   }
 }
