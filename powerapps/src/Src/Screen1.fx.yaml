@@ -428,7 +428,7 @@
         Font: =Font.'Segoe UI'
         Height: =28
         Size: =13
-        Text: ="DEMO · synthetic letters from fictional insurers · development environment · not insurance advice"
+        Text: ="DEMO · synthetic letters from fictional insurers + one redacted real mailer · development environment · not insurance advice"
         Width: =1366
         Y: =740
         ZIndex: =15

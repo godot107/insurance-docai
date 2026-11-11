@@ -12,7 +12,8 @@ Creates schema `review`:
 The app's account (the work account) gets SELECT on item/document and UPDATE on the decision columns only.
 
 Source: data/dashboard/fact_field.parquet, flagged values of one method on the held-out test layouts.
-Synthetic documents only (no real letters in the demo app).
+Synthetic documents, plus real letters only when added one at a time with --add-real from a page the owner
+redacted by hand (docs/PRIVACY.md).
 
 Usage: .venv/bin/python src/review_queue.py --reviewer willie@<tenant>.onmicrosoft.com [--method ins-neural-v2] [--reset]
        .venv/bin/python src/review_queue.py --score     # reviewer accuracy against the answer key
@@ -196,6 +197,77 @@ def load(cur, method, reset):
     print(f"loaded {len(q)} flagged values from {q.doc_id.nunique()} documents ({method}, test layouts)")
 
 
+REAL_WATERMARK = "REAL LETTER · REDACTED"
+
+
+def real_page_image(path, width=900):
+    """A real letter's page that the owner redacted by hand (solid boxes over names, addresses, phone numbers).
+    The file lives in private/ (gitignored); only the redacted image enters the database."""
+    im = Image.open(path).convert("RGB")
+    im.thumbnail((width, width * 2))
+    d = ImageDraw.Draw(im)
+    try:
+        font = ImageFont.truetype("DejaVuSans-Bold.ttf", 18)
+    except OSError:
+        font = ImageFont.load_default()
+    d.rectangle((0, im.height - 30, im.width, im.height), fill=(160, 30, 30))
+    d.text((10, im.height - 26), REAL_WATERMARK, font=font, fill="white")
+    buf = io.BytesIO()
+    im.save(buf, "JPEG", quality=80)
+    return "data:image/jpeg;base64," + base64.b64encode(buf.getvalue()).decode()
+
+
+def add_real(cur, doc_id, method, threshold):
+    """Queue the flagged values of one REAL letter (custom-model output in private/di/<method>/<doc>.json) next to the
+    synthetic ones, without touching existing decisions. Needs private/redacted/<doc>_page_redacted.png.
+    Truth comes from the owner's labels (private/labels/<doc>.json) and goes to the answer key only."""
+    from normalize import FIELDS, parse, review
+    priv = ROOT / "private"
+    img = priv / "redacted" / f"{doc_id}_page_redacted.png"
+    if not img.exists():
+        raise SystemExit(f"missing {img}: redact the page by hand first (solid boxes, not blur)")
+    cur.execute("SELECT COUNT(*) FROM review.item WHERE doc_id = ?", doc_id)
+    if cur.fetchone()[0]:
+        print(f"{doc_id} already queued")
+        return
+    di = json.loads((priv / "di" / method / f"{doc_id}.json").read_text())["documents"][0]["fields"]
+    labels = json.loads((priv / "labels" / f"{doc_id}.json").read_text())["fields"]
+    schema = yaml.safe_load(open(ROOT / "schema" / "fields.yaml"))
+    reliability = json.loads((SYN / "eval" / "calibration.json").read_text())[method]["reliability"]
+    read = {}
+    for f, v in di.items():
+        text = v.get("content") or ""
+        if f in FIELDS and text:
+            read[f] = (parse(FIELDS[f]["type"], text)[0], v.get("confidence", 0.0), text)
+    preds = {f: r[0] for f, r in read.items()}
+    n = 0
+    for f, (val, conf, text) in sorted(read.items()):
+        flags = [x for x in review(f, val, 1.0, "quote", {k: p for k, p in preds.items() if p is not None}, 1)
+                 if x != "missing_required"]
+        if conf < threshold:
+            flags.insert(0, "low_confidence")
+        if not flags:
+            continue                      # auto-accepted
+        r = pd.Series({"field": f, "pred": val, "confidence": conf, "flag_reasons": ";".join(flags)})
+        label, help_, reasons, hint, others = context(r, preds, schema, reliability)
+        if val is None:
+            hint = f"The model read the text '{text}' here, with no amount. " + hint
+        doc_ctx = f"{doc_id} · real quote mailer (redacted) · a layout the model never trained on · scanned"
+        cur.execute("""INSERT INTO review.item (doc_id, method, field, carrier, layout, extracted_value, confidence,
+                       flag_reasons, field_label, field_help, reason_help, hint, doc_context, other_values)
+                       OUTPUT INSERTED.item_id VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+                    (doc_id, method, f, "real letter", "real_mailer", val, float(conf), ";".join(flags),
+                     label, help_, reasons, hint, doc_ctx, others))
+        item_id = cur.fetchone()[0]
+        truth = labels.get(f, {}).get("value")
+        right = (truth is None and val is None) or (truth is not None and val is not None and abs(truth - val) < 0.01)
+        cur.execute("INSERT INTO review.answer_key VALUES (?, ?, ?)",
+                    (item_id, truth, "correct" if right else ("spurious" if truth is None else "wrong")))
+        n += 1
+    cur.execute("INSERT INTO review.document VALUES (?, ?)", (doc_id, real_page_image(img)))
+    print(f"{doc_id}: {len(read)} values read, {n} sent to review, {len(read) - n} auto-accepted ({method}, cutoff {threshold})")
+
+
 def grant(cur, upn):
     cur.execute(f"IF USER_ID(N'{upn}') IS NULL CREATE USER [{upn}] FROM EXTERNAL PROVIDER")
     cur.execute(f"GRANT SELECT ON review.item TO [{upn}]")
@@ -235,11 +307,17 @@ def main():
     ap.add_argument("--reviewer", action="append", default=[], help="Entra UPN of the app user")
     ap.add_argument("--reset", action="store_true", help="reload the queue (clears decisions and history)")
     ap.add_argument("--score", action="store_true")
+    ap.add_argument("--add-real", metavar="DOC_ID", help="queue one redacted real letter (e.g. L03) next to the synthetic ones")
     a = ap.parse_args()
     conn = connect_sql()
     cur = conn.cursor()
     if a.score:
         score(cur)
+        return
+    if a.add_real:
+        cal = json.loads((SYN / "eval" / "calibration.json").read_text())[a.method]["chosen"]
+        add_real(cur, a.add_real, a.method, cal["threshold"])
+        conn.commit()
         return
     for stmt in DDL:
         cur.execute(stmt)
