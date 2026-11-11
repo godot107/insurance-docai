@@ -143,6 +143,21 @@
                       "Entity": "fact_quote"
                     }
                   },
+                  "Property": "letter_url"
+                }
+              },
+              "queryRef": "fact_quote.letter_url",
+              "nativeQueryRef": "letter_url",
+              "displayName": "Letter"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_quote"
+                    }
+                  },
                   "Property": "notes"
                 }
               },
@@ -153,6 +168,21 @@
           ]
         }
       }
+    },
+    "objects": {
+      "values": [
+        {
+          "properties": {
+            "urlIcon": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
     },
     "visualContainerObjects": {
       "title": [
@@ -168,7 +198,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Quotes vs current policy'"
+                  "Value": "'Quotes vs current policy (Letter opens the document in the review app)'"
                 }
               }
             }

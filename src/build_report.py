@@ -181,8 +181,10 @@ def page_switch():
                {"Values": [(col(q, "carrier"), "Insurer"), (col(q, "premium"), "Premium"), (col(q, "premium_per_1k_a"), "Per $1k A"),
                            (col(q, "coverage_a"), "Dwelling (A)"), (col(q, "aop_deductible"), "Deductible"),
                            (col(q, "wind_hail_pct"), "Wind/hail"), (col(q, "apples_to_apples"), "Comparable?"),
-                           (col(q, "vs_current_usd"), "vs current"), (col(q, "notes"), "Why not comparable")]},
-               title="Quotes vs current policy"),
+                           (col(q, "vs_current_usd"), "vs current"), (col(q, "letter_url"), "Letter"),
+                           (col(q, "notes"), "Why not comparable")]},
+               title="Quotes vs current policy (Letter opens the document in the review app)",
+               objects={"values": [{"properties": {"urlIcon": lit("true")}}]}),
     ]
     return p, "Should I Switch?", vs
 

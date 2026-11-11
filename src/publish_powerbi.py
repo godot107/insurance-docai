@@ -176,7 +176,8 @@ def main():
     for t, df in frames.items():
         tables.append({"name": t,
                        "columns": [{"name": c, "dataType": pbi_type(df[c]),
-                                    **({"formatString": COLUMN_FORMATS[(t, c)]} if (t, c) in COLUMN_FORMATS else {})}
+                                    **({"formatString": COLUMN_FORMATS[(t, c)]} if (t, c) in COLUMN_FORMATS else {}),
+                                    **({"dataCategory": "WebUrl"} if c.endswith("_url") else {})}
                                    for c in df.columns],
                        "measures": [{"name": m, "expression": e, **({"formatString": FORMATS[m]} if m in FORMATS else {})}
                                     for m, e in MEASURES.get(t, {}).items()]})

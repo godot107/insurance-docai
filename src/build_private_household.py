@@ -18,7 +18,8 @@ from pathlib import Path
 import pandas as pd
 import yaml
 
-from common import ROOT
+from build_dashboard_tables import letter_url
+from common import ROOT, load_env
 
 PRIVATE = ROOT / "private"
 OUT = PRIVATE / "dashboard"
@@ -43,6 +44,7 @@ def main():
         comp = comp.rename(columns={"vs_current_$": "vs_current_usd", "vs_current_%": "vs_current_pct"})
         comp["notes"] = comp["notes"].fillna("")
         comp["renewal_date"] = pd.Timestamp(str(h.get("renewal_date", "2026-12-27")))
+        comp["letter_url"] = comp.doc_id.map(letter_url)
         quotes.append(comp)
         homes.append({"household_id": hid, "household": f"{h.get('label', hid)} · {h.get('address', '')}".strip(" ·"),
                       "simulated": False})
@@ -52,4 +54,5 @@ def main():
 
 
 if __name__ == "__main__":
+    load_env()
     main()

@@ -12,6 +12,7 @@ Usage: .venv/bin/python src/build_dashboard_tables.py [--methods rules,ins-neura
 import argparse
 import csv
 import json
+import os
 import random
 from pathlib import Path
 
@@ -47,6 +48,12 @@ DEMO_HOUSEHOLDS = [
 ]
 
 
+def letter_url(doc_id):
+    """Link that opens the review app on this letter (POWERAPPS_PLAY_URL from .env; empty when not deployed)."""
+    base = os.environ.get("POWERAPPS_PLAY_URL", "")
+    return f"{base}&doc={doc_id}" if base else ""
+
+
 def demo_households():
     return pd.concat([demo_household(seed, hid, a, prem, same) for hid, _, seed, a, prem, same in DEMO_HOUSEHOLDS],
                      ignore_index=True)
@@ -79,6 +86,7 @@ def demo_household(seed=11, hid="demo", a=512000.0, current=6480.00, p_same=0.6)
     df["vs_current_usd"] = (df.premium - base).where(df.doc_type != "declarations").round(2)
     df["vs_current_pct"] = (100 * (df.premium / base - 1)).where(df.doc_type != "declarations").round(1)
     df["renewal_date"] = pd.Timestamp("2026-12-27")
+    df["letter_url"] = df.doc_id.map(letter_url)
     return df
 
 
