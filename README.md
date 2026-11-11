@@ -61,6 +61,10 @@ Details: [docs/RESULTS.md](docs/RESULTS.md). Narrative: [docs/REPORT.md](docs/RE
 
 ## Architecture as built (development)
 
+![Architecture](docs/img/architecture.png)
+
+<details><summary>Text version of this diagram</summary>
+
 ```mermaid
 flowchart LR
   subgraph In["Intake"]
@@ -107,6 +111,8 @@ flowchart LR
   DI -. logs .-> LA
   PA -. Trace events .-> LA
 ```
+
+</details>
 
 Dev choices (each one has a production counterpart in [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)):
 public endpoints protected by Entra ID only (no keys, no SQL passwords); Databricks **Free Edition** (Azure
