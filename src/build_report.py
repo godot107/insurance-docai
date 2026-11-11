@@ -1,7 +1,7 @@
 """Build the Power BI report as code (PBIR JSON) and publish it to the workspace, from Linux (no Desktop).
 
 Five pages from docs/DASHBOARD.md, on the push dataset that publish_powerbi.py maintains:
-  1. Should I Switch?   homeowner: current premium vs comparable quotes (simulated `demo` household)
+  1. Should I Switch?   homeowner: current premium vs comparable quotes; household picker (default: simulated demo)
   2. Operations         product owner / ops: recall, precision, silent errors, review load, threshold curve
   3. Review feedback    ops: accept / correct / not-on-document rates, no-reply aging, drift by week
   4. Review app usage   ops: sessions, views vs decisions, skip rate, seconds per decision (App Insights)
@@ -134,6 +134,26 @@ def slicer(page, key, x, y, w, h, c, title, values, default=None, mode="Basic"):
                   filters=[filt(f"{key}_values", t, name, [f"'{v}'" for v in values])], objects=objects)
 
 
+def household_slicer(page):
+    """Single-select dropdown with search over dim_household[household] ("label · address"), default = demo.
+    Listing every household (not a fixed value list) so real ones loaded with --include-private appear."""
+    c = col("dim_household", "household")
+    objects = {"data": [{"properties": {"mode": lit("'Dropdown'")}}],
+               "header": [{"properties": {"show": lit("false")}}],
+               "selection": [{"properties": {"singleSelect": lit("true")}}],
+               "general": [{"properties": {"selfFilterEnabled": lit("true"),
+                                           "filter": {"filter": where_in("dim_household", "household",
+                                                                          [f"'{DEMO_HOUSEHOLD}'"])}}}]}
+    not_blank = {"name": "household_not_blank", "field": c, "type": "Advanced", "filter": {
+        "Version": 2, "From": [{"Name": "x", "Entity": "dim_household", "Type": 0}],
+        "Where": [{"Condition": {"Not": {"Expression": {"In": {
+            "Expressions": [{"Column": {"Expression": {"SourceRef": {"Source": "x"}}, "Property": "household"}}],
+            "Values": [[{"Literal": {"Value": "null"}}]]}}}}}]}}
+    return visual(page, "household", "slicer", 930, 5, 330, 80, {"Values": [c]}, title="Household (type to search)",
+                  objects=objects, filters=[not_blank])
+
+
+DEMO_HOUSEHOLD = "Demo house (simulated) · 100 Example Lane"   # must match build_dashboard_tables.DEMO_HOUSEHOLD
 H1 = {"fontWeight": "bold", "fontSize": "20pt"}
 NOTE = {"fontSize": "10pt", "color": "#605E5C"}
 
@@ -143,9 +163,10 @@ def page_switch():
     p = "switch"
     q = "fact_quote"
     vs = [
-        text(p, "title", 20, 10, 1240, 70, [[("Should I switch?", H1)],
-             [("Simulated demo household. Mailers are estimates, not offers: only quotes with the same dwelling "
-               "coverage, deductible and wind/hail % are real comparisons (comparable = yes).", NOTE)]]),
+        text(p, "title", 20, 5, 900, 82, [[("Should I switch?", H1)],
+             [("Pick a household at the right. Mailers are estimates, not offers: only quotes with the same "
+               "dwelling coverage, deductible and wind/hail % count as comparable.", NOTE)]]),
+        household_slicer(p),
         card(p, "current", 20, 90, meas(q, "Current premium")),
         card(p, "best", 230, 90, meas(q, "Best comparable quote")),
         card(p, "savings", 440, 90, meas(q, "Annual savings")),

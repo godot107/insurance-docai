@@ -34,23 +34,41 @@ ASSUMPTIONS = [  # name, value, unit, note
 ]
 
 
-def demo_household(seed=11):
+DEMO_HOUSEHOLD = "Demo house (simulated) · 100 Example Lane"
+
+
+# Fictional households for the "Should I switch?" picker: obviously made-up addresses, each a different situation.
+DEMO_HOUSEHOLDS = [
+    # id, picker label, seed, dwelling (A), current premium, share of quotes on the same terms
+    ("demo", DEMO_HOUSEHOLD, 11, 512000.0, 6480.00, 0.6),
+    ("demo2", "Demo: already a good deal (simulated) · 42 Sample Street", 23, 386000.0, 1240.00, 0.6),
+    ("demo3", "Demo: nothing comparable (simulated) · 7 Placeholder Court", 37, 455000.0, 4920.00, 0.0),
+    ("demo4", "Demo: big house, big gap (simulated) · 1 Fictional Ridge", 51, 845000.0, 11800.00, 0.7),
+]
+
+
+def demo_households():
+    return pd.concat([demo_household(seed, hid, a, prem, same) for hid, _, seed, a, prem, same in DEMO_HOUSEHOLDS],
+                     ignore_index=True)
+
+
+def demo_household(seed=11, hid="demo", a=512000.0, current=6480.00, p_same=0.6):
     """One simulated house + current policy + one quote per fictional carrier (same coverage, formula prices)."""
     rng = random.Random(seed)
     kits = json.load(open(SYN / "carriers.json"))
-    a, sqft, year = 512000.0, 2480, 2019
+    sqft, year = int(a / 206), 2019 - seed % 17
     cov = {"coverage_a": a, "coverage_c": round(a * 0.5, -2), "coverage_e": 300000.0}
-    rows = [{"household_id": "demo", "doc_id": "D00", "carrier": "Current insurer (simulated)", "doc_type": "declarations",
-             "premium": 6480.00, **cov, "wind_hail_pct": 2.0, "aop_deductible": 1000.0, "apples_to_apples": "baseline",
+    rows = [{"household_id": hid, "doc_id": f"{hid}-D00", "carrier": "Current insurer (simulated)", "doc_type": "declarations",
+             "premium": current, **cov, "wind_hail_pct": 2.0, "aop_deductible": 1000.0, "apples_to_apples": "baseline",
              "notes": "", "year_built": year, "square_feet": sqft}]
     for i, k in enumerate(kits, 1):
         rate = rng.uniform(3.2, 9.5)
-        same_terms = rng.random() < 0.6
+        same_terms = rng.random() < p_same
         wh = 2.0 if same_terms else rng.choice([1.0, 5.0])
         prem = round(a / 1000 * rate * {1.0: 1.12, 2.0: 1.0, 5.0: 0.85}[wh], 2)
         quote_a = a if same_terms else round(a * rng.uniform(0.85, 1.05), -2)
         notes = [] if same_terms else ["dwelling differs >5%" if abs(quote_a / a - 1) > 0.05 else "", f"wind/hail {wh:g}% vs 2%"]
-        rows.append({"household_id": "demo", "doc_id": f"D{i:02d}", "carrier": k["carrier_name"],
+        rows.append({"household_id": hid, "doc_id": f"{hid}-D{i:02d}", "carrier": k["carrier_name"],
                      "doc_type": "quote", "premium": prem, "coverage_a": quote_a, "coverage_c": cov["coverage_c"],
                      "coverage_e": cov["coverage_e"], "wind_hail_pct": wh, "aop_deductible": 1000.0,
                      "apples_to_apples": "yes" if same_terms else "no", "notes": "; ".join(n for n in notes if n),
@@ -114,7 +132,9 @@ def main():
                                         "premium" if f.startswith("premium") else
                                         "deductible" if f.startswith("deductible") else "property"}
                               for f, s in FIELDS.items()])
-    tables = {"fact_document": fact_doc, "fact_field": fact_field, "fact_quote": demo_household(),
+    dim_household = pd.DataFrame([{"household_id": h, "household": lab, "simulated": True} for h, lab, *_ in DEMO_HOUSEHOLDS])
+    tables = {"fact_document": fact_doc, "fact_field": fact_field, "fact_quote": demo_households(),
+              "dim_household": dim_household,
               "dim_field": dim_field,
               "dim_carrier": pd.DataFrame([{"carrier_id": c, "carrier": k["carrier_name"], "layout": k["layout"],
                                             "split": "test" if c in ("C5", "C6") else "train"} for c, k in kits.items()]),

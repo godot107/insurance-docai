@@ -3,10 +3,10 @@
   "name": "1c72ad2d00e25d2aa221",
   "position": {
     "x": 20,
-    "y": 10,
+    "y": 5,
     "z": 0,
-    "width": 1240,
-    "height": 70,
+    "width": 900,
+    "height": 82,
     "tabOrder": 0
   },
   "visual": {
@@ -30,7 +30,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Simulated demo household. Mailers are estimates, not offers: only quotes with the same dwelling coverage, deductible and wind/hail % are real comparisons (comparable = yes).",
+                    "value": "Pick a household at the right. Mailers are estimates, not offers: only quotes with the same dwelling coverage, deductible and wind/hail % count as comparable.",
                     "textStyle": {
                       "fontSize": "10pt",
                       "color": "#605E5C"

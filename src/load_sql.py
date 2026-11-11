@@ -4,7 +4,7 @@ Tables are dropped and recreated each run (idempotent full refresh: they're smal
 the pandas dtypes. Auth is Entra ID only (the operator's az login); the server has no SQL passwords.
 --reader adds an Entra user (e.g. the Power BI work account) to db_datareader.
 
-Usage: .venv/bin/python src/load_sql.py [--reader willie@<tenant>.onmicrosoft.com]
+Usage: .venv/bin/python src/load_sql.py [--reader willie@<tenant>.onmicrosoft.com] [--include-private]
 """
 import argparse
 import os
@@ -15,6 +15,7 @@ import pandas as pd
 from common import ROOT, connect_sql
 
 SRC = ROOT / "data" / "dashboard"
+PRIVATE_SRC = ROOT / "private" / "dashboard"
 
 
 def sql_type(s: pd.Series) -> str:
@@ -41,6 +42,9 @@ def clean(v):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--reader", action="append", default=[], help="Entra UPN to grant db_datareader")
+    ap.add_argument("--include-private", action="store_true",
+                    help="also add private/dashboard/*.parquet rows (real households; never in git). "
+                         "A reload without this flag removes them.")
     args = ap.parse_args()
     conn = connect_sql()
     cur = conn.cursor()
@@ -50,13 +54,21 @@ def main():
         for c in df.select_dtypes(include=["object", "string"]):
             df[c] = df[c].where(df[c].isna(), df[c].astype(str))   # mixed truth/pred values → text
         name = f"dash.{path.stem}"
-        cols = ", ".join(f"[{c}] {sql_type(df[c])}" for c in df.columns)
+        extra = PRIVATE_SRC / path.name
+        px = pd.read_parquet(extra).reindex(columns=df.columns) if args.include_private and extra.exists() else None
+        typed = df if px is None else pd.concat([df, px.astype({c: df[c].dtype for c in df.columns if df[c].dtype == object})])
+        cols = ", ".join(f"[{c}] {sql_type(typed[c])}" for c in df.columns)
         cur.execute(f"DROP TABLE IF EXISTS {name}")
         cur.execute(f"CREATE TABLE {name} ({cols})")
         if len(df):
             marks = ", ".join("?" * len(df.columns))
             cur.executemany(f"INSERT INTO {name} VALUES ({marks})",
                             [tuple(clean(v) for v in row) for row in df.itertuples(index=False)])
+        if px is not None:
+            marks = ", ".join("?" * len(df.columns))
+            cur.executemany(f"INSERT INTO {name} VALUES ({marks})",
+                            [tuple(clean(v) for v in row) for row in px.itertuples(index=False)])
+            print(f"{'':22} +{len(px)} private rows")
         cur.execute(f"SELECT COUNT(*) FROM {name}")
         print(f"{name:22} {cur.fetchone()[0]:5} rows")
     for upn in args.reader:
