@@ -12,8 +12,8 @@ My homeowners renewal arrived at about **$7,200 a year**. Over the same months, 
 me "personalized quotes" for the same house, priced between roughly **$1,000 and $3,000**.
 
 That looks like an easy decision. It isn't, because no two letters are alike. One calls it "Dwelling
-Protection", another "Dwelling Coverage"; one prints a wind/hail deductible, eight don't; one quotes $440k
-of coverage, another $529k; two had my square footage wrong. Comparing them means reading every letter,
+Protection", another "Dwelling Coverage"; one prints a wind/hail deductible, eight don't; two letters disagree by almost
+20% on the dwelling coverage the house needs; two had my square footage wrong. Comparing them means reading every letter,
 pulling out the same dozen numbers, and noticing which ones can't actually be compared.
 
 That's a small version of a common problem in government and financial services: an organization receives

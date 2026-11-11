@@ -223,7 +223,10 @@ def add_real(cur, doc_id, method, threshold):
     Truth comes from the owner's labels (private/labels/<doc>.json) and goes to the answer key only."""
     from normalize import FIELDS, parse, review
     priv = ROOT / "private"
-    img = priv / "redacted" / f"{doc_id}_page_redacted.png"
+    # prefer the version with house-revealing amounts (dwelling, contents, premium) also blacked out
+    img = priv / "redacted" / f"{doc_id}_page_redacted_amounts.png"
+    if not img.exists():
+        img = priv / "redacted" / f"{doc_id}_page_redacted.png"
     if not img.exists():
         raise SystemExit(f"missing {img}: redact the page by hand first (solid boxes, not blur)")
     cur.execute("SELECT COUNT(*) FROM review.item WHERE doc_id = ?", doc_id)
